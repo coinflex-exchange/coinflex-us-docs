@@ -9,6 +9,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 toc_footers:
   - <a href='https://coinflex.us/user-console/register'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='https://immunefi.com/?#0xa270bb1241FF428927406e5Fde47e7EA8592aFb1'>Bug bounty</a>
 
 includes:
   - v3_introduction
