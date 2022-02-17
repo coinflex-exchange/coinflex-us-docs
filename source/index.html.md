@@ -11,9 +11,9 @@ toc_footers:
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - v3_introduction
-  - v3_websocket
-  - v3_restapi
+  - v1_introduction
+  - v1_websocket
+  - v1_restapi
 
 search: true
 

@@ -26,7 +26,7 @@ Code | Description |
 Each IP is limited to:
 
 * 100 requests per second
-* 20 POST v3/orders requests per second
+* 20 POST v1/orders requests per second
 * 2500 requests over 5 minutes
 
 Certain endpoints have extra IP restrictions:
@@ -39,10 +39,10 @@ Certain endpoints have extra IP restrictions:
 
 Affected APIs:
 
-* [POST /v3/withdrawal](?json#rest-api-v3-deposits-and-withdrawals-post-v3-withdrawal)
-* [POST /v3/transfer](?json#rest-api-v3-deposits-and-withdrawals-post-v3-transfer)
-* [POST /v3/flexasset/mint](?json#rest-api-v3-flex-assets-post-v3-flexasset-mint)
-* [POST /v3/flexasset/redeem](?json#rest-api-v3-flex-assets-post-v3-flexasset-redeem)
+* [POST /v1/withdrawal](?json#rest-api-v1-deposits-and-withdrawals-post-v1-withdrawal)
+* [POST /v1/transfer](?json#rest-api-v1-deposits-and-withdrawals-post-v1-transfer)
+* [POST /v1/flexasset/mint](?json#rest-api-v1-flex-assets-post-v1-flexasset-mint)
+* [POST /v1/flexasset/redeem](?json#rest-api-v1-flex-assets-post-v1-flexasset-redeem)
 
 ## Authentication
 
@@ -114,7 +114,7 @@ Timestamp | Yes | 2020-04-30T15:20:30 | YYYY-MM-DDThh:mm:ss
 Nonce | Yes | 123 | User generated
 Verb | Yes| GET | Uppercase
 Path | Yes | v2stgapi.coinflex.us |
-Method | Yes | /v3/positions | Available REST methods
+Method | Yes | /v1/positions | Available REST methods
 Body | No | marketCode=BTC-USD-SWAP-LIN | Optional and dependent on the REST method being called
 
 The constructed message string should look like:-
@@ -123,7 +123,7 @@ The constructed message string should look like:-
   123\n
   GET\n
   v2stgapi.coinflex.us\n
-  /v3/positions\n
+  /v1/positions\n
   marketCode=BTC-USD-SWAP-LIN`
 
 Note the newline characters after each component in the message string. 
@@ -138,7 +138,7 @@ The signature must then be included in the header of the REST API call like so:
 ## Account & Wallet - Private
 
 
-### GET `/v3/account `
+### GET `/v1/account `
 
 Get account information
 
@@ -149,7 +149,7 @@ Calling this endpoint using an API-KEY linked to the main account with the param
 > **Request**
 
 ```
-GET v3/account?subAcc={subAcc},{subAcc}
+GET v1/account?subAcc={subAcc},{subAcc}
 ```
 
 > **Successful response format**
@@ -259,14 +259,14 @@ createdAt | STRING | Timestamp indicating when the account was created |
 
 ## Deposits & Withdrawals - Private
 
-### GET `/v3/deposit-addresses`
+### GET `/v1/deposit-addresses`
 
 Deposit addresses
 
 > **Request**
 
 ```
-GET /v3/deposit-addresses?asset={asset}&network={network}
+GET /v1/deposit-addresses?asset={asset}&network={network}
 ```
 
 > **Successful response format**
@@ -291,14 +291,14 @@ address | STRING | Deposit address |
 memo | STRING | Memo (tag) if applicable |
 
 
-### GET `/v3/deposit`
+### GET `/v1/deposit`
 
 Deposit history
 
 > **Request**
 
 ```
-GET /v3/deposit?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
+GET /v1/deposit?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
 ```
 
 > **Successful response format**
@@ -341,14 +341,14 @@ txId | STRING | |
 creditedAt | STRING | Millisecond timestamp |
 
 
-### GET `/v3/withdrawal-addresses`
+### GET `/v1/withdrawal-addresses`
 
 Withdrawal addresses
 
 > **Request**
 
 ```
-GET /v3/withdrawal-addresses?asset={asset}?network={network}
+GET /v1/withdrawal-addresses?asset={asset}?network={network}
 ```
 
 > **Successful response format**
@@ -385,14 +385,14 @@ label | STRING | Withdrawal address label |
 whitelisted | BOOL | |
 
 
-### GET `/v3/withdrawal`
+### GET `/v1/withdrawal`
 
 Withdrawal history
 
 > **Request**
 
 ```
-GET /v3/withdrawal?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
+GET /v1/withdrawal?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
 ```
 
 > **Successful response format**
@@ -439,14 +439,14 @@ requestedAt | STRING | Millisecond timestamp |
 completedAt | STRING | Millisecond timestamp |
 
 
-### POST `/v3/withdrawal`
+### POST `/v1/withdrawal`
 
 Withdrawal request
 
 > **Request**
 
 ```
-POST /v3/withdrawal
+POST /v1/withdrawal
 ```
 ```json
 {
@@ -503,14 +503,14 @@ status | STRING | |
 requestedAt | STRING | Millisecond timestamp |
 
 
-### GET `/v3/withdrawal-fee`
+### GET `/v1/withdrawal-fee`
 
 Withdrawal fee estimate
 
 > **Request**
 
 ```
-GET /v3/withdrawal-fee?asset={asset}&network={network}&address={address}&memo={memo}&quantity={quantity}&externalFee={externalFee}
+GET /v1/withdrawal-fee?asset={asset}&network={network}&address={address}&memo={memo}&quantity={quantity}&externalFee={externalFee}
 ```
 
 > **Successful response format**
@@ -549,7 +549,7 @@ externalFee | BOOL | If false, then the fee is taken from the quantity|
 estimatedFee | STRING | |
 
 
-### POST `/v3/transfer`
+### POST `/v1/transfer`
 
 Sub-account balance transfer
 
@@ -560,7 +560,7 @@ Transferring funds between sub-accounts is restricted to API keys linked to the 
 > **Request**
 
 ```
-POST /v3/transfer
+POST /v1/transfer
 ```
 ```json
 {
@@ -602,14 +602,14 @@ toAccount | STRING | |
 transferredAt | STRING | Millisecond timestamp |
 
 
-### GET `/v3/transfer`
+### GET `/v1/transfer`
 
 Sub-account balance transfer history
 
 > **Request**
 
 ```url
-GET /v3/transfer?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
+GET /v1/transfer?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
 ```
 
 > **Successful response format**
@@ -656,14 +656,14 @@ transferredAt | STRING | Millisecond timestamp |
 
 ## Flex Assets - Private
 
-### POST `/v3/flexasset/mint`
+### POST `/v1/flexasset/mint`
 
 Mint
 
 > **Request**
 
 ```
-POST /v3/flexasset/mint
+POST /v1/flexasset/mint
 ```
 ```json
 {
@@ -699,14 +699,14 @@ asset | STRING |  |
 quantity | STRING | |
 
 
-### POST `/v3/flexasset/redeem`
+### POST `/v1/flexasset/redeem`
 
 Redeem
 
 > **Request**
 
 ```
-POST /v3/flexasset/redeem
+POST /v1/flexasset/redeem
 ```
 ```json
 {
@@ -750,14 +750,14 @@ type | STRING | Available types: `NORMAL`, `INSTANT` |
 redemptionAt | STRING | Millisecond timestamp indicating when redemption will take place|
 
 
-### GET `/v3/flexasset/mint`
+### GET `/v1/flexasset/mint`
 
 Get mint history by asset and sorted by time in descending order.
 
 > **Request**
 
 ```
-GET /v3/flexasset/mint?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
+GET /v1/flexasset/mint?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
 ```
 
 > **Successful response format**
@@ -789,14 +789,14 @@ quantity | STRING | |
 mintedAt | STRING | |
 
 
-### GET `/v3/flexasset/redeem`
+### GET `/v1/flexasset/redeem`
 
 Get redemption history by asset and sorted by time in descending order.
 
 > **Request**
 
 ```
-GET /v3/flexasset/redeem?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
+GET /v1/flexasset/redeem?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
 ```
 
 > **Successful response format**
@@ -831,14 +831,14 @@ requestedAt | STRING | Millisecond timestamp indicating when redemption was requ
 redeemedAt | STRING | Millisecond timestamp indicating when the flexAssets were redeemed |
 
 
-### GET `/v3/flexasset/earned`
+### GET `/v1/flexasset/earned`
 
 Get earned history by asset and sorted by time in descending order.
 
 > **Request**
 
 ```
-GET /v3/flexasset/earned?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
+GET /v1/flexasset/earned?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
 ```
 
 > **Successful response format**
@@ -878,14 +878,14 @@ paidAt | STRING | |
 
 ## Market Data - Public
 
-### GET `/v3/markets`
+### GET `/v1/markets`
 
 Get a list of markets on CoinFlex US.
 
 > **Request**
 
 ```
-GET /v3/markets?marketCode={marketCode}
+GET /v1/markets?marketCode={marketCode}
 ```
 
 > **Successful response format**
@@ -934,14 +934,14 @@ lowerPriceBound | STRING | Sanity bound |
 markPrice | STRING | Mark price |
 lastUpdatedAt | STRING | |
 
-### GET `/v3/assets`
+### GET `/v1/assets`
 
 Get a list of assets supported on CoinFLEX US.
 
 > **Request**
 
 ```
-GET /v3/assets?asset={asset}
+GET /v1/assets?asset={asset}
 ```
 
 > **Successful response format**
