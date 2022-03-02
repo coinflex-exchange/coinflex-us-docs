@@ -142,14 +142,10 @@ The signature must then be included in the header of the REST API call like so:
 
 Get account information
 
-<aside class="notice">
-Calling this endpoint using an API-KEY linked to the main account with the parameter "subAcc" allows the caller to include additional sub-accounts in the response. If an API-KEY linked to a sub-account is used, then this parameter has no control.
-</aside>
-
 > **Request**
 
 ```
-GET v1/account?subAcc={subAcc},{subAcc}
+GET v1/account
 ```
 
 > **Successful response format**
@@ -178,49 +174,13 @@ GET v1/account?subAcc={subAcc},{subAcc}
                     "lastUpdatedAt": "1593627415123"
                 }
             ],
-            "positions": [
-                {
-                    "marketCode": "FLEX-USD-SWAP-LIN", 
-                    "baseAsset": "FLEX", 
-                    "counterAsset": "USD", 
-                    "position": "11411.1", 
-                    "entryPrice": "3.590", 
-                    "markPrice": "6.360", 
-                    "positionPnl": "31608.7470", 
-                    "estLiquidationPrice": "0", 
-                    "lastUpdatedAt": "1637876701404"
-	            }
-            ],
-            "loans": [
-                {
-                    "borrowedAsset": "USD",
-                    "borrowedAmount": "100000.0",
-                    "collateralAsset": "BTC",
-                    "marketCode": "BTC-USD-SWAP-LIN",
-                    "position": "1.6",
-                    "entryPrice": "50000.0",
-                    "markPrice": "62500.0",
-                    "estLiquidationPrice": "40000.0",
-                    "lastUpdatedAt": "1592486212218"
-                }
-            ],
-            "collateral": "1231231",
-            "notionalPositionSize": "50000.0",
-            "portfolioVarMargin": "500",
-            "riskRatio": "20000.0000",
-            "maintenanceMargin": "1231",
-            "marginRatio": "12.3179",
-            "liquidating": false,
+            "notional": "2314221",
             "feeTier": "6",
             "createdAt": "1611665624601"
         }
     ]
 }
 ```
-
-Request Parameter | Type | Required | Description |
------------------ |----- | -------- | ----------- |
-subAcc | STRING | NO | Sub account. If no subAcc is given, then the response contains only the account linked to the API-Key. Multiple subAccs can be separated with a comma, maximum of 10 subAccs, e.g. `subone,subtwo` |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
@@ -233,26 +193,7 @@ total | STRING | Total balance|
 available | STRING | Available balance |
 reserved | STRING | Reserved balance |
 lastUpdatedAt | STRING | Timestamp of updated at |
-positions | LIST of dictionaries | Positions if applicable|
-marketCode | STRING | Market code |
-baseAsset | STRING | Base asset |
-counterAsset | STRING | Counter asset |
-position | STRING | Position size |
-entryPrice | STRING | Entry price |
-markPrice | STRING | Mark price |
-positionPnl | STRING | Position PNL |
-estLiquidationPrice | STRING | Estimated liquidation price |
-loans | LIST of dictionaries | Loans if applicable |
-borrowedAsset | STRING | Borrowed asset |
-borrowedAmount | STRING | Borrowed amount |
-collateralAsset | STRING | Collateral asset |
-collateral | STRING | Collateral |
-notionalPositionSize | STRING | Notional position size |
-portfolioVarMargin | STRING | Portfolio margin |
-riskRatio | STRING | collateralBalance / portfolioVarMargin. Orders are rejected/cancelled if the risk ratio drops below 1, and liquidation occurs if the risk ratio drops below 0.5 |
-maintenanceMargin | STRING | Maintenance margin. The minimum amount of collateral required to avoid liquidation |
-marginRatio | STRING | Margin ratio. Orders are rejected/cancelled if the margin ratio reaches 50, and liquidation occurs if the margin ratio reaches 100  |
-liquidating | BOOLEAN | Available values: `true` and `false` |
+notional | STRING | Notional |
 feeTier | STRING | Fee tier |
 createdAt | STRING | Timestamp indicating when the account was created |
 
@@ -547,111 +488,6 @@ memo | STRING | Memo (tag) if applicable|
 quantity | STRING | |
 externalFee | BOOL | If false, then the fee is taken from the quantity|
 estimatedFee | STRING | |
-
-
-### POST `/v1/transfer`
-
-Sub-account balance transfer
-
-<aside class="notice">
-Transferring funds between sub-accounts is restricted to API keys linked to the main account.
-</aside>
-
-> **Request**
-
-```
-POST /v1/transfer
-```
-```json
-{
-    "asset": "flexUSD",
-    "quantity": "1000",
-    "fromAccount": "14320",
-    "toAccount": "15343"
-}
-```
-
-> **Successful response format**
-
-```json
-{
-    "success": true,
-    "data": {
-        "asset": "flexUSD", 
-        "quantity": "1000",
-        "fromAccount": "14320",
-        "toAccount": "15343",
-        "transferredAt": "1635038730480"
-    }
-}
-```
-
-Request Parameter | Type | Required | Description | 
------------------ | ---- | -------- | ----------- |
-asset | STRING | YES | |
-quantity | STRING | YES | |
-fromAccount | STRING | YES | |
-toAccount | STRING | YES | |
-
-Response Field | Type | Description | 
--------------- | ---- | ----------- |
-asset | STRING | |
-quantity | STRING | |
-fromAccount | STRING | |
-toAccount | STRING | |
-transferredAt | STRING | Millisecond timestamp |
-
-
-### GET `/v1/transfer`
-
-Sub-account balance transfer history
-
-> **Request**
-
-```url
-GET /v1/transfer?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
-```
-
-> **Successful response format**
-
-```json
-{
-    "success": true,
-    "data": [
-        {
-            "asset": "flexUSD", 
-            "quantity": "1000",
-            "fromAccount": "14320",
-            "toAccount": "15343",
-            "id": "703557273590071299",
-            "status": "COMPLETED",
-            "transferredAt": "1634779040611"
-        }
-    ]
-}
-```
-
-<aside class="notice">
-API keys linked to the main account can get all account transfers, 
-while API keys linked to a sub-account can only see transfers where the sub-account is either the "fromAccount" or "toAccount".
-</aside>
-
-Request Parameters | Type | Required | Description | 
------------------- | ---- | -------- | ----------- |
-asset | STRING | NO | Default all assets |
-limit | LONG | NO | Default 50, max 200 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
-endTime | LONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
-
-Response Field | Type | Description | 
--------------- | ---- | ----------- |
-asset | STRING | |
-quantity | STRING | |
-fromAccount | STRING | |
-toAccount | STRING | |
-id | STRING | |
-status | STRING | |
-transferredAt | STRING | Millisecond timestamp |
 
 
 ## Flex Assets - Private
