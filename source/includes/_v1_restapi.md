@@ -982,3 +982,430 @@ loanToValue | STRING | Loan to value of the asset |
 minDeposit | STRING | Minimum deposit amount |
 minWithdrawal | STRING | Minimum withdrawal amount |
 network | LIST | Available networks for deposits and withdrawals |
+
+
+### GET `/v1/tickers`
+
+Get tickers.
+
+> **Request**
+
+```
+GET /v1/tickers?marketCode={marketCode}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "marketCode": "BTC-USD-SWAP-LIN",
+            "markPrice": "41512.4",
+            "open24h": "41915.3",
+            "high24h": "42662.2",
+            "low24h": "41167.0",
+            "volume24h": "114341.4550",
+            "currencyVolume24h": "2.733",
+            "openInterest": "3516.506000000",
+            "lastTradedPrice": "41802.5",
+            "lastTradedQuantity": "0.001",
+            "lastUpdatedAt": "1642585256002"
+        }
+    ]
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+marketCode | STRING | NO | Market code |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+marketCode | STRING | Market code |
+markPrice | STRING | Mark price |
+open24h | STRING | 24 hour rolling opening price |
+high24h | STRING | 24 hour highest price |
+low24h | STRING | 24 hour lowest price |
+volume24h | STRING | Volume in 24 hours |
+currencyVolume24h | STRING | 24 hour rolling trading volume in counter currency |
+openInterest | STRING | Open interest |
+lastTradedPrice | STRING | Last traded price |
+lastTradedQuantity | STRIN | Last traded quantity |
+lastUpdatedAt | STRING | Millisecond timestamp of last updated time |
+
+
+### GET `/v1/auction`
+
+Get upcoming delivery auction.
+
+> **Request**
+
+```
+GET /v1/auction?marketCode={marketCode}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "marketCode": "BTC-USD-SWAP-LIN",
+            "auctionTime": "1642590000000",
+            "netDelivered": "0",
+            "estFundingRate": "0"
+        }
+    ]
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+marketCode | STRING | NO | Market code |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+marketCode | STRING | Market code |
+auctionTime | STRING | Millisecond timestamp of the next auction |
+netDelivered | STRING | Delivery imbalance (negative = more shorts than longs and vice versa) |
+estFundingRate | STRING | Estimated funding rate a positive rate means longs pay shorts |
+
+
+### GET `/v1/funding-rates`
+
+Get historical funding rates.
+
+> **Request**
+
+```
+GET /v1/funding-rates?marketCode={marketCode}&limit={limit}
+&startTime={startTime}&endTime={endTime}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "marketCode": "BTC-USD-SWAP-LIN",
+            "fundingRate": "0.0",
+            "netDelivered": "0",
+            "createdAt": "1628362803134"
+        },
+        {
+            "marketCode": "BTC-USD-SWAP-LIN",
+            "fundingRate": "0.0",
+            "netDelivered": "0",
+            "createdAt": "1628359202941"
+        }
+    ]
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+marketCode | STRING | NO | Market code |
+limit | LONG | NO | Default 200, max 500 |
+startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
+endTime | LONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+marketCode | STRING | Market code |
+fundingRate | STRING | Funding rate |
+netDelivered | STRING | Delivery imbalance (negative = more shorts than longs and vice versa) |
+createdAt | STRING | Millisecond timestamp of last created time |
+
+
+### GET `/v1/candles`
+
+Get candles.
+
+> **Request**
+
+```
+GET /v1/candles?marketCode={marketCode}&timeframe={timeframe}&limit={limit}
+&startTime={startTime}&endTime={endTime}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true, 
+    "timeframe": "3600s", 
+    "data": [
+        {
+            "open": "35888.80000000", 
+            "high": "35925.30000000", 
+            "low": "35717.00000000", 
+            "close": "35923.40000000", 
+            "volume": "0",
+            "currencyVolume": "0",
+            "openedAt": "1642932000000"
+        },
+        {
+            "open": "35805.50000000", 
+            "high": "36141.50000000", 
+            "low": "35784.90000000", 
+            "close": "35886.60000000", 
+            "volume": "0",
+            "currencyVolume": "0",
+            "openedAt": "1642928400000"
+        }
+    ]
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+marketCode | STRING | YES | Market code |
+timeframe | STRING | NO | Available values: `60s`,`300s`,`900s`,`1800s`,`3600s`,`7200s`,`14400s`,`86400s`, default is `3600s` |
+limit | LONG | NO | Default 200, max 500 |
+startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
+endTime | LONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+timeframe | STRING | Available values: `60s`,`300s`,`900s`,`1800s`,`3600s`,`7200s`,`14400s`,`86400s` |
+open | STRING | Opening price |
+high | STRING | Highest price |
+low | STRING | Lowest price |
+close | STRING | Closing price |
+volume | STRING | Trading volume in counter currency |
+currencyVolume | STRING | Trading volume in base currency |
+openedAt | STRING | Millisecond timestamp of the candle opened at |
+
+
+### GET `/v1/depth`
+
+Get depth.
+
+> **Request**
+
+```
+GET /v1/depth?marketCode={marketCode}&level={level}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true, 
+    "level": "5", 
+    "data": {
+        "marketCode": "BTC-USD-SWAP-LIN", 
+        "lastUpdatedAt": "1643016065958", 
+        "asks": [
+            [
+                39400, 
+                0.261
+            ], 
+            [
+                41050.5, 
+                0.002
+            ], 
+            [
+                41051, 
+                0.094
+            ], 
+            [
+                41052.5, 
+                0.002
+            ], 
+            [
+                41054.5, 
+                0.002
+            ]
+        ], 
+        "bids": [
+            [
+                39382.5, 
+                0.593
+            ], 
+            [
+                39380.5, 
+                0.009
+            ], 
+            [
+                39378, 
+                0.009
+            ], 
+            [
+                39375.5, 
+                0.009
+            ], 
+            [
+                39373, 
+                0.009
+            ]
+        ]
+    }
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+marketCode | STRING | YES | Market code |
+level | LONG | NO | Default 5, max 100 |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+level | LONG | Level |
+marketCode | STRING | Market code |
+lastUpdatedAt | STRING | Millisecond timestamp of the depth last updated at |
+asks | LIST of floats | Sell side depth: [price, quantity] |
+bids | LIST of floats | Buy side depth: [price, quantity] |
+
+
+### GET `/v1/flexasset/balances`
+
+Get flexAsset balances.
+
+> **Request**
+
+```
+GET /v1/flexasset/balances?flexasset={flexasset}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true, 
+    "flexasset": "flexUSD", 
+    "data": [
+        {
+            "asset": "USD", 
+            "total": "110.78000000", 
+            "available": "110.78000000", 
+            "reserved": "0", 
+            "lastUpdatedAt": "1642735371714"
+        }
+    ]
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+flexasset | STRING | YES | FlexAsset name, available assets e.g. `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+asset | STRING | Asset name, e.g. 'BTC' |
+total | STRING | Total balance |
+available | STRING | Available balance |
+reserved | STRING | Reserved balance (unavailable) due to working spot orders |
+lastUpdatedAt | STRING | Millisecond timestamp of when balance was last updated |
+
+
+### GET `/v1/flexasset/positions`
+
+Get flexAsset positions.
+
+> **Request**
+
+```
+GET /v1/flexasset/positions?flexasset={asset}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "flexasset": "flexUSD",
+    "data": [
+        {
+            "marketCode": "BCH-USD-SWAP-LIN",
+            "baseAsset": "BCH",
+            "counterAsset": "USD",
+            "quantity": "-4363.81",
+            "entryPrice": "380.69",
+            "markPrice": "297.74",
+            "positionPnl": "-361978.0395",
+            "estLiquidationPrice": "0",
+            "lastUpdatedAt": "1643173228911"
+        },
+        {
+            "marketCode": "BTC-USD-SWAP-LIN",
+            "baseAsset": "BTC",
+            "counterAsset": "USD",
+            "quantity": "-28.931000000",
+            "entryPrice": "43100.5",
+            "markPrice": "37850.2",
+            "positionPnl": "151896.4293000000",
+            "estLiquidationPrice": "345678367498.5",
+            "lastUpdatedAt": "1642666693674"
+        }
+    ]
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+flexasset | STRING | YES | FlexAsset name, available assets e.g. `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+marketCode | STRING | Market code |
+baseAsset | STRING | Base asset |
+counterAsset | STRING | Counter asset |
+quantity | STRING | Quantity of position |
+entryPrice | STRING | Average entry price |
+markPrice | STRING | Mark price |
+positionPnl | STRING | Postion profit and loss |
+estLiquidationPrice | STRING | Estimated liquidation price, return 0 if it is negative(&lt;0) |
+lastUpdatedAt | STRING | Millisecond timestamp of when position was last updated |
+
+
+### GET `/v1/flexasset/yields`
+
+Get flexasset yields.
+
+> **Request**
+
+```
+GET /v1/flexasset/yields?flexasset={flexasset}&limit={limit}&startTime={startTime}&endTime={endTime}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "flexasset": "flexBTC",
+            "apr": "0",
+            "yield": "0",
+            "paidAt": "1643193000000"
+        },
+        {
+            "flexasset": "flexUSD",
+            "apr": "0",
+            "yield": "0",
+            "paidAt": "1643193000000"
+        }
+    ]
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+flexasset | STRING | NO | FlexAsset name, available assets e.g. `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
+limit | LONG | NO | Default 200, max 500 |
+startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
+endTime | LONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+flexasset | STRING | Asset name, available assets e.g. `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
+apr | STRING | Annualized APR (%) = yield * 3 * 365 * 100 |
+yield | STRING | Period yield |
+paidAt | STRING | Millisecond timestamp of the interest payment |
