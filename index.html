@@ -479,12 +479,6 @@
                           <li>
                             <a href="#rest-api-deposits-amp-withdrawals-private-get-v1-withdrawal-fee" class="toc-h3 toc-link" data-title="GET <code>/v1/withdrawal-fee</code>">GET <code>/v1/withdrawal-fee</code></a>
                           </li>
-                          <li>
-                            <a href="#rest-api-deposits-amp-withdrawals-private-post-v1-transfer" class="toc-h3 toc-link" data-title="POST <code>/v1/transfer</code>">POST <code>/v1/transfer</code></a>
-                          </li>
-                          <li>
-                            <a href="#rest-api-deposits-amp-withdrawals-private-get-v1-transfer" class="toc-h3 toc-link" data-title="GET <code>/v1/transfer</code>">GET <code>/v1/transfer</code></a>
-                          </li>
                       </ul>
                   </li>
                   <li>
@@ -515,6 +509,30 @@
                           </li>
                           <li>
                             <a href="#rest-api-market-data-public-get-v1-assets" class="toc-h3 toc-link" data-title="GET <code>/v1/assets</code>">GET <code>/v1/assets</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-market-data-public-get-v1-tickers" class="toc-h3 toc-link" data-title="GET <code>/v1/tickers</code>">GET <code>/v1/tickers</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-market-data-public-get-v1-auction" class="toc-h3 toc-link" data-title="GET <code>/v1/auction</code>">GET <code>/v1/auction</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-market-data-public-get-v1-funding-rates" class="toc-h3 toc-link" data-title="GET <code>/v1/funding-rates</code>">GET <code>/v1/funding-rates</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-market-data-public-get-v1-candles" class="toc-h3 toc-link" data-title="GET <code>/v1/candles</code>">GET <code>/v1/candles</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-market-data-public-get-v1-depth" class="toc-h3 toc-link" data-title="GET <code>/v1/depth</code>">GET <code>/v1/depth</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-market-data-public-get-v1-flexasset-balances" class="toc-h3 toc-link" data-title="GET <code>/v1/flexasset/balances</code>">GET <code>/v1/flexasset/balances</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-market-data-public-get-v1-flexasset-positions" class="toc-h3 toc-link" data-title="GET <code>/v1/flexasset/positions</code>">GET <code>/v1/flexasset/positions</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-market-data-public-get-v1-flexasset-yields" class="toc-h3 toc-link" data-title="GET <code>/v1/flexasset/yields</code>">GET <code>/v1/flexasset/yields</code></a>
                           </li>
                       </ul>
                   </li>
@@ -5322,14 +5340,10 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <h2 id='rest-api-account-amp-wallet-private'>Account &amp; Wallet - Private</h2><h3 id='rest-api-account-amp-wallet-private-get-v1-account'>GET <code>/v1/account</code></h3>
 <p>Get account information</p>
 
-<aside class="notice">
-Calling this endpoint using an API-KEY linked to the main account with the parameter "subAcc" allows the caller to include additional sub-accounts in the response. If an API-KEY linked to a sub-account is used, then this parameter has no control.
-</aside>
-
 <blockquote>
 <p><strong>Request</strong></p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>GET v1/account?subAcc={subAcc},{subAcc}
+<div class="highlight"><pre class="highlight plaintext"><code>GET v1/account
 </code></pre></div>
 <blockquote>
 <p><strong>Successful response format</strong></p>
@@ -5357,61 +5371,13 @@ Calling this endpoint using an API-KEY linked to the main account with the param
                     </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1593627415123"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"positions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FLEX-USD-SWAP-LIN"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="nl">"baseAsset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FLEX"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="nl">"counterAsset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="nl">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11411.1"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="nl">"entryPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.590"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="nl">"markPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6.360"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="nl">"positionPnl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31608.7470"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="nl">"estLiquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w"> 
-                    </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1637876701404"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"loans"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"borrowedAsset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"borrowedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000.0"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"collateralAsset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.6"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"entryPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000.0"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"markPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"62500.0"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"estLiquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40000.0"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1592486212218"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"collateral"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1231231"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"notionalPositionSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000.0"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"portfolioVarMargin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"riskRatio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20000.0000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"maintenanceMargin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1231"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"marginRatio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.3179"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"liquidating"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"notional"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2314221"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"feeTier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1611665624601"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<table><thead>
-<tr>
-<th>Request Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>subAcc</td>
-<td>STRING</td>
-<td>NO</td>
-<td>Sub account. If no subAcc is given, then the response contains only the account linked to the API-Key. Multiple subAccs can be separated with a comma, maximum of 10 subAccs, e.g. <code>subone,subtwo</code></td>
-</tr>
-</tbody></table>
-
 <table><thead>
 <tr>
 <th>Response Field</th>
@@ -5465,104 +5431,9 @@ Calling this endpoint using an API-KEY linked to the main account with the param
 <td>Timestamp of updated at</td>
 </tr>
 <tr>
-<td>positions</td>
-<td>LIST of dictionaries</td>
-<td>Positions if applicable</td>
-</tr>
-<tr>
-<td>marketCode</td>
+<td>notional</td>
 <td>STRING</td>
-<td>Market code</td>
-</tr>
-<tr>
-<td>baseAsset</td>
-<td>STRING</td>
-<td>Base asset</td>
-</tr>
-<tr>
-<td>counterAsset</td>
-<td>STRING</td>
-<td>Counter asset</td>
-</tr>
-<tr>
-<td>position</td>
-<td>STRING</td>
-<td>Position size</td>
-</tr>
-<tr>
-<td>entryPrice</td>
-<td>STRING</td>
-<td>Entry price</td>
-</tr>
-<tr>
-<td>markPrice</td>
-<td>STRING</td>
-<td>Mark price</td>
-</tr>
-<tr>
-<td>positionPnl</td>
-<td>STRING</td>
-<td>Position PNL</td>
-</tr>
-<tr>
-<td>estLiquidationPrice</td>
-<td>STRING</td>
-<td>Estimated liquidation price</td>
-</tr>
-<tr>
-<td>loans</td>
-<td>LIST of dictionaries</td>
-<td>Loans if applicable</td>
-</tr>
-<tr>
-<td>borrowedAsset</td>
-<td>STRING</td>
-<td>Borrowed asset</td>
-</tr>
-<tr>
-<td>borrowedAmount</td>
-<td>STRING</td>
-<td>Borrowed amount</td>
-</tr>
-<tr>
-<td>collateralAsset</td>
-<td>STRING</td>
-<td>Collateral asset</td>
-</tr>
-<tr>
-<td>collateral</td>
-<td>STRING</td>
-<td>Collateral</td>
-</tr>
-<tr>
-<td>notionalPositionSize</td>
-<td>STRING</td>
-<td>Notional position size</td>
-</tr>
-<tr>
-<td>portfolioVarMargin</td>
-<td>STRING</td>
-<td>Portfolio margin</td>
-</tr>
-<tr>
-<td>riskRatio</td>
-<td>STRING</td>
-<td>collateralBalance / portfolioVarMargin. Orders are rejected/cancelled if the risk ratio drops below 1, and liquidation occurs if the risk ratio drops below 0.5</td>
-</tr>
-<tr>
-<td>maintenanceMargin</td>
-<td>STRING</td>
-<td>Maintenance margin. The minimum amount of collateral required to avoid liquidation</td>
-</tr>
-<tr>
-<td>marginRatio</td>
-<td>STRING</td>
-<td>Margin ratio. Orders are rejected/cancelled if the margin ratio reaches 50, and liquidation occurs if the margin ratio reaches 100</td>
-</tr>
-<tr>
-<td>liquidating</td>
-<td>BOOLEAN</td>
-<td>Available values: <code>true</code> and <code>false</code></td>
+<td>Notional</td>
 </tr>
 <tr>
 <td>feeTier</td>
@@ -6218,213 +6089,6 @@ Calling this endpoint using an API-KEY linked to the main account with the param
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='rest-api-deposits-amp-withdrawals-private-post-v1-transfer'>POST <code>/v1/transfer</code></h3>
-<p>Sub-account balance transfer</p>
-
-<aside class="notice">
-Transferring funds between sub-accounts is restricted to API keys linked to the main account.
-</aside>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>POST /v1/transfer
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flexUSD"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fromAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14320"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"toAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15343"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<blockquote>
-<p><strong>Successful response format</strong></p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flexUSD"</span><span class="p">,</span><span class="w"> 
-        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fromAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14320"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"toAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15343"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"transferredAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1635038730480"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<table><thead>
-<tr>
-<th>Request Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>asset</td>
-<td>STRING</td>
-<td>YES</td>
-<td></td>
-</tr>
-<tr>
-<td>quantity</td>
-<td>STRING</td>
-<td>YES</td>
-<td></td>
-</tr>
-<tr>
-<td>fromAccount</td>
-<td>STRING</td>
-<td>YES</td>
-<td></td>
-</tr>
-<tr>
-<td>toAccount</td>
-<td>STRING</td>
-<td>YES</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>Response Field</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>asset</td>
-<td>STRING</td>
-<td></td>
-</tr>
-<tr>
-<td>quantity</td>
-<td>STRING</td>
-<td></td>
-</tr>
-<tr>
-<td>fromAccount</td>
-<td>STRING</td>
-<td></td>
-</tr>
-<tr>
-<td>toAccount</td>
-<td>STRING</td>
-<td></td>
-</tr>
-<tr>
-<td>transferredAt</td>
-<td>STRING</td>
-<td>Millisecond timestamp</td>
-</tr>
-</tbody></table>
-<h3 id='rest-api-deposits-amp-withdrawals-private-get-v1-transfer'>GET <code>/v1/transfer</code></h3>
-<p>Sub-account balance transfer history</p>
-
-<blockquote>
-<p><strong>Request</strong></p>
-</blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/transfer?asset={asset}&amp;limit={limit}&amp;startTime={startTime}&amp;endTime={endTime}
-</code></pre></div>
-<blockquote>
-<p><strong>Successful response format</strong></p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flexUSD"</span><span class="p">,</span><span class="w"> 
-            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"fromAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14320"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"toAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15343"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"703557273590071299"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"transferredAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1634779040611"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<aside class="notice">
-API keys linked to the main account can get all account transfers, 
-while API keys linked to a sub-account can only see transfers where the sub-account is either the "fromAccount" or "toAccount".
-</aside>
-
-<table><thead>
-<tr>
-<th>Request Parameters</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>asset</td>
-<td>STRING</td>
-<td>NO</td>
-<td>Default all assets</td>
-</tr>
-<tr>
-<td>limit</td>
-<td>LONG</td>
-<td>NO</td>
-<td>Default 50, max 200</td>
-</tr>
-<tr>
-<td>startTime</td>
-<td>LONG</td>
-<td>NO</td>
-<td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other</td>
-</tr>
-<tr>
-<td>endTime</td>
-<td>LONG</td>
-<td>NO</td>
-<td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>Response Field</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>asset</td>
-<td>STRING</td>
-<td></td>
-</tr>
-<tr>
-<td>quantity</td>
-<td>STRING</td>
-<td></td>
-</tr>
-<tr>
-<td>fromAccount</td>
-<td>STRING</td>
-<td></td>
-</tr>
-<tr>
-<td>toAccount</td>
-<td>STRING</td>
-<td></td>
-</tr>
-<tr>
-<td>id</td>
-<td>STRING</td>
-<td></td>
-</tr>
-<tr>
-<td>status</td>
-<td>STRING</td>
-<td></td>
-</tr>
-<tr>
-<td>transferredAt</td>
-<td>STRING</td>
-<td>Millisecond timestamp</td>
-</tr>
-</tbody></table>
 <h2 id='rest-api-flex-assets-private'>Flex Assets - Private</h2><h3 id='rest-api-flex-assets-private-post-v1-flexasset-mint'>POST <code>/v1/flexasset/mint</code></h3>
 <p>Mint</p>
 
@@ -7060,6 +6724,792 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 <td>network</td>
 <td>LIST</td>
 <td>Available networks for deposits and withdrawals</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-market-data-public-get-v1-tickers'>GET <code>/v1/tickers</code></h3>
+<p>Get tickers.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/tickers?marketCode={marketCode}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"markPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41512.4"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"open24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41915.3"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"high24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42662.2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"low24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41167.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"volume24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"114341.4550"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"currencyVolume24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.733"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"openInterest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3516.506000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastTradedPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41802.5"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastTradedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1642585256002"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Market code</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>markPrice</td>
+<td>STRING</td>
+<td>Mark price</td>
+</tr>
+<tr>
+<td>open24h</td>
+<td>STRING</td>
+<td>24 hour rolling opening price</td>
+</tr>
+<tr>
+<td>high24h</td>
+<td>STRING</td>
+<td>24 hour highest price</td>
+</tr>
+<tr>
+<td>low24h</td>
+<td>STRING</td>
+<td>24 hour lowest price</td>
+</tr>
+<tr>
+<td>volume24h</td>
+<td>STRING</td>
+<td>Volume in 24 hours</td>
+</tr>
+<tr>
+<td>currencyVolume24h</td>
+<td>STRING</td>
+<td>24 hour rolling trading volume in counter currency</td>
+</tr>
+<tr>
+<td>openInterest</td>
+<td>STRING</td>
+<td>Open interest</td>
+</tr>
+<tr>
+<td>lastTradedPrice</td>
+<td>STRING</td>
+<td>Last traded price</td>
+</tr>
+<tr>
+<td>lastTradedQuantity</td>
+<td>STRIN</td>
+<td>Last traded quantity</td>
+</tr>
+<tr>
+<td>lastUpdatedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of last updated time</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-market-data-public-get-v1-auction'>GET <code>/v1/auction</code></h3>
+<p>Get upcoming delivery auction.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/auction?marketCode={marketCode}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"auctionTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1642590000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"netDelivered"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"estFundingRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Market code</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>auctionTime</td>
+<td>STRING</td>
+<td>Millisecond timestamp of the next auction</td>
+</tr>
+<tr>
+<td>netDelivered</td>
+<td>STRING</td>
+<td>Delivery imbalance (negative = more shorts than longs and vice versa)</td>
+</tr>
+<tr>
+<td>estFundingRate</td>
+<td>STRING</td>
+<td>Estimated funding rate a positive rate means longs pay shorts</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-market-data-public-get-v1-funding-rates'>GET <code>/v1/funding-rates</code></h3>
+<p>Get historical funding rates.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/funding-rates?marketCode={marketCode}&amp;limit={limit}
+&amp;startTime={startTime}&amp;endTime={endTime}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fundingRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"netDelivered"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1628362803134"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fundingRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"netDelivered"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1628359202941"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Default 200, max 500</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other.</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>fundingRate</td>
+<td>STRING</td>
+<td>Funding rate</td>
+</tr>
+<tr>
+<td>netDelivered</td>
+<td>STRING</td>
+<td>Delivery imbalance (negative = more shorts than longs and vice versa)</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of last created time</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-market-data-public-get-v1-candles'>GET <code>/v1/candles</code></h3>
+<p>Get candles.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/candles?marketCode={marketCode}&amp;timeframe={timeframe}&amp;limit={limit}
+&amp;startTime={startTime}&amp;endTime={endTime}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"timeframe"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3600s"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35888.80000000"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35925.30000000"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35717.00000000"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35923.40000000"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"currencyVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"openedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1642932000000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35805.50000000"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"36141.50000000"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35784.90000000"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35886.60000000"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"currencyVolume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"openedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1642928400000"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>YES</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>timeframe</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Available values: <code>60s</code>,<code>300s</code>,<code>900s</code>,<code>1800s</code>,<code>3600s</code>,<code>7200s</code>,<code>14400s</code>,<code>86400s</code>, default is <code>3600s</code></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Default 200, max 500</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other.</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timeframe</td>
+<td>STRING</td>
+<td>Available values: <code>60s</code>,<code>300s</code>,<code>900s</code>,<code>1800s</code>,<code>3600s</code>,<code>7200s</code>,<code>14400s</code>,<code>86400s</code></td>
+</tr>
+<tr>
+<td>open</td>
+<td>STRING</td>
+<td>Opening price</td>
+</tr>
+<tr>
+<td>high</td>
+<td>STRING</td>
+<td>Highest price</td>
+</tr>
+<tr>
+<td>low</td>
+<td>STRING</td>
+<td>Lowest price</td>
+</tr>
+<tr>
+<td>close</td>
+<td>STRING</td>
+<td>Closing price</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>STRING</td>
+<td>Trading volume in counter currency</td>
+</tr>
+<tr>
+<td>currencyVolume</td>
+<td>STRING</td>
+<td>Trading volume in base currency</td>
+</tr>
+<tr>
+<td>openedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of the candle opened at</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-market-data-public-get-v1-depth'>GET <code>/v1/depth</code></h3>
+<p>Get depth.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/depth?marketCode={marketCode}&amp;level={level}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD-SWAP-LIN"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1643016065958"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nl">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">39400</span><span class="p">,</span><span class="w"> 
+                </span><span class="mf">0.261</span><span class="w">
+            </span><span class="p">],</span><span class="w"> 
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">41050.5</span><span class="p">,</span><span class="w"> 
+                </span><span class="mf">0.002</span><span class="w">
+            </span><span class="p">],</span><span class="w"> 
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">41051</span><span class="p">,</span><span class="w"> 
+                </span><span class="mf">0.094</span><span class="w">
+            </span><span class="p">],</span><span class="w"> 
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">41052.5</span><span class="p">,</span><span class="w"> 
+                </span><span class="mf">0.002</span><span class="w">
+            </span><span class="p">],</span><span class="w"> 
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">41054.5</span><span class="p">,</span><span class="w"> 
+                </span><span class="mf">0.002</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">],</span><span class="w"> 
+        </span><span class="nl">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">39382.5</span><span class="p">,</span><span class="w"> 
+                </span><span class="mf">0.593</span><span class="w">
+            </span><span class="p">],</span><span class="w"> 
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">39380.5</span><span class="p">,</span><span class="w"> 
+                </span><span class="mf">0.009</span><span class="w">
+            </span><span class="p">],</span><span class="w"> 
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">39378</span><span class="p">,</span><span class="w"> 
+                </span><span class="mf">0.009</span><span class="w">
+            </span><span class="p">],</span><span class="w"> 
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">39375.5</span><span class="p">,</span><span class="w"> 
+                </span><span class="mf">0.009</span><span class="w">
+            </span><span class="p">],</span><span class="w"> 
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">39373</span><span class="p">,</span><span class="w"> 
+                </span><span class="mf">0.009</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>YES</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>level</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Default 5, max 100</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>level</td>
+<td>LONG</td>
+<td>Level</td>
+</tr>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>lastUpdatedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of the depth last updated at</td>
+</tr>
+<tr>
+<td>asks</td>
+<td>LIST of floats</td>
+<td>Sell side depth: [price, quantity]</td>
+</tr>
+<tr>
+<td>bids</td>
+<td>LIST of floats</td>
+<td>Buy side depth: [price, quantity]</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-market-data-public-get-v1-flexasset-balances'>GET <code>/v1/flexasset/balances</code></h3>
+<p>Get flexAsset balances.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/flexasset/balances?flexasset={flexasset}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"flexasset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flexUSD"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"110.78000000"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"110.78000000"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"reserved"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1642735371714"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>flexasset</td>
+<td>STRING</td>
+<td>YES</td>
+<td>FlexAsset name, available assets e.g. <code>flexUSD</code>, <code>flexBTC</code>, <code>flexETH</code>, <code>flexFLEX</code></td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>STRING</td>
+<td>Asset name, e.g. &#39;BTC&#39;</td>
+</tr>
+<tr>
+<td>total</td>
+<td>STRING</td>
+<td>Total balance</td>
+</tr>
+<tr>
+<td>available</td>
+<td>STRING</td>
+<td>Available balance</td>
+</tr>
+<tr>
+<td>reserved</td>
+<td>STRING</td>
+<td>Reserved balance (unavailable) due to working spot orders</td>
+</tr>
+<tr>
+<td>lastUpdatedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of when balance was last updated</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-market-data-public-get-v1-flexasset-positions'>GET <code>/v1/flexasset/positions</code></h3>
+<p>Get flexAsset positions.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/flexasset/positions?flexasset={asset}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"flexasset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flexUSD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"baseAsset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"counterAsset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-4363.81"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entryPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"380.69"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"markPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"297.74"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"positionPnl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-361978.0395"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"estLiquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1643173228911"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"baseAsset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"counterAsset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-28.931000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entryPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43100.5"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"markPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37850.2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"positionPnl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"151896.4293000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"estLiquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"345678367498.5"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1642666693674"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>flexasset</td>
+<td>STRING</td>
+<td>YES</td>
+<td>FlexAsset name, available assets e.g. <code>flexUSD</code>, <code>flexBTC</code>, <code>flexETH</code>, <code>flexFLEX</code></td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>baseAsset</td>
+<td>STRING</td>
+<td>Base asset</td>
+</tr>
+<tr>
+<td>counterAsset</td>
+<td>STRING</td>
+<td>Counter asset</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>STRING</td>
+<td>Quantity of position</td>
+</tr>
+<tr>
+<td>entryPrice</td>
+<td>STRING</td>
+<td>Average entry price</td>
+</tr>
+<tr>
+<td>markPrice</td>
+<td>STRING</td>
+<td>Mark price</td>
+</tr>
+<tr>
+<td>positionPnl</td>
+<td>STRING</td>
+<td>Postion profit and loss</td>
+</tr>
+<tr>
+<td>estLiquidationPrice</td>
+<td>STRING</td>
+<td>Estimated liquidation price, return 0 if it is negative(&lt;0)</td>
+</tr>
+<tr>
+<td>lastUpdatedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of when position was last updated</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-market-data-public-get-v1-flexasset-yields'>GET <code>/v1/flexasset/yields</code></h3>
+<p>Get flexasset yields.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/flexasset/yields?flexasset={flexasset}&amp;limit={limit}&amp;startTime={startTime}&amp;endTime={endTime}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"flexasset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flexBTC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"apr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"yield"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"paidAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1643193000000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"flexasset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flexUSD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"apr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"yield"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"paidAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1643193000000"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>flexasset</td>
+<td>STRING</td>
+<td>NO</td>
+<td>FlexAsset name, available assets e.g. <code>flexUSD</code>, <code>flexBTC</code>, <code>flexETH</code>, <code>flexFLEX</code></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Default 200, max 500</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other.</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>flexasset</td>
+<td>STRING</td>
+<td>Asset name, available assets e.g. <code>flexUSD</code>, <code>flexBTC</code>, <code>flexETH</code>, <code>flexFLEX</code></td>
+</tr>
+<tr>
+<td>apr</td>
+<td>STRING</td>
+<td>Annualized APR (%) = yield * 3 * 365 * 100</td>
+</tr>
+<tr>
+<td>yield</td>
+<td>STRING</td>
+<td>Period yield</td>
+</tr>
+<tr>
+<td>paidAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of the interest payment</td>
 </tr>
 </tbody></table>
 
