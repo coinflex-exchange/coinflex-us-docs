@@ -10,7 +10,7 @@ Welcome to CoinFLEX US's application programming interface (API). CoinFLEX US's 
 
 Using these interfaces it is possible to place both authenticated and unauthenticated API commands for public and prvate commands respectively.
 
-To get started please register for a TEST account at `https://v2stg.coinflex.us/user-console/register`
+To get started please register for a TEST account at `https://stg.coinflex.us/user-console/register`
 
 
 # API Key Management

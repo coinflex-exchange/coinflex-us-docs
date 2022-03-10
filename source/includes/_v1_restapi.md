@@ -2,11 +2,11 @@
 
 **TEST** 
 
-* `https://v2stgapi.coinflex.us`
+* `https://stg.coinflex.us`
 
 **LIVE** site
 
-* `https://v2api.coinflex.us`
+* `https://api.coinflex.us`
 
 For clients who do not wish to take advantage of CoinFLEX US's native WebSocket API, CoinFLEX US offers a RESTful API that implements much of the same functionality.
 
@@ -67,11 +67,11 @@ import datetime
 import json
 
 
-# rest_url = 'https://v2api.coinflex.us'
-# rest_path = 'v2api.coinflex.us'
+# rest_url = 'https://api.coinflex.us'
+# rest_path = 'api.coinflex.us'
 
-rest_url = 'https://v2stgapi.coinflex.us'
-rest_path = 'v2stgapi.coinflex.us'
+rest_url = 'https://stg.coinflex.us'
+rest_path = 'stg.coinflex.us'
 
 api_key = "API-KEY"
 api_secret = "API-SECRET"
@@ -113,7 +113,7 @@ Component | Required | Example | Description|
 Timestamp | Yes | 2020-04-30T15:20:30 | YYYY-MM-DDThh:mm:ss
 Nonce | Yes | 123 | User generated
 Verb | Yes| GET | Uppercase
-Path | Yes | v2stgapi.coinflex.us |
+Path | Yes | stg.coinflex.us |
 Method | Yes | /v1/positions | Available REST methods
 Body | No | marketCode=BTC-USD-SWAP-LIN | Optional and dependent on the REST method being called
 
@@ -122,7 +122,7 @@ The constructed message string should look like:-
   `2020-04-30T15:20:30\n
   123\n
   GET\n
-  v2stgapi.coinflex.us\n
+  stg.coinflex.us\n
   /v1/positions\n
   marketCode=BTC-USD-SWAP-LIN`
 
