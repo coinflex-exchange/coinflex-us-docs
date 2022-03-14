@@ -70,8 +70,8 @@ import json
 # rest_url = 'https://api.coinflex.us'
 # rest_path = 'api.coinflex.us'
 
-rest_url = 'https://stg.coinflex.us'
-rest_path = 'stg.coinflex.us'
+rest_url = 'https://stgapi.coinflex.us'
+rest_path = 'stgapi.coinflex.us'
 
 api_key = "API-KEY"
 api_secret = "API-SECRET"
