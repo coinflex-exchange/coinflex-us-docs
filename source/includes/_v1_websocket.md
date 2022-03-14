@@ -73,11 +73,11 @@
 
 **TEST** site
 
-* `wss://v2stgapi.coinflex.us/v2/websocket`
+* `wss://stgapi.coinflex.us/v1/websocket`
 
 **LIVE** site
 
-* `wss://v2api.coinflex.us/v2/websocket`
+* `wss://stgapi.coinflex.us/v1/websocket`
 
 CoinFLEX US's application programming interface (API) provides our clients programmatic access to control aspects of their accounts and to place orders on the CoinFLEX US trading platform. The API is accessible via WebSocket connection to the URIs listed above. Commands, replies, and notifications all traverse the WebSocket in text frames with JSON-formatted payloads.
 
@@ -160,7 +160,7 @@ msg_auth = \
 }
 
 async def subscribe():
-    async with websockets.connect('wss://v2stgapi.coinflex.us/v2/websocket') as ws:
+    async with websockets.connect('wss://stgapi.coinflex.us/v1/websocket') as ws:
         await ws.send(json.dumps(msg_auth))
         while ws.open:
             resp = await ws.recv()
@@ -187,7 +187,7 @@ var msg = JSON.stringify({
                             }
                           });
 
-var ws = new WebSocket('wss://v2stgapi.coinflex.us/v2/websocket');
+var ws = new WebSocket('wss://stgapi.coinflex.us/v1/websocket');
 
 ws.onmessage = function (e) {
   console.log('websocket message from server : ', e.data);
@@ -354,7 +354,7 @@ place_order = \
           }
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -505,7 +505,7 @@ place_order = \
 }
 
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -654,7 +654,7 @@ place_order = \
 }
 
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -827,7 +827,7 @@ place_batch_order =\
                 }]
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -998,7 +998,7 @@ cancel_order = \
           }
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -1124,7 +1124,7 @@ cancel_batch_order = \
                 }]
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -1277,7 +1277,7 @@ modify_order = \
           }
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -1444,7 +1444,7 @@ modify_batch_order = \
                 }]
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -1612,7 +1612,7 @@ balance = \
   "args": ["balance:all"],
   "tag": 101
 }
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -1752,7 +1752,7 @@ position = \
   "tag": 102
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -1897,7 +1897,7 @@ order = \
   "tag": 102
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -2388,7 +2388,7 @@ orderbook_depth = \
   "args": ["depth:BTC-USD-SWAP-LIN"]
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -2493,7 +2493,7 @@ trade = \
   "args": ["trade:BTC-USD-SWAP-LIN"]
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -2596,7 +2596,7 @@ ticker = \
   "args": ["ticker:all"]
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -2724,7 +2724,7 @@ candles = \
   "args": ["candles60s:BTC-USD-SWAP-LIN"]
 }
 
-url= 'wss://v2stgapi.coinflex.us/v2/websocket'
+url= 'wss://stgapi.coinflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -2820,7 +2820,7 @@ liquidation = \
   "args": ["liquidationRFQ"]
 }
 
-url= 'wss://v2stgapi.comflex.us/v2/websocket'
+url= 'wss://stgapi.comflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -2921,7 +2921,7 @@ market = \
   "args": ["market:all"]
 }
 
-url= 'wss://v2stgapi.comflex.us/v2/websocket'
+url= 'wss://stgapi.comflex.us/v1/websocket'
 async def subscribe():
     async with websockets.connect(url) as ws:
         while True:
@@ -3033,9 +3033,9 @@ By subscribing to an authenticated websocket there may be instances when a REST 
 }
 ```
 
-Documentation for the REST method for cancelling **all** open orders for an account can be found here [Cancel All Orders](#rest-api-methods-private-delete-v2-cancel-orders).
+Documentation for the REST method for cancelling **all** open orders for an account can be found here [Cancel All Orders](#rest-api-methods-private-delete-v1-cancel-orders).
 
-Documentation for the REST method for cancelling **all** open orders **by market** for an account can be found here [Cancel All Orders By Market](#rest-api-methods-private-delete-v2-cancel-orders-marketcode).
+Documentation for the REST method for cancelling **all** open orders **by market** for an account can be found here [Cancel All Orders By Market](#rest-api-methods-private-delete-v1-cancel-orders-marketcode).
 
 In both these instances a successful action will generate the shown repsonse in an authenticated websocket.
 

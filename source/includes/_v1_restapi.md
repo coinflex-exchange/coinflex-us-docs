@@ -2,7 +2,7 @@
 
 **TEST** 
 
-* `https://stg.coinflex.us`
+* `https://stgapi.coinflex.us`
 
 **LIVE** site
 
@@ -138,7 +138,7 @@ The signature must then be included in the header of the REST API call like so:
 ## Account & Wallet - Private
 
 
-### GET `/v1/account `
+### GET `/v1/accounts`
 
 Get account information
 
