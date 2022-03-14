@@ -454,7 +454,7 @@
                     <a href="#rest-api-account-amp-wallet-private" class="toc-h2 toc-link" data-title="Account &amp; Wallet - Private">Account &amp; Wallet - Private</a>
                       <ul class="toc-list-h3">
                           <li>
-                            <a href="#rest-api-account-amp-wallet-private-get-v1-account" class="toc-h3 toc-link" data-title="GET <code>/v1/account</code>">GET <code>/v1/account</code></a>
+                            <a href="#rest-api-account-amp-wallet-private-get-v1-accounts" class="toc-h3 toc-link" data-title="GET <code>/v1/accounts</code>">GET <code>/v1/accounts</code></a>
                           </li>
                       </ul>
                   </li>
@@ -660,13 +660,13 @@
 <p><strong>TEST</strong> site</p>
 
 <ul>
-<li><code>wss://v2stgapi.coinflex.us/v2/websocket</code></li>
+<li><code>wss://stgapi.coinflex.us/v1/websocket</code></li>
 </ul>
 
 <p><strong>LIVE</strong> site</p>
 
 <ul>
-<li><code>wss://v2api.coinflex.us/v2/websocket</code></li>
+<li><code>wss://stgapi.coinflex.us/v1/websocket</code></li>
 </ul>
 
 <p>CoinFLEX US&#39;s application programming interface (API) provides our clients programmatic access to control aspects of their accounts and to place orders on the CoinFLEX US trading platform. The API is accessible via WebSocket connection to the URIs listed above. Commands, replies, and notifications all traverse the WebSocket in text frames with JSON-formatted payloads.</p>
@@ -751,7 +751,7 @@
 <span class="p">}</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
-    <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">msg_auth</span><span class="p">))</span>
         <span class="k">while</span> <span class="n">ws</span><span class="p">.</span><span class="nb">open</span><span class="p">:</span>
             <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">recv</span><span class="p">()</span>
@@ -776,7 +776,7 @@
                             <span class="p">}</span>
                           <span class="p">});</span>
 
-<span class="kd">var</span> <span class="nx">ws</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">wss://v2stgapi.coinflex.us/v2/websocket</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ws</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">wss://stgapi.coinflex.us/v1/websocket</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">ws</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">websocket message from server : </span><span class="dl">'</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
@@ -965,7 +965,7 @@
           <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -1176,7 +1176,7 @@ One account can only place up to 50 orders per second via websocket.
 <span class="p">}</span>
 
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -1375,7 +1375,7 @@ One account can only place up to 50 orders per second via websocket.
 <span class="p">}</span>
 
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -1613,7 +1613,7 @@ One account can only place up to 50 orders per second via websocket.
                 <span class="p">}]</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -1811,7 +1811,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
           <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -1961,7 +1961,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
                 <span class="p">}]</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -2128,7 +2128,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
           <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -2346,7 +2346,7 @@ One account can only place up to 50 orders per second via websocket.
                 <span class="p">}]</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -2534,7 +2534,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
   <span class="s">"args"</span><span class="p">:</span> <span class="p">[</span><span class="s">"balance:all"</span><span class="p">],</span>
   <span class="s">"tag"</span><span class="p">:</span> <span class="mi">101</span>
 <span class="p">}</span>
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -2735,7 +2735,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
   <span class="s">"tag"</span><span class="p">:</span> <span class="mi">102</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -2944,7 +2944,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
   <span class="s">"tag"</span><span class="p">:</span> <span class="mi">102</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -3966,7 +3966,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
   <span class="s">"args"</span><span class="p">:</span> <span class="p">[</span><span class="s">"depth:BTC-USD-SWAP-LIN"</span><span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -4118,7 +4118,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
   <span class="s">"args"</span><span class="p">:</span> <span class="p">[</span><span class="s">"trade:BTC-USD-SWAP-LIN"</span><span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -4273,7 +4273,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
   <span class="s">"args"</span><span class="p">:</span> <span class="p">[</span><span class="s">"ticker:all"</span><span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -4473,7 +4473,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
   <span class="s">"args"</span><span class="p">:</span> <span class="p">[</span><span class="s">"candles60s:BTC-USD-SWAP-LIN"</span><span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.coinflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.coinflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -4605,7 +4605,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
   <span class="s">"args"</span><span class="p">:</span> <span class="p">[</span><span class="s">"liquidationRFQ"</span><span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.comflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.comflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -4743,7 +4743,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
   <span class="s">"args"</span><span class="p">:</span> <span class="p">[</span><span class="s">"market:all"</span><span class="p">]</span>
 <span class="p">}</span>
 
-<span class="n">url</span><span class="o">=</span> <span class="s">'wss://v2stgapi.comflex.us/v2/websocket'</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'wss://stgapi.comflex.us/v1/websocket'</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">subscribe</span><span class="p">():</span>
     <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">ws</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -4947,9 +4947,9 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1612476498953"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Documentation for the REST method for cancelling <strong>all</strong> open orders for an account can be found here <a href="#rest-api-methods-private-delete-v2-cancel-orders">Cancel All Orders</a>.</p>
+<p>Documentation for the REST method for cancelling <strong>all</strong> open orders for an account can be found here <a href="#rest-api-methods-private-delete-v1-cancel-orders">Cancel All Orders</a>.</p>
 
-<p>Documentation for the REST method for cancelling <strong>all</strong> open orders <strong>by market</strong> for an account can be found here <a href="#rest-api-methods-private-delete-v2-cancel-orders-marketcode">Cancel All Orders By Market</a>.</p>
+<p>Documentation for the REST method for cancelling <strong>all</strong> open orders <strong>by market</strong> for an account can be found here <a href="#rest-api-methods-private-delete-v1-cancel-orders-marketcode">Cancel All Orders By Market</a>.</p>
 
 <p>In both these instances a successful action will generate the shown repsonse in an authenticated websocket.</p>
 
@@ -5134,7 +5134,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <p><strong>TEST</strong> </p>
 
 <ul>
-<li><code>https://stg.coinflex.us</code></li>
+<li><code>https://stgapi.coinflex.us</code></li>
 </ul>
 
 <p><strong>LIVE</strong> site</p>
@@ -5331,7 +5331,7 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <p>The signature must then be included in the header of the REST API call like so:</p>
 
 <p><code>header = {&#39;Content-Type&#39;: &#39;application/json&#39;, &#39;AccessKey&#39;: API-KEY, &#39;Timestamp&#39;: TIME-STAMP, &#39;Signature&#39;: SIGNATURE, &#39;Nonce&#39;: NONCE}</code></p>
-<h2 id='rest-api-account-amp-wallet-private'>Account &amp; Wallet - Private</h2><h3 id='rest-api-account-amp-wallet-private-get-v1-account'>GET <code>/v1/account</code></h3>
+<h2 id='rest-api-account-amp-wallet-private'>Account &amp; Wallet - Private</h2><h3 id='rest-api-account-amp-wallet-private-get-v1-accounts'>GET <code>/v1/accounts</code></h3>
 <p>Get account information</p>
 
 <blockquote>
