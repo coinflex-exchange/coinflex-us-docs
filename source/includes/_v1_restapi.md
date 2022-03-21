@@ -174,7 +174,7 @@ GET v1/account
                     "lastUpdatedAt": "1593627415123"
                 }
             ],
-            "notional": "2314221",
+            "notionalBalance": "2314221",
             "feeTier": "6",
             "createdAt": "1611665624601"
         }
@@ -193,7 +193,7 @@ total | STRING | Total balance|
 available | STRING | Available balance |
 reserved | STRING | Reserved balance |
 lastUpdatedAt | STRING | Timestamp of updated at |
-notional | STRING | Notional |
+notionalBalance | STRING | Total dollar value of the account |
 feeTier | STRING | Fee tier |
 createdAt | STRING | Timestamp indicating when the account was created |
 
@@ -575,14 +575,14 @@ Request Parameter | Type | Required | Description |
 ----------------- | ---- | -------- | ----------- |
 asset | STRING | YES | Asset name, available assets e.g. `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
 quantity | STRING | YES | Quantity to redeem |
-type | STRING | YES | `NORMAL` queues a redemption until the following interest payment and incurs no fee. `INSTANT` instantly redeems into the underlying asset and charges a fee equal to the sum of the two prior interest payments
+type | STRING | YES | `NORMAL` queues a redemption until the following interest payment and incurs no fee |
 
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
 asset | STRING |  |
 quantity | STRING | |
-type | STRING | Available types: `NORMAL`, `INSTANT` |
+type | STRING | Available types: `NORMAL` |
 redemptionAt | STRING | Millisecond timestamp indicating when redemption will take place|
 
 
@@ -764,7 +764,6 @@ type | STRING | Type of the contract |
 tickSize | STRING | Tick size of the contract |
 minSize | STRING | Minimum quantity |
 listedAt | STRING | Listing date of the contract |
-settlementAt | STRING | Timestamp of settlement if applicable i.e. Quarterlies and Spreads |
 upperPriceBound | STRING | Sanity bound |
 lowerPriceBound | STRING | Sanity bound |
 markPrice | STRING | Mark price |
@@ -787,17 +786,36 @@ GET /v1/assets?asset={asset}
     "success": true,
     "data": [
         {
-            "name": "FLEX",
-            "canDeposit": true,
-            "canWithdraw": true,
+            "asset": "USD",
             "isCollateral": true,
-            "loanToValue": "0.900000000",
-            "minDeposit": "0.0001",
-            "minWithdrawal": "0.0001",
-            "network": [
-                "SLP",
-                "ERC20",
-                "SEP20"
+            "loanToValue": "1.000000000",
+            "networkList": [
+                {
+                    "network": "ERC20",
+                    "transactionPrecision": "6",
+                    "isWithdrawalFeeChargedToUser": true,
+                    "canDeposit": true,
+                    "canWithdraw": true,
+                    "minDeposit": "0.0001",
+                    "minWithdrawal": "2"
+                }
+            ]
+        },
+        {
+            "asset": "LINK",
+            "isCollateral": true,
+            "loanToValue": "0.800000000",
+            "networkList": [
+                {
+                    "network": "ERC20",
+                    "tokenId": "0x514910771af9ca656af840dff83e8264ecf986ca",
+                    "transactionPrecision": "18",
+                    "isWithdrawalFeeChargedToUser": true,
+                    "canDeposit": true,
+                    "canWithdraw": true,
+                    "minDeposit": "0.0001",
+                    "minWithdrawal": "0.0001"
+                }
             ]
         }
     ]
@@ -810,14 +828,18 @@ asset | STRING | NO | Name of the asset |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
-name | STRING | Name of the asset |
-canDeposit | BOOL | |
-canWithdraw | BOOL | |
-isCollateral | BOOL | |
+asset | STRING | Asset name |
+isCollateral | BOOL | Indicates it is collateral or not |
 loanToValue | STRING | Loan to value of the asset |
+networkList | LIST | List of dictionaries |
+network | STRING | Network for deposit and withdrawal |
+tokenId | STRING | Token ID |
+transactionPrecision | STRING | Precision for the transaction |
+isWithdrawalFeeChargedToUser | BOOL | Indicates the withdrawal fee is charged to user or not |
+canDeposit | BOOL | Indicates can deposit or not |
+canWithdraw | BOOL | Indicates can withdraw or not |
 minDeposit | STRING | Minimum deposit amount |
 minWithdrawal | STRING | Minimum withdrawal amount |
-network | LIST | Available networks for deposits and withdrawals |
 
 
 ### GET `/v1/tickers`
@@ -844,7 +866,6 @@ GET /v1/tickers?marketCode={marketCode}
             "low24h": "41167.0",
             "volume24h": "114341.4550",
             "currencyVolume24h": "2.733",
-            "openInterest": "3516.506000000",
             "lastTradedPrice": "41802.5",
             "lastTradedQuantity": "0.001",
             "lastUpdatedAt": "1642585256002"
@@ -866,7 +887,6 @@ high24h | STRING | 24 hour highest price |
 low24h | STRING | 24 hour lowest price |
 volume24h | STRING | Volume in 24 hours |
 currencyVolume24h | STRING | 24 hour rolling trading volume in counter currency |
-openInterest | STRING | Open interest |
 lastTradedPrice | STRING | Last traded price |
 lastTradedQuantity | STRIN | Last traded quantity |
 lastUpdatedAt | STRING | Millisecond timestamp of last updated time |
