@@ -5365,7 +5365,7 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
                     </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1593627415123"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"notional"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2314221"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"notionalBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2314221"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"feeTier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1611665624601"</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -5425,9 +5425,9 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <td>Timestamp of updated at</td>
 </tr>
 <tr>
-<td>notional</td>
+<td>notionalBalance</td>
 <td>STRING</td>
-<td>Notional</td>
+<td>Total dollar value of the account</td>
 </tr>
 <tr>
 <td>feeTier</td>
@@ -6206,7 +6206,7 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 <td>type</td>
 <td>STRING</td>
 <td>YES</td>
-<td><code>NORMAL</code> queues a redemption until the following interest payment and incurs no fee. <code>INSTANT</code> instantly redeems into the underlying asset and charges a fee equal to the sum of the two prior interest payments</td>
+<td><code>NORMAL</code> queues a redemption until the following interest payment and incurs no fee</td>
 </tr>
 </tbody></table>
 
@@ -6230,7 +6230,7 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 <tr>
 <td>type</td>
 <td>STRING</td>
-<td>Available types: <code>NORMAL</code>, <code>INSTANT</code></td>
+<td>Available types: <code>NORMAL</code></td>
 </tr>
 <tr>
 <td>redemptionAt</td>
@@ -6600,11 +6600,6 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 <td>Listing date of the contract</td>
 </tr>
 <tr>
-<td>settlementAt</td>
-<td>STRING</td>
-<td>Timestamp of settlement if applicable i.e. Quarterlies and Spreads</td>
-</tr>
-<tr>
 <td>upperPriceBound</td>
 <td>STRING</td>
 <td>Sanity bound</td>
@@ -6640,17 +6635,36 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
     </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FLEX"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"canDeposit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"canWithdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"isCollateral"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"loanToValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.900000000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"minDeposit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"minWithdrawal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"network"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="s2">"SLP"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"SEP20"</span><span class="w">
+            </span><span class="nl">"loanToValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"networkList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"network"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"transactionPrecision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"isWithdrawalFeeChargedToUser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"canDeposit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"canWithdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"minDeposit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"minWithdrawal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINK"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isCollateral"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"loanToValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.800000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"networkList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"network"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"tokenId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x514910771af9ca656af840dff83e8264ecf986ca"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"transactionPrecision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"isWithdrawalFeeChargedToUser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"canDeposit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"canWithdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"minDeposit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"minWithdrawal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -6680,29 +6694,54 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 </tr>
 </thead><tbody>
 <tr>
-<td>name</td>
+<td>asset</td>
 <td>STRING</td>
-<td>Name of the asset</td>
-</tr>
-<tr>
-<td>canDeposit</td>
-<td>BOOL</td>
-<td></td>
-</tr>
-<tr>
-<td>canWithdraw</td>
-<td>BOOL</td>
-<td></td>
+<td>Asset name</td>
 </tr>
 <tr>
 <td>isCollateral</td>
 <td>BOOL</td>
-<td></td>
+<td>Indicates it is collateral or not</td>
 </tr>
 <tr>
 <td>loanToValue</td>
 <td>STRING</td>
 <td>Loan to value of the asset</td>
+</tr>
+<tr>
+<td>networkList</td>
+<td>LIST</td>
+<td>List of dictionaries</td>
+</tr>
+<tr>
+<td>network</td>
+<td>STRING</td>
+<td>Network for deposit and withdrawal</td>
+</tr>
+<tr>
+<td>tokenId</td>
+<td>STRING</td>
+<td>Token ID</td>
+</tr>
+<tr>
+<td>transactionPrecision</td>
+<td>STRING</td>
+<td>Precision for the transaction</td>
+</tr>
+<tr>
+<td>isWithdrawalFeeChargedToUser</td>
+<td>BOOL</td>
+<td>Indicates the withdrawal fee is charged to user or not</td>
+</tr>
+<tr>
+<td>canDeposit</td>
+<td>BOOL</td>
+<td>Indicates can deposit or not</td>
+</tr>
+<tr>
+<td>canWithdraw</td>
+<td>BOOL</td>
+<td>Indicates can withdraw or not</td>
 </tr>
 <tr>
 <td>minDeposit</td>
@@ -6713,11 +6752,6 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 <td>minWithdrawal</td>
 <td>STRING</td>
 <td>Minimum withdrawal amount</td>
-</tr>
-<tr>
-<td>network</td>
-<td>LIST</td>
-<td>Available networks for deposits and withdrawals</td>
 </tr>
 </tbody></table>
 <h3 id='rest-api-market-data-public-get-v1-tickers'>GET <code>/v1/tickers</code></h3>
@@ -6742,7 +6776,6 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
             </span><span class="nl">"low24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41167.0"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"volume24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"114341.4550"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"currencyVolume24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.733"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"openInterest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3516.506000000"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"lastTradedPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41802.5"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"lastTradedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1642585256002"</span><span class="w">
@@ -6807,11 +6840,6 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 <td>currencyVolume24h</td>
 <td>STRING</td>
 <td>24 hour rolling trading volume in counter currency</td>
-</tr>
-<tr>
-<td>openInterest</td>
-<td>STRING</td>
-<td>Open interest</td>
 </tr>
 <tr>
 <td>lastTradedPrice</td>
