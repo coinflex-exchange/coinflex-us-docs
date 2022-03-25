@@ -1179,3 +1179,567 @@ flexasset | STRING | Asset name, available assets e.g. `flexUSD`, `flexBTC`, `fl
 apr | STRING | Annualized APR (%) = yield * 3 * 365 * 100 |
 yield | STRING | Period yield |
 paidAt | STRING | Millisecond timestamp of the interest payment |
+
+
+## 5th
+
+### GET `exchange-trades`
+
+Get exchange trades.
+
+> **Request**
+
+```
+GET /v3/exchange-trades?marketCode={marketCode}&limit={limit}
+&startTime={startTime}&endTime={endTime}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+          "marketCode": "BTC-USD-SWAP-LIN",
+          "matchPrice": "9600.000000000",
+          "matchQuantity": "0.100000000",
+          "side": "BUY",
+          "lastMatchedAt": "1595585860254"
+        }
+    ]
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+marketCode | STRING | NO | Market code |
+limit | LONG | NO | Default 200, max 500 |
+startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
+endTime | LONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+marketCode | STRING | Market code|
+matchPrice | STRING | Match price of order |
+matchQuantity | STRING | Match quantity of order |
+side | STRING | Match side, available values: `BUY` `SELL`|
+lastMatchedAt | STRING | Millisecond timestamp of last matched at |
+
+
+### GET `v3/wallet`
+
+Get wallet history.
+
+> **Request**
+
+```
+GET v3/wallet?subAcc={subAcc},{subAcc}&type={type}&limit={limit}&startTime={startTime}&endTime={endTime}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+          "accountId": "21213",
+          "name": "main",
+          "walletHistory": [
+              {
+                  "asset": "USD",
+                  "type": "deposit",
+                  "amount": "10",
+                  "createdAt": "162131535213"
+              }
+          ]
+        }
+    ]
+}
+```
+
+<aside class="notice">
+If the user is calling this endpoint using an API-KEY from a master account then the parameter "subAcc" will allow the user to list which sub-accounts in addition to the default account will be returned. If an API-KEY from a sub-account is used then this parameter has no control.
+</aside>
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+subAcc | STRING | NO | Name of sub account. If no subAcc is given, then the response contains only the account linked to the API-Key. Multiple subAccs can be separated with a comma, maximum of 10 subAccs, e.g. `subone,subtwo` |
+type | STRING | NO | Type of the history, e.g. `deposit` `withdrawal`, return all if not provided |
+limit | LONG | NO | Default 200, max 500 |
+startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
+endTime | LONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+accountId | STRING | Account ID |
+name | STRING | Account name |
+asset | STRING | Asset name |
+type | STRING | Type of the history |
+amount | STRING | Amount |
+createdAt | STRING | Millisecond timestamp of created at |
+
+
+### GET `v3/balances`
+
+Get balances of accounts.
+
+> **Request**
+
+```
+GET v3/balances?subAcc={subAcc},{subAcc}&asset={asset}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "accountId": "21213",
+            "name": "main",
+            "balances": [
+                {
+                    "asset": "BTC",
+                    "total": "4468.823",
+                    "available": "4468.823",
+                    "reserved": "0",
+                    "lastUpdatedAt": "1593627415234"
+                },
+                {
+                    "asset": "FLEX",
+                    "total": "1585.890",
+                    "available": "325.890",
+                    "reserved": "1260",
+                    "lastUpdatedAt": "1593627415123"
+                }
+            ]
+        }
+    ]
+}
+```
+
+<aside class="notice">
+If the user is calling this endpoint using an API-KEY from a master account then the parameter "subAcc" will allow the user to list which sub-accounts in addition to the default account will be returned. If an API-KEY from a sub-account is used then this parameter has no control.
+</aside>
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+subAcc | STRING | NO | Name of sub account. If no subAcc is given, then the response contains only the account linked to the API-Key. Multiple subAccs can be separated with a comma, maximum of 10 subAccs, e.g. `subone,subtwo` |
+asset | STRING | NO | Asset name |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+accountId | STRING | Account ID |
+name | STRING | Account name |
+asset | STRING | Asset name |
+total | STRING | Total balance |
+available | STRING | Available balance |
+reserved | STRING | Reserved balance |
+lastUpdatedAt | STRING | Millisecond timestamp of last updated at |
+
+
+### GET `v3/trades`
+
+Get trade history.
+
+> **Request**
+
+```
+GET /v3/trades?marketCode={marketCode}&limit={limit}&startTime={startTime}&endTime={endTime}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "orderId": "160067484555913076",
+            "clientOrderId": "123",
+            "matchId": "160067484555913077",
+            "marketCode": "FLEX-USD",
+            "side": "SELL",
+            "matchedQuantity": "0.1",
+            "matchPrice": "0.065",
+            "total": "0.0065",
+            "leg1Price": "",
+            "leg2Price": "",
+            "orderMatchType": "TAKER",
+            "feeAsset": "FLEX",
+            "fee": "0.0096",
+            "source": "",
+            "lastMatchedAt": "1595514663626"
+        }
+    ]
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+marketCode | STRING | NO | Market code |
+limit | LONG | NO | Default 200, max 500 |
+startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
+endTime | LONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+orderId | STRING | Unique order ID from the exchange |
+clientOrderID | STRING | Client assigned ID to help manage and identify orders  |
+matchId | STRING | Match ID |
+marketCode | STRING | Market code |
+side | STRING | Side of the match |
+matchQuantity | STRING | Match quantity |
+matchPrice | STRING | Match price |
+total | STRING | Total price |
+leg1Price | STRING | |
+leg2Price | STRING | |
+orderMatchType | STRING | Order match type,  available values: `TAKER`,`MAKER` |
+feeAsset | Asset name of the fees |
+fees | STRING | Fees |
+lastMatchedAt | STRING | Millisecond timestamp of last matched at |
+
+
+### GET `v3/orders`
+
+Get order history.
+
+> **Request**
+
+```
+GET /v3/orders?marketCode={marketCode}&orderId={orderId}&clientOrderId={clientOrderId}&limit={limit}&startTime={startTime}&endTime={endTime}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "orderId": "1000070897369",
+            "clientOrderId": "1646715600081",
+            "marketCode": "SHIB-USD-SWAP-LIN",
+            "status": "CLOSED",
+            "side": "BUY",
+            "price": "0.00000000",
+            "quantity": "0",
+            "remainQuantity": "0",
+            "matchedQuantity": "0",
+            "orderType": "MARKET",
+            "timeInForce": "IOC",
+            "createdAt": "1646715612927",
+            "closedAt": "1646715612927"
+        }
+    ]
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+marketCode | STRING | NO | Market code |
+limit | LONG | NO | Default 50, max 200 |
+startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
+endTime | LONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+orderId | STRING | Order ID which generated by the server |
+clientOrderId | STRING | Client order ID which given by the user |
+marketCode | STRING | Market code |
+status | STRING | Status of the order, available values: `CLOSED` `OPEN` `PARTIALLY_FILLED` `FILLED` |
+side | STRING | Side of the order, `BUY` or `SELL` |
+price | STRING | Price submitted |
+stopPrice | STRING | Stop price for the stop order |
+isTriggered | BOOL | Available values: `true` `false`, `true` is for stop orders |
+quantity | STRING | Quantity submitted |
+remainQuantity | STRING | Remainning quantity |
+matchedQuantity | STRING | Matched quantity |
+avgFillPrice | STRING | Average of filled price |
+fees | LIST of dictionaries | Overall fees with instrument ID, if FLEX is no enough to pay the fee then USD will be paid |
+orderType | STRING | Type of the order, `LIMIT` or `STOP` |
+timeInForce | STRING | Time in force |
+createdAt | STRING | Millisecond timestamp of created at |
+lastModifiedAt | STRING | Millisecond timestamp of last modified at |
+lastMatchedAt | STRING | Millisecond timestamp of last matched at |
+closedAt | STRING | Millisecond timestamp of closed at |
+
+
+### GET `v3/orders/working`
+
+Get working order history.
+
+> **Request**
+
+```
+GET /v3/orders/working?marketCode={marketCode}&orderId={orderId}&clientOrderId={clientOrderId}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "orderId": "1000070177498",
+            "clientOrderId": "1612249737724",
+            "marketCode": "BTC-USD-SWAP-LIN",
+            "status": "OPEN",
+            "side": "SELL",
+            "price": "57007.0",
+            "quantity": "0.001",
+            "remainQuantity": "0.001",
+            "matchedQuantity": "0.000",
+            "orderType": "LIMIT",
+            "timeInForce": "GTC",
+            "createdAt": "1643185408888",
+            "lastModifiedAt": "1643185408913"
+        }
+    ]
+}
+```
+
+Request Parameter | Type | Required | Description |
+----------------- | ---- | -------- | ----------- |
+marketCode | STRING | NO | Market code |
+orderId | STRING | NO | Order ID which generated by the server |
+clientOrderId | STRING | NO | Client assigned ID to help manage and identify orders |
+
+Response Field | Type | Description |
+-------------- | ---- | ----------- |
+orderId | STRING | Order ID which generated by the server |
+clientOrderId | STRING | Client assigned ID to help manage and identify orders |
+marketCode | STRING | Market code |
+status | STRING | Status of the working order, available values: `OPEN` `PARTIALLY_FILLED` |
+side | STRING | Side of the order, `BUY` or `SELL` |
+price | STRING | Price submitted |
+stopPrice | STRING | Stop price for the stop order |
+isTriggered | BOOL | Available values: `true` `false`, `true` is for stop orders |
+quantity | STRING | Quantity submitted |
+remainQuantity | STRING | Remainning quantity |
+matchedQuantity | STRING | Matched quantity |
+orderType | STRING | Type of the order, `LIMIT` or `STOP` |
+timeInForce | STRING | Time in force |
+createdAt | STRING | Millisecond timestamp of created at |
+lastModifiedAt | STRING | Millisecond timestamp of last modified at |
+lastMatchedAt | STRING | Millisecond timestamp of last matched at |
+
+
+### POST `v3/orders/place`
+
+Place order.
+
+> **Request**
+
+```
+POST /v3/orders/place
+```
+```json
+{
+    "recvWindow": 3000,
+    "timestamp": 1637100050453,
+    "responseType":"FULL",
+    "orders": [
+        {
+            "clientOrderId":"1612249737434",
+            "marketCode":"BTC-USD-SWAP-LIN",
+            "side":"BUY",
+            "quantity":"0.9",
+            "timeInForce":"GTC",
+            "orderType":"LIMIT",
+            "price":"35000"
+        }
+    ]
+}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "notice": "OrderOpened",
+            "accountId": "5571",
+            "orderId": "1000070930390",
+            "submitted": true,
+            "clientOrderId": "1612249737434",
+            "marketCode": "BTC-USD-SWAP-LIN",
+            "status": "OPEN",
+            "side": "BUY",
+            "price": "35000.0",
+            "isTriggered": false,
+            "quantity": "0.9",
+            "orderType": "LIMIT",
+            "timeInForce": "GTC",
+            "createdAt": "1646820263527"
+        }
+    ]
+}
+```
+
+<aside class="notice">
+You can place up to 8 orders at a time in REST API
+</aside>
+
+Request Parameters | Type | Required | Description |
+------------------ | ---- | -------- | ----------- |
+recvWindow | LONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
+timestamp | LONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
+responseType | STRING | YES | `FULL` or `ACK` |
+orders | LIST | YES | A list of orders |
+clientOrderId | STRING | YES | Client assigned ID to help manage and identify orders |
+marketCode | STRING | YES | Market code |
+side | STRING | YES | Side of the order, BUY or SELL |
+quantity | STRING | YES | Quantity submitted |
+timeInForce | STRING | NO | Default `GTC` |
+orderType | STRING | YES | Type of the order, LIMIT or STOP |
+price | STRING | NO | Price submitted |
+stopPrice | STRING | NO | Stop price for the stop order |
+
+Response Parameters | Type | Description |
+--------------------| ---- | ----------- |
+notice | STRING | `OrderClosed` or `OrderMatched` or `OrderOpend` |
+accountId | STRING | Account ID |
+orderId | STRING | Order ID |
+submitted | BOOL | Whether the request is submitted or not submitted |
+clientOrderId | STRING | Client assigned ID to help manage and identify orders |
+marketCode | STRING | Market code |
+status | STRING | Order status |
+side | STRING | `SELL` or `BUY` |
+price | STRING | Price submitted |
+stopPrice | STRING | Stop price for the stop order |
+isTriggered | STRING | false (or true for STOP order types) |
+quantity | STRING | Quantity submitted |
+remainQuantity | STRING | Remainning quantity |
+matchId | STRING | Exchange match ID |
+matchPrice | STRING | Matched price |
+matchQuantity | STRING | Matched quantity |
+feeInstrumentId | STRING | Instrument ID of fees paid from this match ID |
+fees | STRING | Amount of fees paid from this match ID |
+orderType | STRING | `MARKET` or `LIMIT` or `STOP` |
+timeInForce | STRING | Time in force |
+createdAt | STRING | Millisecond timestamp of created at |
+lastModifiedAt | STRING | Millisecond timestamp of last modified at |
+lastMatchedAt | STRING | Millisecond timestamp of last matched at |
+
+
+### DELETE `/v3/orders/cancel`
+
+Cancel order by ID.
+
+> **Request**
+
+```
+DELETE /v3/orders/cancel
+```
+```json
+{
+    "recvWindow": 3000,
+    "timestamp": 1737100050453,
+    "responseType":"FULL",
+    "orders": [
+        {
+            "marketCode": "BTC-flexUSD",
+            "clientOrderId":"1612249737434",
+            "orderId": "1000000545000"
+        }
+    ]
+}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "notice": "OrderClosed",
+            "accountId": "100020",
+            "orderId": "1000000545000",
+            "submitted": true,
+            "clientOrderId": "1612249737434",
+            "marketCode": "BTC-flexUSD",
+            "status": "CANCELED_BY_USER",
+            "side": "BUY",
+            "price": "25000.0",
+            "isTriggered": false,
+            "quantity": "0.9",
+            "remainQuantity": "0.9",
+            "orderType": "LIMIT",
+            "timeInForce": "GTC",
+            "closedAt": "1648200825424"
+        }
+    ]
+}
+```
+
+Request Parameters | Type | Required | Description |
+------------------ | ---- | -------- | ----------- |
+recvWindow | LONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
+timestamp | LONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
+responseType | STRING | YES | `FULL` or `ACK` |
+orders | LIST | YES | A list of orders |
+marketCode | STRING | YES | Market code |
+clientOrderId | STRING | NO | Client assigned ID to help manage and identify orders |
+orderId | STRING | NO | Order ID |
+
+Response Parameters | Type | Description |
+--------------------| ---- | ----------- |
+notice | STRING | `OrderClosed` or `OrderMatched` or `OrderOpend` |
+accountId | STRING | Account ID |
+orderId | STRING | Order ID |
+submitted | BOOL | Whether the request is submitted or not submitted |
+clientOrderId | STRING | Client assigned ID to help manage and identify orders |
+marketCode | STRING | Market code |
+status | STRING | Order status |
+side | STRING | `SELL` or `BUY` |
+price | STRING | Price submitted |
+stopPrice | STRING | Stop price for the stop order |
+isTriggered | STRING | false (or true for STOP order types) |
+quantity | STRING | Quantity submitted |
+remainQuantity | STRING | Remainning quantity |
+orderType | STRING | `MARKET` or `LIMIT` or `STOP` |
+timeInForce | STRING | Time in force |
+closedAt | STRING | Millisecond timestamp of closed at |
+
+
+### DELETE `/v3/orders/cancel-all`
+
+Cancel all orders.
+
+> **Request**
+
+```
+DELETE /v3/orders/cancel-all
+```
+```json
+{
+    "marketCode": "BTC-flexUSD"
+}
+```
+
+> **Successful response format**
+
+```json
+{
+    "success": true, 
+    "data": {
+        "notice": "Orders queued for cancelation"
+    }
+}
+```
+
+Request Parameters | Type | Required | Description |
+------------------ | ---- | -------- | ----------- |
+marketCode | STRING | NO | Market code, if it's null or not sent then cancel all orders for the account |
+
+Response Parameters | Type | Description |
+--------------------| ---- | ----------- |
+notice | STRING | `Orders queued for cancelation` or `No working orders found` |
