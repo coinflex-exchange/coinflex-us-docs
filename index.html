@@ -454,7 +454,16 @@
                     <a href="#rest-api-account-amp-wallet-private" class="toc-h2 toc-link" data-title="Account &amp; Wallet - Private">Account &amp; Wallet - Private</a>
                       <ul class="toc-list-h3">
                           <li>
-                            <a href="#rest-api-account-amp-wallet-private-get-v1-accounts" class="toc-h3 toc-link" data-title="GET <code>/v1/accounts</code>">GET <code>/v1/accounts</code></a>
+                            <a href="#rest-api-account-amp-wallet-private-get-v1-account" class="toc-h3 toc-link" data-title="GET <code>/v1/account</code>">GET <code>/v1/account</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-account-amp-wallet-private-get-v1-wallet" class="toc-h3 toc-link" data-title="GET <code>v1/wallet</code>">GET <code>v1/wallet</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-account-amp-wallet-private-get-v1-balances" class="toc-h3 toc-link" data-title="GET <code>v1/balances</code>">GET <code>v1/balances</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-account-amp-wallet-private-get-v1-trades" class="toc-h3 toc-link" data-title="GET <code>v1/trades</code>">GET <code>v1/trades</code></a>
                           </li>
                       </ul>
                   </li>
@@ -502,6 +511,26 @@
                       </ul>
                   </li>
                   <li>
+                    <a href="#rest-api-orders-public" class="toc-h2 toc-link" data-title="Orders - Public">Orders - Public</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#rest-api-orders-public-get-v1-orders" class="toc-h3 toc-link" data-title="GET <code>v1/orders</code>">GET <code>v1/orders</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-orders-public-get-v1-orders-working" class="toc-h3 toc-link" data-title="GET <code>v1/orders/working</code>">GET <code>v1/orders/working</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-orders-public-post-v1-orders-place" class="toc-h3 toc-link" data-title="POST <code>v1/orders/place</code>">POST <code>v1/orders/place</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-orders-public-delete-v1-orders-cancel" class="toc-h3 toc-link" data-title="DELETE <code>/v1/orders/cancel</code>">DELETE <code>/v1/orders/cancel</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-orders-public-delete-v1-orders-cancel-all" class="toc-h3 toc-link" data-title="DELETE <code>/v1/orders/cancel-all</code>">DELETE <code>/v1/orders/cancel-all</code></a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
                     <a href="#rest-api-market-data-public" class="toc-h2 toc-link" data-title="Market Data - Public">Market Data - Public</a>
                       <ul class="toc-list-h3">
                           <li>
@@ -527,6 +556,9 @@
                           </li>
                           <li>
                             <a href="#rest-api-market-data-public-get-v1-flexasset-yields" class="toc-h3 toc-link" data-title="GET <code>/v1/flexasset/yields</code>">GET <code>/v1/flexasset/yields</code></a>
+                          </li>
+                          <li>
+                            <a href="#rest-api-market-data-public-get-v1-exchange-trades" class="toc-h3 toc-link" data-title="GET <code>/v1/exchange-trades</code>">GET <code>/v1/exchange-trades</code></a>
                           </li>
                       </ul>
                   </li>
@@ -5331,7 +5363,7 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <p>The signature must then be included in the header of the REST API call like so:</p>
 
 <p><code>header = {&#39;Content-Type&#39;: &#39;application/json&#39;, &#39;AccessKey&#39;: API-KEY, &#39;Timestamp&#39;: TIME-STAMP, &#39;Signature&#39;: SIGNATURE, &#39;Nonce&#39;: NONCE}</code></p>
-<h2 id='rest-api-account-amp-wallet-private'>Account &amp; Wallet - Private</h2><h3 id='rest-api-account-amp-wallet-private-get-v1-accounts'>GET <code>/v1/accounts</code></h3>
+<h2 id='rest-api-account-amp-wallet-private'>Account &amp; Wallet - Private</h2><h3 id='rest-api-account-amp-wallet-private-get-v1-account'>GET <code>/v1/account</code></h3>
 <p>Get account information</p>
 
 <blockquote>
@@ -5438,6 +5470,349 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <td>createdAt</td>
 <td>STRING</td>
 <td>Timestamp indicating when the account was created</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-account-amp-wallet-private-get-v1-wallet'>GET <code>v1/wallet</code></h3>
+<p>Get wallet history.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET v1/wallet?type={type}&amp;limit={limit}&amp;startTime={startTime}&amp;endTime={endTime}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21213"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"main"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"walletHistory"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                  </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deposit"</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"162131535213"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Type of the history, e.g. <code>deposit</code> <code>withdrawal</code>, return all if not provided</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Default 200, max 500</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other.</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>STRING</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>STRING</td>
+<td>Account name</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>STRING</td>
+<td>Asset name</td>
+</tr>
+<tr>
+<td>type</td>
+<td>STRING</td>
+<td>Type of the history</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>STRING</td>
+<td>Amount</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of created at</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-account-amp-wallet-private-get-v1-balances'>GET <code>v1/balances</code></h3>
+<p>Get balances of accounts.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET v1/balances?asset={asset}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21213"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"main"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"balances"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4468.823"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4468.823"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"reserved"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1593627415234"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FLEX"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1585.890"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"325.890"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"reserved"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1260"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"lastUpdatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1593627415123"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Asset name</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>STRING</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>STRING</td>
+<td>Account name</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>STRING</td>
+<td>Asset name</td>
+</tr>
+<tr>
+<td>total</td>
+<td>STRING</td>
+<td>Total balance</td>
+</tr>
+<tr>
+<td>available</td>
+<td>STRING</td>
+<td>Available balance</td>
+</tr>
+<tr>
+<td>reserved</td>
+<td>STRING</td>
+<td>Reserved balance</td>
+</tr>
+<tr>
+<td>lastUpdatedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of last updated at</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-account-amp-wallet-private-get-v1-trades'>GET <code>v1/trades</code></h3>
+<p>Get trade history.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/trades?marketCode={marketCode}&amp;limit={limit}&amp;startTime={startTime}&amp;endTime={endTime}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"160067484555913076"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"matchId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"160067484555913077"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FLEX-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"matchedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"matchPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.065"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0065"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"leg1Price"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"leg2Price"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderMatchType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TAKER"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"feeAsset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FLEX"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0096"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastMatchedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1595514663626"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Default 200, max 500</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>STRING</td>
+<td>Unique order ID from the exchange</td>
+</tr>
+<tr>
+<td>clientOrderID</td>
+<td>STRING</td>
+<td>Client assigned ID to help manage and identify orders</td>
+</tr>
+<tr>
+<td>matchId</td>
+<td>STRING</td>
+<td>Match ID</td>
+</tr>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>side</td>
+<td>STRING</td>
+<td>Side of the match</td>
+</tr>
+<tr>
+<td>matchQuantity</td>
+<td>STRING</td>
+<td>Match quantity</td>
+</tr>
+<tr>
+<td>matchPrice</td>
+<td>STRING</td>
+<td>Match price</td>
+</tr>
+<tr>
+<td>total</td>
+<td>STRING</td>
+<td>Total price</td>
+</tr>
+<tr>
+<td>leg1Price</td>
+<td>STRING</td>
+<td></td>
+</tr>
+<tr>
+<td>leg2Price</td>
+<td>STRING</td>
+<td></td>
+</tr>
+<tr>
+<td>orderMatchType</td>
+<td>STRING</td>
+<td>Order match type,  available values: <code>TAKER</code>,<code>MAKER</code></td>
+</tr>
+<tr>
+<td>feeAsset</td>
+<td>Asset name of the fees</td>
+<td></td>
+</tr>
+<tr>
+<td>fees</td>
+<td>STRING</td>
+<td>Fees</td>
+</tr>
+<tr>
+<td>lastMatchedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of last matched at</td>
 </tr>
 </tbody></table>
 <h2 id='rest-api-deposits-amp-withdrawals-private'>Deposits &amp; Withdrawals - Private</h2><h3 id='rest-api-deposits-amp-withdrawals-private-get-v1-deposit-addresses'>GET <code>/v1/deposit-addresses</code></h3>
@@ -6499,6 +6874,817 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='rest-api-orders-public'>Orders - Public</h2><h3 id='rest-api-orders-public-get-v1-orders'>GET <code>v1/orders</code></h3>
+<p>Get order history.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/orders?marketCode={marketCode}&amp;orderId={orderId}&amp;clientOrderId={clientOrderId}&amp;limit={limit}&amp;startTime={startTime}&amp;endTime={endTime}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000070897369"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1646715600081"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIB-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"remainQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"matchedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MARKET"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IOC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1646715612927"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1646715612927"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Default 50, max 200</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>STRING</td>
+<td>Order ID which generated by the server</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>STRING</td>
+<td>Client order ID which given by the user</td>
+</tr>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>status</td>
+<td>STRING</td>
+<td>Status of the order, available values: <code>CLOSED</code> <code>OPEN</code> <code>PARTIALLY_FILLED</code> <code>FILLED</code></td>
+</tr>
+<tr>
+<td>side</td>
+<td>STRING</td>
+<td>Side of the order, <code>BUY</code> or <code>SELL</code></td>
+</tr>
+<tr>
+<td>price</td>
+<td>STRING</td>
+<td>Price submitted</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>STRING</td>
+<td>Stop price for the stop order</td>
+</tr>
+<tr>
+<td>isTriggered</td>
+<td>BOOL</td>
+<td>Available values: <code>true</code> <code>false</code>, <code>true</code> is for stop orders</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>STRING</td>
+<td>Quantity submitted</td>
+</tr>
+<tr>
+<td>remainQuantity</td>
+<td>STRING</td>
+<td>Remainning quantity</td>
+</tr>
+<tr>
+<td>matchedQuantity</td>
+<td>STRING</td>
+<td>Matched quantity</td>
+</tr>
+<tr>
+<td>avgFillPrice</td>
+<td>STRING</td>
+<td>Average of filled price</td>
+</tr>
+<tr>
+<td>fees</td>
+<td>LIST of dictionaries</td>
+<td>Overall fees with instrument ID, if FLEX is no enough to pay the fee then USD will be paid</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>STRING</td>
+<td>Type of the order, <code>LIMIT</code> or <code>STOP</code></td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>STRING</td>
+<td>Time in force</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of created at</td>
+</tr>
+<tr>
+<td>lastModifiedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of last modified at</td>
+</tr>
+<tr>
+<td>lastMatchedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of last matched at</td>
+</tr>
+<tr>
+<td>closedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of closed at</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-orders-public-get-v1-orders-working'>GET <code>v1/orders/working</code></h3>
+<p>Get working order history.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/orders/working?marketCode={marketCode}&amp;orderId={orderId}&amp;clientOrderId={clientOrderId}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000070177498"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1612249737724"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57007.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"remainQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"matchedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GTC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1643185408888"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lastModifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1643185408913"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Order ID which generated by the server</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Client assigned ID to help manage and identify orders</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>STRING</td>
+<td>Order ID which generated by the server</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>STRING</td>
+<td>Client assigned ID to help manage and identify orders</td>
+</tr>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>status</td>
+<td>STRING</td>
+<td>Status of the working order, available values: <code>OPEN</code> <code>PARTIALLY_FILLED</code></td>
+</tr>
+<tr>
+<td>side</td>
+<td>STRING</td>
+<td>Side of the order, <code>BUY</code> or <code>SELL</code></td>
+</tr>
+<tr>
+<td>price</td>
+<td>STRING</td>
+<td>Price submitted</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>STRING</td>
+<td>Stop price for the stop order</td>
+</tr>
+<tr>
+<td>isTriggered</td>
+<td>BOOL</td>
+<td>Available values: <code>true</code> <code>false</code>, <code>true</code> is for stop orders</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>STRING</td>
+<td>Quantity submitted</td>
+</tr>
+<tr>
+<td>remainQuantity</td>
+<td>STRING</td>
+<td>Remainning quantity</td>
+</tr>
+<tr>
+<td>matchedQuantity</td>
+<td>STRING</td>
+<td>Matched quantity</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>STRING</td>
+<td>Type of the order, <code>LIMIT</code> or <code>STOP</code></td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>STRING</td>
+<td>Time in force</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of created at</td>
+</tr>
+<tr>
+<td>lastModifiedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of last modified at</td>
+</tr>
+<tr>
+<td>lastMatchedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of last matched at</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-orders-public-post-v1-orders-place'>POST <code>v1/orders/place</code></h3>
+<p>Place order.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>POST /v1/orders/place
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"recvWindow"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1637100050453</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"responseType"</span><span class="p">:</span><span class="s2">"FULL"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="s2">"1612249737434"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="s2">"BTC-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"side"</span><span class="p">:</span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="s2">"0.9"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="s2">"GTC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"35000"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"notice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OrderOpened"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5571"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000070930390"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"submitted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1612249737434"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35000.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isTriggered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.9"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GTC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1646820263527"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+You can place up to 8 orders at a time in REST API
+</aside>
+
+<table><thead>
+<tr>
+<th>Request Parameters</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>recvWindow</td>
+<td>LONG</td>
+<td>NO</td>
+<td>In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected.</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>LONG</td>
+<td>NO</td>
+<td>In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected.</td>
+</tr>
+<tr>
+<td>responseType</td>
+<td>STRING</td>
+<td>YES</td>
+<td><code>FULL</code> or <code>ACK</code></td>
+</tr>
+<tr>
+<td>orders</td>
+<td>LIST</td>
+<td>YES</td>
+<td>A list of orders</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>STRING</td>
+<td>YES</td>
+<td>Client assigned ID to help manage and identify orders</td>
+</tr>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>YES</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>side</td>
+<td>STRING</td>
+<td>YES</td>
+<td>Side of the order, BUY or SELL</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>STRING</td>
+<td>YES</td>
+<td>Quantity submitted</td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Default <code>GTC</code></td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>STRING</td>
+<td>YES</td>
+<td>Type of the order, LIMIT or STOP</td>
+</tr>
+<tr>
+<td>price</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Price submitted</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Stop price for the stop order</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>notice</td>
+<td>STRING</td>
+<td><code>OrderClosed</code> or <code>OrderMatched</code> or <code>OrderOpend</code></td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>STRING</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>STRING</td>
+<td>Order ID</td>
+</tr>
+<tr>
+<td>submitted</td>
+<td>BOOL</td>
+<td>Whether the request is submitted or not submitted</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>STRING</td>
+<td>Client assigned ID to help manage and identify orders</td>
+</tr>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>status</td>
+<td>STRING</td>
+<td>Order status</td>
+</tr>
+<tr>
+<td>side</td>
+<td>STRING</td>
+<td><code>SELL</code> or <code>BUY</code></td>
+</tr>
+<tr>
+<td>price</td>
+<td>STRING</td>
+<td>Price submitted</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>STRING</td>
+<td>Stop price for the stop order</td>
+</tr>
+<tr>
+<td>isTriggered</td>
+<td>STRING</td>
+<td>false (or true for STOP order types)</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>STRING</td>
+<td>Quantity submitted</td>
+</tr>
+<tr>
+<td>remainQuantity</td>
+<td>STRING</td>
+<td>Remainning quantity</td>
+</tr>
+<tr>
+<td>matchId</td>
+<td>STRING</td>
+<td>Exchange match ID</td>
+</tr>
+<tr>
+<td>matchPrice</td>
+<td>STRING</td>
+<td>Matched price</td>
+</tr>
+<tr>
+<td>matchQuantity</td>
+<td>STRING</td>
+<td>Matched quantity</td>
+</tr>
+<tr>
+<td>feeInstrumentId</td>
+<td>STRING</td>
+<td>Instrument ID of fees paid from this match ID</td>
+</tr>
+<tr>
+<td>fees</td>
+<td>STRING</td>
+<td>Amount of fees paid from this match ID</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>STRING</td>
+<td><code>MARKET</code> or <code>LIMIT</code> or <code>STOP</code></td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>STRING</td>
+<td>Time in force</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of created at</td>
+</tr>
+<tr>
+<td>lastModifiedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of last modified at</td>
+</tr>
+<tr>
+<td>lastMatchedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of last matched at</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-orders-public-delete-v1-orders-cancel'>DELETE <code>/v1/orders/cancel</code></h3>
+<p>Cancel order by ID.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>DELETE /v1/orders/cancel
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"recvWindow"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1737100050453</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"responseType"</span><span class="p">:</span><span class="s2">"FULL"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-flexUSD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="s2">"1612249737434"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000545000"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"notice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OrderClosed"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100020"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000545000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"submitted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1612249737434"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-flexUSD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANCELED_BY_USER"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25000.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"isTriggered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.9"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"remainQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.9"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GTC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"closedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1648200825424"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameters</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>recvWindow</td>
+<td>LONG</td>
+<td>NO</td>
+<td>In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected.</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>LONG</td>
+<td>NO</td>
+<td>In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected.</td>
+</tr>
+<tr>
+<td>responseType</td>
+<td>STRING</td>
+<td>YES</td>
+<td><code>FULL</code> or <code>ACK</code></td>
+</tr>
+<tr>
+<td>orders</td>
+<td>LIST</td>
+<td>YES</td>
+<td>A list of orders</td>
+</tr>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>YES</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Client assigned ID to help manage and identify orders</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Order ID</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>notice</td>
+<td>STRING</td>
+<td><code>OrderClosed</code> or <code>OrderMatched</code> or <code>OrderOpend</code></td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>STRING</td>
+<td>Account ID</td>
+</tr>
+<tr>
+<td>orderId</td>
+<td>STRING</td>
+<td>Order ID</td>
+</tr>
+<tr>
+<td>submitted</td>
+<td>BOOL</td>
+<td>Whether the request is submitted or not submitted</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>STRING</td>
+<td>Client assigned ID to help manage and identify orders</td>
+</tr>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>status</td>
+<td>STRING</td>
+<td>Order status</td>
+</tr>
+<tr>
+<td>side</td>
+<td>STRING</td>
+<td><code>SELL</code> or <code>BUY</code></td>
+</tr>
+<tr>
+<td>price</td>
+<td>STRING</td>
+<td>Price submitted</td>
+</tr>
+<tr>
+<td>stopPrice</td>
+<td>STRING</td>
+<td>Stop price for the stop order</td>
+</tr>
+<tr>
+<td>isTriggered</td>
+<td>STRING</td>
+<td>false (or true for STOP order types)</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>STRING</td>
+<td>Quantity submitted</td>
+</tr>
+<tr>
+<td>remainQuantity</td>
+<td>STRING</td>
+<td>Remainning quantity</td>
+</tr>
+<tr>
+<td>orderType</td>
+<td>STRING</td>
+<td><code>MARKET</code> or <code>LIMIT</code> or <code>STOP</code></td>
+</tr>
+<tr>
+<td>timeInForce</td>
+<td>STRING</td>
+<td>Time in force</td>
+</tr>
+<tr>
+<td>closedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of closed at</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-orders-public-delete-v1-orders-cancel-all'>DELETE <code>/v1/orders/cancel-all</code></h3>
+<p>Cancel all orders.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>DELETE /v1/orders/cancel-all
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-flexUSD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"notice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orders queued for cancelation"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameters</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Market code, if it&#39;s null or not sent then cancel all orders for the account</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Parameters</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>notice</td>
+<td>STRING</td>
+<td><code>Orders queued for cancelation</code> or <code>No working orders found</code></td>
+</tr>
+</tbody></table>
 <h2 id='rest-api-market-data-public'>Market Data - Public</h2><h3 id='rest-api-market-data-public-get-v1-markets'>GET <code>/v1/markets</code></h3>
 <p>Get a list of markets on CoinFlex US.</p>
 
@@ -7373,6 +8559,98 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 <td>paidAt</td>
 <td>STRING</td>
 <td>Millisecond timestamp of the interest payment</td>
+</tr>
+</tbody></table>
+<h3 id='rest-api-market-data-public-get-v1-exchange-trades'>GET <code>/v1/exchange-trades</code></h3>
+<p>Get exchange trades.</p>
+
+<blockquote>
+<p><strong>Request</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/exchange-trades?marketCode={marketCode}&amp;limit={limit}
+&amp;startTime={startTime}&amp;endTime={endTime}
+</code></pre></div>
+<blockquote>
+<p><strong>Successful response format</strong></p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD-SWAP-LIN"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"matchPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9600.000000000"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"matchQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.100000000"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"lastMatchedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1595585860254"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Request Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>NO</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Default 200, max 500</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other.</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>LONG</td>
+<td>NO</td>
+<td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Response Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketCode</td>
+<td>STRING</td>
+<td>Market code</td>
+</tr>
+<tr>
+<td>matchPrice</td>
+<td>STRING</td>
+<td>Match price of order</td>
+</tr>
+<tr>
+<td>matchQuantity</td>
+<td>STRING</td>
+<td>Match quantity of order</td>
+</tr>
+<tr>
+<td>side</td>
+<td>STRING</td>
+<td>Match side, available values: <code>BUY</code> <code>SELL</code></td>
+</tr>
+<tr>
+<td>lastMatchedAt</td>
+<td>STRING</td>
+<td>Millisecond timestamp of last matched at</td>
 </tr>
 </tbody></table>
 
