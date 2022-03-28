@@ -896,13 +896,13 @@ POST /v1/orders/place
     "responseType":"FULL",
     "orders": [
         {
-            "clientOrderId":"1612249737434",
-            "marketCode":"BTC-USD-SWAP-LIN",
-            "side":"BUY",
-            "quantity":"0.9",
-            "timeInForce":"GTC",
-            "orderType":"LIMIT",
-            "price":"35000"
+            "clientOrderId": "1612249737434",
+            "marketCode": "BTC-USD-SWAP-LIN",
+            "side": "BUY",
+            "quantity": "0.9",
+            "timeInForce": "GTC",
+            "orderType": "LIMIT",
+            "price": "35000"
         }
     ]
 }
@@ -1119,11 +1119,11 @@ DELETE /v1/orders/cancel
 {
     "recvWindow": 3000,
     "timestamp": 1737100050453,
-    "responseType":"FULL",
+    "responseType": "FULL",
     "orders": [
         {
             "marketCode": "BTC-flexUSD",
-            "clientOrderId":"1612249737434",
+            "clientOrderId": "1612249737434",
             "orderId": "1000000545000"
         }
     ]
