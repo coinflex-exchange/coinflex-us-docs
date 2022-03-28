@@ -878,7 +878,7 @@ amount | STRING | |
 paidAt | STRING | |
 
 
-## Orders - Public
+## Orders - Private
 
 ### GET `v1/orders`
 
