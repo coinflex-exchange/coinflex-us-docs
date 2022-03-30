@@ -145,7 +145,7 @@ Get account information
 > **Request**
 
 ```
-GET v1/accounts
+GET /v1/accounts
 ```
 
 > **Successful response format**
@@ -198,14 +198,14 @@ feeTier | STRING | Fee tier |
 createdAt | STRING | Timestamp indicating when the account was created |
 
 
-### GET `v1/wallets`
+### GET `/v1/wallets`
 
 Get wallet history.
 
 > **Request**
 
 ```
-GET v1/wallets?type={type}&limit={limit}&startTime={startTime}&endTime={endTime}
+GET /v1/wallets?type={type}&limit={limit}&startTime={startTime}&endTime={endTime}
 ```
 
 > **Successful response format**
@@ -247,14 +247,14 @@ amount | STRING | Amount |
 createdAt | STRING | Millisecond timestamp of created at |
 
 
-### GET `v1/balances`
+### GET `/v1/balances`
 
 Get balances of accounts.
 
 > **Request**
 
 ```
-GET v1/balances?asset={asset}
+GET /v1/balances?asset={asset}
 ```
 
 > **Successful response format**
@@ -302,7 +302,7 @@ reserved | STRING | Reserved balance |
 lastUpdatedAt | STRING | Millisecond timestamp of last updated at |
 
 
-### GET `v1/trades`
+### GET `/v1/trades`
 
 Get trade history.
 
