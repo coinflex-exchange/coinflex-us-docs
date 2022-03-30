@@ -457,13 +457,13 @@
                             <a href="#rest-api-account-amp-wallet-private-get-v1-accounts" class="toc-h3 toc-link" data-title="GET <code>/v1/accounts</code>">GET <code>/v1/accounts</code></a>
                           </li>
                           <li>
-                            <a href="#rest-api-account-amp-wallet-private-get-v1-wallets" class="toc-h3 toc-link" data-title="GET <code>v1/wallets</code>">GET <code>v1/wallets</code></a>
+                            <a href="#rest-api-account-amp-wallet-private-get-v1-wallets" class="toc-h3 toc-link" data-title="GET <code>/v1/wallets</code>">GET <code>/v1/wallets</code></a>
                           </li>
                           <li>
-                            <a href="#rest-api-account-amp-wallet-private-get-v1-balances" class="toc-h3 toc-link" data-title="GET <code>v1/balances</code>">GET <code>v1/balances</code></a>
+                            <a href="#rest-api-account-amp-wallet-private-get-v1-balances" class="toc-h3 toc-link" data-title="GET <code>/v1/balances</code>">GET <code>/v1/balances</code></a>
                           </li>
                           <li>
-                            <a href="#rest-api-account-amp-wallet-private-get-v1-trades" class="toc-h3 toc-link" data-title="GET <code>v1/trades</code>">GET <code>v1/trades</code></a>
+                            <a href="#rest-api-account-amp-wallet-private-get-v1-trades" class="toc-h3 toc-link" data-title="GET <code>/v1/trades</code>">GET <code>/v1/trades</code></a>
                           </li>
                       </ul>
                   </li>
@@ -5369,7 +5369,7 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <blockquote>
 <p><strong>Request</strong></p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>GET v1/accounts
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/accounts
 </code></pre></div>
 <blockquote>
 <p><strong>Successful response format</strong></p>
@@ -5472,13 +5472,13 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <td>Timestamp indicating when the account was created</td>
 </tr>
 </tbody></table>
-<h3 id='rest-api-account-amp-wallet-private-get-v1-wallets'>GET <code>v1/wallets</code></h3>
+<h3 id='rest-api-account-amp-wallet-private-get-v1-wallets'>GET <code>/v1/wallets</code></h3>
 <p>Get wallet history.</p>
 
 <blockquote>
 <p><strong>Request</strong></p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>GET v1/wallets?type={type}&amp;limit={limit}&amp;startTime={startTime}&amp;endTime={endTime}
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/wallets?type={type}&amp;limit={limit}&amp;startTime={startTime}&amp;endTime={endTime}
 </code></pre></div>
 <blockquote>
 <p><strong>Successful response format</strong></p>
@@ -5573,13 +5573,13 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <td>Millisecond timestamp of created at</td>
 </tr>
 </tbody></table>
-<h3 id='rest-api-account-amp-wallet-private-get-v1-balances'>GET <code>v1/balances</code></h3>
+<h3 id='rest-api-account-amp-wallet-private-get-v1-balances'>GET <code>/v1/balances</code></h3>
 <p>Get balances of accounts.</p>
 
 <blockquote>
 <p><strong>Request</strong></p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>GET v1/balances?asset={asset}
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/balances?asset={asset}
 </code></pre></div>
 <blockquote>
 <p><strong>Successful response format</strong></p>
@@ -5669,7 +5669,7 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <td>Millisecond timestamp of last updated at</td>
 </tr>
 </tbody></table>
-<h3 id='rest-api-account-amp-wallet-private-get-v1-trades'>GET <code>v1/trades</code></h3>
+<h3 id='rest-api-account-amp-wallet-private-get-v1-trades'>GET <code>/v1/trades</code></h3>
 <p>Get trade history.</p>
 
 <blockquote>
