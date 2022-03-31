@@ -880,7 +880,7 @@ paidAt | STRING | |
 
 ## Orders - Private
 
-### POST `v1/orders/place`
+### POST `/v1/orders/place`
 
 Place order.
 
@@ -1047,7 +1047,7 @@ lastMatchedAt | STRING | Millisecond timestamp of last matched at |
 closedAt | STRING | Millisecond timestamp of closed at |
 
 
-### GET `v1/orders/working`
+### GET `/v1/orders/working`
 
 Get working order history.
 
