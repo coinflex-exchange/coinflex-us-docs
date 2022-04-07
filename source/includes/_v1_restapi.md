@@ -304,7 +304,7 @@ lastUpdatedAt | STRING | Millisecond timestamp of last updated at |
 
 ### GET `/v1/trades`
 
-Get trade history.
+Get historical trades sorted by time in descending order (most recent trades first).
 
 > **Request**
 
@@ -327,12 +327,10 @@ GET /v1/trades?marketCode={marketCode}&limit={limit}&startTime={startTime}&endTi
             "matchedQuantity": "0.1",
             "matchPrice": "0.065",
             "total": "0.0065",
-            "leg1Price": "",
-            "leg2Price": "",
             "orderMatchType": "TAKER",
             "feeAsset": "FLEX",
             "fee": "0.0096",
-            "source": "",
+            "source": "1",
             "lastMatchedAt": "1595514663626"
         }
     ]
@@ -355,13 +353,11 @@ marketCode | STRING | Market code |
 side | STRING | Side of the match |
 matchQuantity | STRING | Match quantity |
 matchPrice | STRING | Match price |
-total | STRING | Total price |
-leg1Price | STRING | |
-leg2Price | STRING | |
+total | STRING | Total cost |
 orderMatchType | STRING | Order match type,  available values: `TAKER`,`MAKER` |
-feeAsset | Asset name of the fees |
+feeAsset | STRING | Asset name of the fees |
 fees | STRING | Fees |
-lastMatchedAt | STRING | Millisecond timestamp of last matched at |
+lastMatchedAt | STRING | Millisecond timestamp of the trade |
 
 
 ## Deposits & Withdrawals - Private
@@ -400,7 +396,7 @@ memo | STRING | Memo (tag) if applicable |
 
 ### GET `/v1/deposit`
 
-Deposit history
+Get deposit histories sorted by time in descending order (most recent deposits first).
 
 > **Request**
 
@@ -494,12 +490,12 @@ whitelisted | BOOL | |
 
 ### GET `/v1/withdrawal`
 
-Withdrawal history
+Get withdrawal histories sorted by time in descending order (most recent withdrawals first).
 
 > **Request**
 
 ```
-GET /v1/withdrawal?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
+GET /v1/withdrawal?id={id}&asset={asset}&limit={limit}&startTime={startTime}&endTime={endTime}
 ```
 
 > **Successful response format**
@@ -754,7 +750,7 @@ redemptionAt | STRING | Millisecond timestamp indicating when redemption will ta
 
 ### GET `/v1/flexasset/mint`
 
-Get mint history by asset and sorted by time in descending order.
+Get historical flexasset mints sorted by time in descending order (most recent mints first).
 
 > **Request**
 
@@ -793,7 +789,7 @@ mintedAt | STRING | |
 
 ### GET `/v1/flexasset/redeem`
 
-Get redemption history by asset and sorted by time in descending order.
+Get historical flexasset redemptions sorted by time in descending order (most recent redemptions first).
 
 > **Request**
 
@@ -829,13 +825,13 @@ Response Field | Type | Description |
 -------------- | ---- | ----------- |
 asset | STRING | |
 quantity | STRING | |
-requestedAt | STRING | Millisecond timestamp indicating when redemption was requested|
-redeemedAt | STRING | Millisecond timestamp indicating when the flexAssets were redeemed |
+requestedAt | STRING | Millisecond timestamp indicating when redemption was requested |
+redeemedAt | STRING | Millisecond timestamp indicating when the flexAssets were redeemed (if applicable) |
 
 
 ### GET `/v1/flexasset/earned`
 
-Get earned history by asset and sorted by time in descending order.
+Get historical flexasset interest payments sorted by time in descending order (most recent payments first).
 
 > **Request**
 
@@ -946,10 +942,10 @@ responseType | STRING | YES | `FULL` or `ACK` |
 orders | LIST | YES | A list of orders |
 clientOrderId | STRING | NO | Client assigned ID to help manage and identify orders with max value `9223372036854775807` |
 marketCode | STRING | YES | Market code |
-side | STRING | YES | Side of the order, BUY or SELL |
+side | STRING | YES | Side of the order, `BUY` or `SELL` |
 quantity | STRING | YES | Quantity submitted |
 timeInForce | STRING | NO | Default `GTC` |
-orderType | STRING | YES | Type of the order, LIMIT or STOP |
+orderType | STRING | YES | Type of the order, `LIMIT` or `MARKET` or `STOP` |
 price | STRING | NO | Price submitted |
 stopPrice | STRING | NO | Stop price for the stop order |
 
@@ -1263,7 +1259,7 @@ GET /v1/markets?marketCode={marketCode}
 
 Request Parameter | Type | Required | Description | 
 ----------------- | ---- | -------- | ----------- |
-marketCode | STRING | NO | |
+marketCode | STRING | NO | Market code |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
@@ -1279,7 +1275,8 @@ listedAt | STRING | Listing date of the contract |
 upperPriceBound | STRING | Sanity bound |
 lowerPriceBound | STRING | Sanity bound |
 markPrice | STRING | Mark price |
-lastUpdatedAt | STRING | |
+lastUpdatedAt | STRING | Millisecond timestamp of last updated time |
+
 
 ### GET `/v1/assets`
 
@@ -1298,34 +1295,25 @@ GET /v1/assets?asset={asset}
     "success": true,
     "data": [
         {
-            "asset": "USD",
-            "isCollateral": true,
-            "loanToValue": "1.000000000",
+            "asset": "USDC",
             "networkList": [
                 {
                     "network": "ERC20",
                     "transactionPrecision": "6",
-                    "isWithdrawalFeeChargedToUser": true,
                     "canDeposit": true,
                     "canWithdraw": true,
-                    "minDeposit": "0.0001",
-                    "minWithdrawal": "2"
+                    "minWithdrawal": "0.0001"
                 }
             ]
         },
         {
-            "asset": "LINK",
-            "isCollateral": true,
-            "loanToValue": "0.800000000",
+            "asset": "BTC",
             "networkList": [
                 {
-                    "network": "ERC20",
-                    "tokenId": "0x514910771af9ca656af840dff83e8264ecf986ca",
-                    "transactionPrecision": "18",
-                    "isWithdrawalFeeChargedToUser": true,
+                    "network": "BTC",
+                    "transactionPrecision": "8",
                     "canDeposit": true,
                     "canWithdraw": true,
-                    "minDeposit": "0.0001",
                     "minWithdrawal": "0.0001"
                 }
             ]
@@ -1341,12 +1329,8 @@ asset | STRING | NO | Name of the asset |
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
 asset | STRING | Asset name |
-isCollateral | BOOL | Indicates it is collateral or not |
-loanToValue | STRING | Loan to value of the asset |
 networkList | LIST | List of dictionaries |
 network | STRING | Network for deposit and withdrawal |
-tokenId | STRING | Token ID |
-transactionPrecision | STRING | Precision for the transaction |
 isWithdrawalFeeChargedToUser | BOOL | Indicates the withdrawal fee is charged to user or not |
 canDeposit | BOOL | Indicates can deposit or not |
 canWithdraw | BOOL | Indicates can withdraw or not |
@@ -1695,7 +1679,7 @@ paidAt | STRING | Millisecond timestamp of the interest payment |
 
 ### GET `/v1/exchange-trades`
 
-Get exchange trades.
+Get historical exchange trades sorted by time in descending order (most recent trades first).
 
 > **Request**
 
@@ -1724,14 +1708,14 @@ GET /v1/exchange-trades?marketCode={marketCode}&limit={limit}
 Request Parameter | Type | Required | Description |
 ----------------- | ---- | -------- | ----------- |
 marketCode | STRING | NO | Market code |
-limit | LONG | NO | Default 200, max 500 |
+limit | LONG | NO | Default 300, max 300 |
 startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
 endTime | LONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
 marketCode | STRING | Market code|
-matchPrice | STRING | Match price of order |
-matchQuantity | STRING | Match quantity of order |
-side | STRING | Match side, available values: `BUY` `SELL`|
+matchPrice | STRING | |
+matchQuantity | STRING | |
+side | STRING | Aggressor (taker) side, available values: `BUY` `SELL`|
 matchedAt | STRING | Millisecond timestamp of matched at |
