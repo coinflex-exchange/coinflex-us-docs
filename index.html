@@ -5670,7 +5670,7 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 </tr>
 </tbody></table>
 <h3 id='rest-api-account-amp-wallet-private-get-v1-trades'>GET <code>/v1/trades</code></h3>
-<p>Get trade history.</p>
+<p>Get historical trades sorted by time in descending order (most recent trades first).</p>
 
 <blockquote>
 <p><strong>Request</strong></p>
@@ -5692,12 +5692,10 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
             </span><span class="nl">"matchedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"matchPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.065"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0065"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"leg1Price"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"leg2Price"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nl">"orderMatchType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TAKER"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"feeAsset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FLEX"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0096"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"lastMatchedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1595514663626"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -5782,17 +5780,7 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <tr>
 <td>total</td>
 <td>STRING</td>
-<td>Total price</td>
-</tr>
-<tr>
-<td>leg1Price</td>
-<td>STRING</td>
-<td></td>
-</tr>
-<tr>
-<td>leg2Price</td>
-<td>STRING</td>
-<td></td>
+<td>Total cost</td>
 </tr>
 <tr>
 <td>orderMatchType</td>
@@ -5801,8 +5789,8 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 </tr>
 <tr>
 <td>feeAsset</td>
+<td>STRING</td>
 <td>Asset name of the fees</td>
-<td></td>
 </tr>
 <tr>
 <td>fees</td>
@@ -5812,7 +5800,7 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <tr>
 <td>lastMatchedAt</td>
 <td>STRING</td>
-<td>Millisecond timestamp of last matched at</td>
+<td>Millisecond timestamp of the trade</td>
 </tr>
 </tbody></table>
 <h2 id='rest-api-deposits-amp-withdrawals-private'>Deposits &amp; Withdrawals - Private</h2><h3 id='rest-api-deposits-amp-withdrawals-private-get-v1-deposit-addresses'>GET <code>/v1/deposit-addresses</code></h3>
@@ -5874,7 +5862,7 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 </tr>
 </tbody></table>
 <h3 id='rest-api-deposits-amp-withdrawals-private-get-v1-deposit'>GET <code>/v1/deposit</code></h3>
-<p>Deposit history</p>
+<p>Get deposit histories sorted by time in descending order (most recent deposits first).</p>
 
 <blockquote>
 <p><strong>Request</strong></p>
@@ -6074,12 +6062,12 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 </tr>
 </tbody></table>
 <h3 id='rest-api-deposits-amp-withdrawals-private-get-v1-withdrawal'>GET <code>/v1/withdrawal</code></h3>
-<p>Withdrawal history</p>
+<p>Get withdrawal histories sorted by time in descending order (most recent withdrawals first).</p>
 
 <blockquote>
 <p><strong>Request</strong></p>
 </blockquote>
-<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/withdrawal?asset={asset}&amp;limit={limit}&amp;startTime={startTime}&amp;endTime={endTime}
+<div class="highlight"><pre class="highlight plaintext"><code>GET /v1/withdrawal?id={id}&amp;asset={asset}&amp;limit={limit}&amp;startTime={startTime}&amp;endTime={endTime}
 </code></pre></div>
 <blockquote>
 <p><strong>Successful response format</strong></p>
@@ -6614,7 +6602,7 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 </tr>
 </tbody></table>
 <h3 id='rest-api-flex-assets-private-get-v1-flexasset-mint'>GET <code>/v1/flexasset/mint</code></h3>
-<p>Get mint history by asset and sorted by time in descending order.</p>
+<p>Get historical flexasset mints sorted by time in descending order (most recent mints first).</p>
 
 <blockquote>
 <p><strong>Request</strong></p>
@@ -6693,7 +6681,7 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 </tr>
 </tbody></table>
 <h3 id='rest-api-flex-assets-private-get-v1-flexasset-redeem'>GET <code>/v1/flexasset/redeem</code></h3>
-<p>Get redemption history by asset and sorted by time in descending order.</p>
+<p>Get historical flexasset redemptions sorted by time in descending order (most recent redemptions first).</p>
 
 <blockquote>
 <p><strong>Request</strong></p>
@@ -6774,11 +6762,11 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 <tr>
 <td>redeemedAt</td>
 <td>STRING</td>
-<td>Millisecond timestamp indicating when the flexAssets were redeemed</td>
+<td>Millisecond timestamp indicating when the flexAssets were redeemed (if applicable)</td>
 </tr>
 </tbody></table>
 <h3 id='rest-api-flex-assets-private-get-v1-flexasset-earned'>GET <code>/v1/flexasset/earned</code></h3>
-<p>Get earned history by asset and sorted by time in descending order.</p>
+<p>Get historical flexasset interest payments sorted by time in descending order (most recent payments first).</p>
 
 <blockquote>
 <p><strong>Request</strong></p>
@@ -6975,7 +6963,7 @@ You can place up to 8 orders at a time in REST API
 <td>side</td>
 <td>STRING</td>
 <td>YES</td>
-<td>Side of the order, BUY or SELL</td>
+<td>Side of the order, <code>BUY</code> or <code>SELL</code></td>
 </tr>
 <tr>
 <td>quantity</td>
@@ -6993,7 +6981,7 @@ You can place up to 8 orders at a time in REST API
 <td>orderType</td>
 <td>STRING</td>
 <td>YES</td>
-<td>Type of the order, LIMIT or STOP</td>
+<td>Type of the order, <code>LIMIT</code> or <code>MARKET</code> or <code>STOP</code></td>
 </tr>
 <tr>
 <td>price</td>
@@ -7741,7 +7729,7 @@ You can place up to 8 orders at a time in REST API
 <td>marketCode</td>
 <td>STRING</td>
 <td>NO</td>
-<td></td>
+<td>Market code</td>
 </tr>
 </tbody></table>
 
@@ -7815,7 +7803,7 @@ You can place up to 8 orders at a time in REST API
 <tr>
 <td>lastUpdatedAt</td>
 <td>STRING</td>
-<td></td>
+<td>Millisecond timestamp of last updated time</td>
 </tr>
 </tbody></table>
 <h3 id='rest-api-market-data-public-get-v1-assets'>GET <code>/v1/assets</code></h3>
@@ -7833,34 +7821,25 @@ You can place up to 8 orders at a time in REST API
     </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"isCollateral"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"loanToValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDC"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"networkList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"network"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"transactionPrecision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"isWithdrawalFeeChargedToUser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"canDeposit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"canWithdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"minDeposit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"minWithdrawal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+                    </span><span class="nl">"minWithdrawal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">]</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINK"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"isCollateral"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"loanToValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.800000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"networkList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"network"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"tokenId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x514910771af9ca656af840dff83e8264ecf986ca"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"transactionPrecision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"isWithdrawalFeeChargedToUser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"network"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"transactionPrecision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"canDeposit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"canWithdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"minDeposit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"minWithdrawal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">]</span><span class="w">
@@ -7897,16 +7876,6 @@ You can place up to 8 orders at a time in REST API
 <td>Asset name</td>
 </tr>
 <tr>
-<td>isCollateral</td>
-<td>BOOL</td>
-<td>Indicates it is collateral or not</td>
-</tr>
-<tr>
-<td>loanToValue</td>
-<td>STRING</td>
-<td>Loan to value of the asset</td>
-</tr>
-<tr>
 <td>networkList</td>
 <td>LIST</td>
 <td>List of dictionaries</td>
@@ -7915,16 +7884,6 @@ You can place up to 8 orders at a time in REST API
 <td>network</td>
 <td>STRING</td>
 <td>Network for deposit and withdrawal</td>
-</tr>
-<tr>
-<td>tokenId</td>
-<td>STRING</td>
-<td>Token ID</td>
-</tr>
-<tr>
-<td>transactionPrecision</td>
-<td>STRING</td>
-<td>Precision for the transaction</td>
 </tr>
 <tr>
 <td>isWithdrawalFeeChargedToUser</td>
@@ -8574,7 +8533,7 @@ You can place up to 8 orders at a time in REST API
 </tr>
 </tbody></table>
 <h3 id='rest-api-market-data-public-get-v1-exchange-trades'>GET <code>/v1/exchange-trades</code></h3>
-<p>Get exchange trades.</p>
+<p>Get historical exchange trades sorted by time in descending order (most recent trades first).</p>
 
 <blockquote>
 <p><strong>Request</strong></p>
@@ -8616,7 +8575,7 @@ You can place up to 8 orders at a time in REST API
 <td>limit</td>
 <td>LONG</td>
 <td>NO</td>
-<td>Default 200, max 500</td>
+<td>Default 300, max 300</td>
 </tr>
 <tr>
 <td>startTime</td>
@@ -8647,17 +8606,17 @@ You can place up to 8 orders at a time in REST API
 <tr>
 <td>matchPrice</td>
 <td>STRING</td>
-<td>Match price of order</td>
+<td></td>
 </tr>
 <tr>
 <td>matchQuantity</td>
 <td>STRING</td>
-<td>Match quantity of order</td>
+<td></td>
 </tr>
 <tr>
 <td>side</td>
 <td>STRING</td>
-<td>Match side, available values: <code>BUY</code> <code>SELL</code></td>
+<td>Aggressor (taker) side, available values: <code>BUY</code> <code>SELL</code></td>
 </tr>
 <tr>
 <td>matchedAt</td>
