@@ -233,9 +233,9 @@ GET /v1/wallets?type={type}&limit={limit}&startTime={startTime}&endTime={endTime
 Request Parameter | Type | Required | Description |
 ----------------- | ---- | -------- | ----------- |
 type | STRING | NO | Type of the history, e.g. `deposit` `withdrawal`, return all if not provided |
-limit | LONG | NO | Default 200, max 500 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
-endTime | LONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
+limit | ULONG | NO | Default 200, max 500 |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
+endTime | ULONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
@@ -331,7 +331,7 @@ GET /v1/trades?marketCode={marketCode}&limit={limit}&startTime={startTime}&endTi
             "feeAsset": "FLEX",
             "fee": "0.0096",
             "source": "1",
-            "lastMatchedAt": "1595514663626"
+            "matchedAt": "1595514663626"
         }
     ]
 }
@@ -340,9 +340,9 @@ GET /v1/trades?marketCode={marketCode}&limit={limit}&startTime={startTime}&endTi
 Request Parameter | Type | Required | Description |
 ----------------- | ---- | -------- | ----------- |
 marketCode | STRING | NO | Market code |
-limit | LONG | NO | Default 200, max 500 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
-endTime | LONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
+limit | ULONG | NO | Default 200, max 500 |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
+endTime | ULONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
@@ -357,7 +357,7 @@ total | STRING | Total cost |
 orderMatchType | STRING | Order match type,  available values: `TAKER`,`MAKER` |
 feeAsset | STRING | Asset name of the fees |
 fees | STRING | Fees |
-lastMatchedAt | STRING | Millisecond timestamp of the trade |
+matchedAt | STRING | Millisecond timestamp of the trade |
 
 
 ## Deposits & Withdrawals - Private
@@ -427,9 +427,9 @@ GET /v1/deposit?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTi
 Request Parameter | Type | Required | Description | 
 ----------------- | ---- | -------- | ----------- |
 asset | STRING | NO | Default all assets |
-limit | LONG | NO | Default 50, max 200 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
-endTime | LONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
+limit | ULONG | NO | Default 50, max 200 |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
+endTime | ULONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
 
 Response Field | Type | Description | 
 -------------- | ---- | ----------- |
@@ -505,12 +505,12 @@ GET /v1/withdrawal?id={id}&asset={asset}&limit={limit}&startTime={startTime}&end
     "success": true,
     "data": [
         {
+            "id": "651573911056351237",
             "asset": "flexUSD",
             "network": "SLP",
             "address": "simpleledger:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf35fxqwx3p7",
             "quantity": "1000.0",
             "fee": "0.000000000",
-            "id": "651573911056351237",
             "status": "COMPLETED",
             "txId": "38c09755bff75d33304a3cb6ee839fcb78bbb38b6e3e16586f20852cdec4886d",
             "requestedAt": "1617940800000",
@@ -522,10 +522,11 @@ GET /v1/withdrawal?id={id}&asset={asset}&limit={limit}&startTime={startTime}&end
 
 Request Parameter | Type | Required | Description | 
 ----------------- | ---- | -------- | ----------- |
+id | STRING | NO | |
 asset | STRING | NO |  Default all assets |
-limit | LONG | NO | Default 50, max 200 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. This filter applies to "requestedAt"|
-endTime | LONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. This filter applies to "requestedAt" |
+limit | ULONG | NO | Default 50, max 200 |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. This filter applies to "requestedAt"|
+endTime | ULONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. This filter applies to "requestedAt" |
 
 Response Field | Type | Description | 
 -------------- | ---- | ----------- |
@@ -776,9 +777,9 @@ GET /v1/flexasset/mint?asset={asset}&limit={limit}&startTime={startTime}&endTime
 Request Parameter | Type | Required | Description | 
 ----------------- | ---- | -------- | ----------- |
 asset | STRING | NO | Asset name, available assets: `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
-limit | LONG | NO | Default 50, max 200 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
-endTime | LONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
+limit | ULONG | NO | Default 50, max 200 |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
+endTime | ULONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
@@ -816,9 +817,9 @@ GET /v1/flexasset/redeem?asset={asset}&limit={limit}&startTime={startTime}&endTi
 Request Parameter | Type | Required | Description | 
 ----------------- | ---- | -------- | ----------- |
 asset | STRING | NO | Asset name, available assets: `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
-limit | LONG | NO | Default 50, max 200 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. Here startTime and endTime refer to the "requestedAt" timestamp |
-endTime | LONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. Here startTime and endTime refer to the "requestedAt" timestamp |
+limit | ULONG | NO | Default 50, max 200 |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. Here startTime and endTime refer to the "requestedAt" timestamp |
+endTime | ULONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. Here startTime and endTime refer to the "requestedAt" timestamp |
 
 
 Response Field | Type | Description | 
@@ -847,7 +848,6 @@ GET /v1/flexasset/earned?asset={asset}&limit={limit}&startTime={startTime}&endTi
     "data": [
         {
             "asset": "flexUSD",
-            "snapshotQuantity": "10000",
             "apr": "25",
             "rate": "0.00022831",
             "amount": "2.28310502",
@@ -860,14 +860,13 @@ GET /v1/flexasset/earned?asset={asset}&limit={limit}&startTime={startTime}&endTi
 Request Parameter | Type | Required | Description | 
 ----------------- | ---- | -------- | ----------- |
 asset | STRING | NO | Asset name, available assets: `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
-limit | LONG | NO | Default 50, max 200 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
-endTime | LONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
+limit | ULONG | NO | Default 50, max 200 |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
+endTime | ULONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
 
 Response Field | Type | Description | 
 -------------- | ---- | ----------- |
 asset | STRING | Asset name |
-snapshotQuantity | STRING |
 apr | STRING | Annualized APR (%) = rate * 3 * 365 * 100 |
 rate | STRING | Period interest rate |
 amount | STRING | |
@@ -936,8 +935,8 @@ You can place up to 8 orders at a time in REST API
 
 Request Parameters | Type | Required | Description |
 ------------------ | ---- | -------- | ----------- |
-recvWindow | LONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
-timestamp | LONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
+recvWindow | ULONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
+timestamp | ULONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
 responseType | STRING | YES | `FULL` or `ACK` |
 orders | LIST | YES | A list of orders |
 clientOrderId | STRING | NO | Client assigned ID to help manage and identify orders with max value `9223372036854775807` |
@@ -1016,9 +1015,9 @@ Request Parameter | Type | Required | Description |
 marketCode | STRING | NO | Market code |
 clientOrderId | STRING | NO | Client assigned ID to help manage and identify orders with max value `9223372036854775807` |
 orderId | STRING | Order ID which generated by the server |
-limit | LONG | NO | Default 50, max 200 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
-endTime | LONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
+limit | ULONG | NO | Default 50, max 200 |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
+endTime | ULONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
@@ -1157,8 +1156,8 @@ DELETE /v1/orders/cancel
 
 Request Parameters | Type | Required | Description |
 ------------------ | ---- | -------- | ----------- |
-recvWindow | LONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
-timestamp | LONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
+recvWindow | ULONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
+timestamp | ULONG | NO | In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected. |
 responseType | STRING | YES | `FULL` or `ACK` |
 orders | LIST | YES | A list of orders |
 marketCode | STRING | YES | Market code |
@@ -1300,6 +1299,7 @@ GET /v1/assets?asset={asset}
                 {
                     "network": "ERC20",
                     "transactionPrecision": "6",
+                    "isWithdrawalFeeChargedToUser": true,
                     "canDeposit": true,
                     "canWithdraw": true,
                     "minWithdrawal": "0.0001"
@@ -1312,6 +1312,7 @@ GET /v1/assets?asset={asset}
                 {
                     "network": "BTC",
                     "transactionPrecision": "8",
+                    "isWithdrawalFeeChargedToUser": true,
                     "canDeposit": true,
                     "canWithdraw": true,
                     "minWithdrawal": "0.0001"
@@ -1432,9 +1433,9 @@ Request Parameter | Type | Required | Description |
 ----------------- | ---- | -------- | ----------- |
 marketCode | STRING | YES | Market code |
 timeframe | STRING | NO | Available values: `60s`,`300s`,`900s`,`1800s`,`3600s`,`7200s`,`14400s`,`86400s`, default is `3600s` |
-limit | LONG | NO | Default 200, max 500 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
-endTime | LONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
+limit | ULONG | NO | Default 200, max 500 |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
+endTime | ULONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
@@ -1518,11 +1519,11 @@ GET /v1/depth?marketCode={marketCode}&level={level}
 Request Parameter | Type | Required | Description |
 ----------------- | ---- | -------- | ----------- |
 marketCode | STRING | YES | Market code |
-level | LONG | NO | Default 5, max 100 |
+level | ULONG | NO | Default 5, max 100 |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
-level | LONG | Level |
+level | ULONG | Level |
 marketCode | STRING | Market code |
 lastUpdatedAt | STRING | Millisecond timestamp of the depth last updated at |
 asks | LIST of floats | Sell side depth: [price, quantity] |
@@ -1665,9 +1666,9 @@ GET /v1/flexasset/yields?flexasset={flexasset}&limit={limit}&startTime={startTim
 Request Parameter | Type | Required | Description |
 ----------------- | ---- | -------- | ----------- |
 flexasset | STRING | NO | FlexAsset name, available assets e.g. `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
-limit | LONG | NO | Default 200, max 500 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
-endTime | LONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
+limit | ULONG | NO | Default 200, max 500 |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
+endTime | ULONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
@@ -1708,9 +1709,9 @@ GET /v1/exchange-trades?marketCode={marketCode}&limit={limit}
 Request Parameter | Type | Required | Description |
 ----------------- | ---- | -------- | ----------- |
 marketCode | STRING | NO | Market code |
-limit | LONG | NO | Default 300, max 300 |
-startTime | LONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
-endTime | LONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
+limit | ULONG | NO | Default 300, max 300 |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
+endTime | ULONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |

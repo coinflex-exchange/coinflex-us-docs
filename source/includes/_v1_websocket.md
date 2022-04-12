@@ -281,9 +281,9 @@ Parameter | Type | Required | Description |
 op | STRING | Yes | **'login'** |
 tag | INTEGER or STRING | No | If given it will be echoed in the reply
 data | DICTIONARY object | Yes |
-\>apiKey | STRING | Yes | Clients public API key, visible in the GUI when created |
-\>timestamp | STRING | Yes | Current millisecond timestamp |
-\>signature | STRING | Yes | `Base64(HmacSHA256(current_ms_timestamp + 'GET/auth/self/verify', API-Secret))` |
+apiKey | STRING | Yes | Clients public API key, visible in the GUI when created |
+timestamp | STRING | Yes | Current millisecond timestamp |
+signature | STRING | Yes | `Base64(HmacSHA256(current_ms_timestamp + 'GET/auth/self/verify', API-Secret))` |
 
 ## Session Keep Alive
 
