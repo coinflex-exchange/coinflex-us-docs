@@ -917,19 +917,19 @@
 <td></td>
 </tr>
 <tr>
-<td>&gt;apiKey</td>
+<td>apiKey</td>
 <td>STRING</td>
 <td>Yes</td>
 <td>Clients public API key, visible in the GUI when created</td>
 </tr>
 <tr>
-<td>&gt;timestamp</td>
+<td>timestamp</td>
 <td>STRING</td>
 <td>Yes</td>
 <td>Current millisecond timestamp</td>
 </tr>
 <tr>
-<td>&gt;signature</td>
+<td>signature</td>
 <td>STRING</td>
 <td>Yes</td>
 <td><code>Base64(HmacSHA256(current_ms_timestamp + &#39;GET/auth/self/verify&#39;, API-Secret))</code></td>
@@ -5517,19 +5517,19 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 </tr>
 <tr>
 <td>limit</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 200, max 500</td>
 </tr>
 <tr>
 <td>startTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other.</td>
 </tr>
 <tr>
 <td>endTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other.</td>
 </tr>
@@ -5696,7 +5696,7 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
             </span><span class="nl">"feeAsset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FLEX"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0096"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"lastMatchedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1595514663626"</span><span class="w">
+            </span><span class="nl">"matchedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1595514663626"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -5717,19 +5717,19 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 </tr>
 <tr>
 <td>limit</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 200, max 500</td>
 </tr>
 <tr>
 <td>startTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other</td>
 </tr>
 <tr>
 <td>endTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other</td>
 </tr>
@@ -5798,7 +5798,7 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <td>Fees</td>
 </tr>
 <tr>
-<td>lastMatchedAt</td>
+<td>matchedAt</td>
 <td>STRING</td>
 <td>Millisecond timestamp of the trade</td>
 </tr>
@@ -5904,19 +5904,19 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 </tr>
 <tr>
 <td>limit</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 50, max 200</td>
 </tr>
 <tr>
 <td>startTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other</td>
 </tr>
 <tr>
 <td>endTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other</td>
 </tr>
@@ -6076,12 +6076,12 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
     </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"651573911056351237"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flexUSD"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"network"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SLP"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"simpleledger:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf35fxqwx3p7"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000.0"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"651573911056351237"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38c09755bff75d33304a3cb6ee839fcb78bbb38b6e3e16586f20852cdec4886d"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"requestedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1617940800000"</span><span class="p">,</span><span class="w">
@@ -6099,6 +6099,12 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 </tr>
 </thead><tbody>
 <tr>
+<td>id</td>
+<td>STRING</td>
+<td>NO</td>
+<td></td>
+</tr>
+<tr>
 <td>asset</td>
 <td>STRING</td>
 <td>NO</td>
@@ -6106,19 +6112,19 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 </tr>
 <tr>
 <td>limit</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 50, max 200</td>
 </tr>
 <tr>
 <td>startTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. This filter applies to &quot;requestedAt&quot;</td>
 </tr>
 <tr>
 <td>endTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. This filter applies to &quot;requestedAt&quot;</td>
 </tr>
@@ -6639,19 +6645,19 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 </tr>
 <tr>
 <td>limit</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 50, max 200</td>
 </tr>
 <tr>
 <td>startTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other</td>
 </tr>
 <tr>
 <td>endTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other</td>
 </tr>
@@ -6719,19 +6725,19 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 </tr>
 <tr>
 <td>limit</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 50, max 200</td>
 </tr>
 <tr>
 <td>startTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. Here startTime and endTime refer to the &quot;requestedAt&quot; timestamp</td>
 </tr>
 <tr>
 <td>endTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. Here startTime and endTime refer to the &quot;requestedAt&quot; timestamp</td>
 </tr>
@@ -6781,7 +6787,6 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flexUSD"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"snapshotQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"apr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00022831"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.28310502"</span><span class="p">,</span><span class="w">
@@ -6806,19 +6811,19 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 </tr>
 <tr>
 <td>limit</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 50, max 200</td>
 </tr>
 <tr>
 <td>startTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other</td>
 </tr>
 <tr>
 <td>endTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other</td>
 </tr>
@@ -6835,11 +6840,6 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 <td>asset</td>
 <td>STRING</td>
 <td>Asset name</td>
-</tr>
-<tr>
-<td>snapshotQuantity</td>
-<td>STRING</td>
-<td></td>
 </tr>
 <tr>
 <td>apr</td>
@@ -6925,13 +6925,13 @@ You can place up to 8 orders at a time in REST API
 </thead><tbody>
 <tr>
 <td>recvWindow</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected.</td>
 </tr>
 <tr>
 <td>timestamp</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected.</td>
 </tr>
@@ -7180,19 +7180,19 @@ You can place up to 8 orders at a time in REST API
 </tr>
 <tr>
 <td>limit</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 50, max 200</td>
 </tr>
 <tr>
 <td>startTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other</td>
 </tr>
 <tr>
 <td>endTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other</td>
 </tr>
@@ -7505,13 +7505,13 @@ You can place up to 8 orders at a time in REST API
 </thead><tbody>
 <tr>
 <td>recvWindow</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected.</td>
 </tr>
 <tr>
 <td>timestamp</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>In milliseconds. If an order reaches the matching engine and the current timestamp exceeds timestamp + recvWindow, then the order will be rejected. If timestamp is provided without recvWindow, then a default recvWindow of 1000ms is used. If recvWindow is provided with no timestamp, then the request will not be rejected. If neither timestamp nor recvWindow are provided, then the request will not be rejected.</td>
 </tr>
@@ -7826,6 +7826,7 @@ You can place up to 8 orders at a time in REST API
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"network"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERC20"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"transactionPrecision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"isWithdrawalFeeChargedToUser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"canDeposit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"canWithdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"minWithdrawal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="w">
@@ -7838,6 +7839,7 @@ You can place up to 8 orders at a time in REST API
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"network"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"transactionPrecision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"isWithdrawalFeeChargedToUser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"canDeposit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"canWithdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"minWithdrawal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="w">
@@ -8073,19 +8075,19 @@ You can place up to 8 orders at a time in REST API
 </tr>
 <tr>
 <td>limit</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 200, max 500</td>
 </tr>
 <tr>
 <td>startTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other.</td>
 </tr>
 <tr>
 <td>endTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other.</td>
 </tr>
@@ -8219,7 +8221,7 @@ You can place up to 8 orders at a time in REST API
 </tr>
 <tr>
 <td>level</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 5, max 100</td>
 </tr>
@@ -8234,7 +8236,7 @@ You can place up to 8 orders at a time in REST API
 </thead><tbody>
 <tr>
 <td>level</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>Level</td>
 </tr>
 <tr>
@@ -8486,19 +8488,19 @@ You can place up to 8 orders at a time in REST API
 </tr>
 <tr>
 <td>limit</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 200, max 500</td>
 </tr>
 <tr>
 <td>startTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other.</td>
 </tr>
 <tr>
 <td>endTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other.</td>
 </tr>
@@ -8573,19 +8575,19 @@ You can place up to 8 orders at a time in REST API
 </tr>
 <tr>
 <td>limit</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Default 300, max 300</td>
 </tr>
 <tr>
 <td>startTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other.</td>
 </tr>
 <tr>
 <td>endTime</td>
-<td>LONG</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other.</td>
 </tr>
