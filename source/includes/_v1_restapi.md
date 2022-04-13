@@ -1332,6 +1332,7 @@ Response Field | Type | Description |
 asset | STRING | Asset name |
 networkList | LIST | List of dictionaries |
 network | STRING | Network for deposit and withdrawal |
+transactionPrecision | STRING | Precision for the transaction |
 isWithdrawalFeeChargedToUser | BOOL | Indicates the withdrawal fee is charged to user or not |
 canDeposit | BOOL | Indicates can deposit or not |
 canWithdraw | BOOL | Indicates can withdraw or not |
