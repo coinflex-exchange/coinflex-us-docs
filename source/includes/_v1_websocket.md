@@ -77,7 +77,7 @@
 
 **LIVE** site
 
-* `wss://stgapi.coinflex.us/v1/websocket`
+* `wss://api.coinflex.us/v1/websocket`
 
 CoinFLEX US's application programming interface (API) provides our clients programmatic access to control aspects of their accounts and to place orders on the CoinFLEX US trading platform. The API is accessible via WebSocket connection to the URIs listed above. Commands, replies, and notifications all traverse the WebSocket in text frames with JSON-formatted payloads.
 
