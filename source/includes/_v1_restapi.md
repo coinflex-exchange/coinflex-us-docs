@@ -216,7 +216,6 @@ GET /v1/wallets?type={type}&limit={limit}&startTime={startTime}&endTime={endTime
     "data": [
         {
           "accountId": "21213",
-          "name": "main",
           "walletHistory": [
               {
                   "asset": "USD",
@@ -240,7 +239,6 @@ endTime | ULONG | NO |  Millisecond timestamp. Default time now. startTime and e
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
 accountId | STRING | Account ID |
-name | STRING | Account name |
 asset | STRING | Asset name |
 type | STRING | Type of the history |
 amount | STRING | Amount |
