@@ -412,7 +412,6 @@ GET /v1/deposit?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTi
             "network": "SLP",
             "address": "simpleledger:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf35fxqwx3p7",
             "quantity": "1000.0",
-            "id": "651573911056351237",
             "status": "COMPLETED",
             "txId": "38c09755bff75d33304a3cb6ee839fcb78bbb38b6e3e16586f20852cdec4886d",
             "creditedAt": "1617940800000"
@@ -435,7 +434,6 @@ network | STRING | |
 address | STRING | Deposit address |
 memo | STRING | Memo (tag) if applicable |
 quantity | STRING | |
-id | STRING | |
 status | STRING | |
 txId | STRING | |
 creditedAt | STRING | Millisecond timestamp |
