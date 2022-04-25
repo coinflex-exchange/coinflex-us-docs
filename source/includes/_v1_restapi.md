@@ -533,7 +533,7 @@ memo | STRING | Memo (tag) if applicable |
 quantity | STRING | |
 fee | STRING | |
 id | STRING | |
-status | STRING | COMPLETED, PROCESSING, PENDING, ON HOLD, CANCELED, or FAILED| 
+status | STRING | `COMPLETED`, `PROCESSING`, `PENDING`, `ON HOLD`, `CANCELED`, or `FAILED` |
 txId | STRING | |
 requestedAt | STRING | Millisecond timestamp |
 completedAt | STRING | Millisecond timestamp |
