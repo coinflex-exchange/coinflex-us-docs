@@ -231,10 +231,9 @@ GET /v1/wallets?type={type}&limit={limit}&startTime={startTime}&endTime={endTime
 
 Request Parameter | Type | Required | Description |
 ----------------- | ---- | -------- | ----------- |
-type | STRING | NO | Type of the history, e.g. `deposit` `withdrawal`, return all if not provided |
+type | STRING | NO | Type of the history, e.g. `DEPOSIT` `WITHDRAWAL`, return all if not provided |
 limit | ULONG | NO | Default 200, max 500 |
-startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. |
-endTime | ULONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
+startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. | endTime | ULONG | NO |  Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. |
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
@@ -528,6 +527,7 @@ endTime | ULONG | NO |  Millisecond timestamp. Default time now. startTime and e
 
 Response Field | Type | Description | 
 -------------- | ---- | ----------- |
+id | STRING | |
 asset | STRING | |
 network | STRING | |
 address | STRING | |
@@ -568,6 +568,7 @@ POST /v1/withdrawal
 {
     "success": true,
     "data": {
+        "id": "651573911056351237",
         "asset": "flexUSD",
         "network": "SLP",
         "address": "simpleledger:qzlg6uvceehgzgtz6phmvy8gtdqyt6vf35fxqwx3p7",
@@ -594,6 +595,7 @@ code | STRING | NO | 2fa code if required by the account |
 
 Response Field | Type | Description | 
 -------------- | ---- | ----------- |
+id | STRING | |
 asset | STRING | |
 network | STRING | |
 address | STRING | |
