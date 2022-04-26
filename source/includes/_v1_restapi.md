@@ -890,12 +890,12 @@ POST /v1/orders/place
     "orders": [
         {
             "clientOrderId": "1612249737434",
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "USDC-flexUSD",
             "side": "BUY",
-            "quantity": "0.9",
+            "quantity": "0.01",
             "timeInForce": "GTC",
             "orderType": "LIMIT",
-            "price": "35000"
+            "price": "0.9998"
         }
     ]
 }
@@ -909,19 +909,19 @@ POST /v1/orders/place
     "data": [
         {
             "notice": "OrderOpened",
-            "accountId": "5571",
-            "orderId": "1000070930390",
+            "accountId": "100356",
+            "orderId": "1000000705002",
             "submitted": true,
             "clientOrderId": "1612249737434",
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "USDC-flexUSD",
             "status": "OPEN",
             "side": "BUY",
-            "price": "35000.0",
+            "price": "0.9998",
             "isTriggered": false,
-            "quantity": "0.9",
+            "quantity": "0.01",
             "orderType": "LIMIT",
             "timeInForce": "GTC",
-            "createdAt": "1646820263527"
+            "createdAt": "1650959751803"
         }
     ]
 }
@@ -990,19 +990,19 @@ GET /v1/orders?marketCode={marketCode}&orderId={orderId}&clientOrderId={clientOr
     "success": true,
     "data": [
         {
-            "orderId": "1000070897369",
-            "clientOrderId": "1646715600081",
-            "marketCode": "SHIB-USD-SWAP-LIN",
+            "orderId": "1000000700000",
+            "clientOrderId": "1612249737434",
+            "marketCode": "USDC-flexUSD",
             "status": "CLOSED",
             "side": "BUY",
-            "price": "0.00000000",
-            "quantity": "0",
-            "remainQuantity": "0",
+            "price": "0.9998",
+            "quantity": "0.01",
+            "remainQuantity": "0.01",
             "matchedQuantity": "0",
-            "orderType": "MARKET",
-            "timeInForce": "IOC",
-            "createdAt": "1646715612927",
-            "closedAt": "1646715612927"
+            "orderType": "LIMIT",
+            "timeInForce": "GTC",
+            "createdAt": "1650959840448",
+            "closedAt": "1650959970325"
         }
     ]
 }
@@ -1057,19 +1057,19 @@ GET /v1/orders/working?marketCode={marketCode}&orderId={orderId}&clientOrderId={
     "success": true,
     "data": [
         {
-            "orderId": "1000070177498",
-            "clientOrderId": "1612249737724",
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "orderId": "1000000705002",
+            "clientOrderId": "1612249737434",
+            "marketCode": "USDC-flexUSD",
             "status": "OPEN",
-            "side": "SELL",
-            "price": "57007.0",
-            "quantity": "0.001",
-            "remainQuantity": "0.001",
-            "matchedQuantity": "0.000",
+            "side": "BUY",
+            "price": "0.9998",
+            "quantity": "0.01",
+            "remainQuantity": "0.01",
+            "matchedQuantity": "0.00",
             "orderType": "LIMIT",
             "timeInForce": "GTC",
-            "createdAt": "1643185408888",
-            "lastModifiedAt": "1643185408913"
+            "createdAt": "1650959751718",
+            "lastModifiedAt": "1650959751799"
         }
     ]
 }

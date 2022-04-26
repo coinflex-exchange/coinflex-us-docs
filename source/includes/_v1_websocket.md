@@ -94,8 +94,8 @@ Websocket commands can be sent in either of the following two formats:
 
 `args`: the value(s) will be the instrument ID(s) or asset ID(s), for example:
 
-* order:BTC-USD-SWAP-LIN
-* depth:ETH-USD-REPO-LIN
+* order:BTC-flexUSD
+* depth:ETH-flexUSD
 * position:all
 
 **All other commands**
@@ -303,7 +303,7 @@ To maintain an active WebSocket connection it is imperative to either be subscri
             "timestamp": 1638237934061,
             "recvWindow": 500,
             "clientOrderId": 1,
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "side": "BUY",
             "orderType": "LIMIT",
             "quantity": 1.5,
@@ -345,7 +345,7 @@ place_order = \
             "timestamp": 1638237934061,
             "recvWindow": 500,
             "clientOrderId": 1,
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "side": "BUY",
             "orderType": "LIMIT",
             "quantity": 1.5,
@@ -386,7 +386,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "timestamp": "1592491945248",
   "data": {
             "clientOrderId": "1",
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "side": "BUY",
             "orderType": "LIMIT",
             "quantity": "1.5",
@@ -409,7 +409,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "timestamp": "1592491945248",
   "data": {
             "clientOrderId": "1",
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "side": "BUY",
             "orderType": "LIMIT",
             "quantity": "1.5",
@@ -435,7 +435,7 @@ op | STRING | Yes | `placeorder`
 tag | INTEGER or STRING | No | If given it will be echoed in the reply
 data | DICTIONARY object | Yes |
 clientOrderId | INTEGER | No | Client assigned ID to help manage and identify orders |
-marketCode | STRING | Yes | Market code e.g. `BTC-USD-SWAP-LIN` |
+marketCode | STRING | Yes | Market code e.g. `BTC-flexUSD` |
 orderType | STRING | Yes |  `LIMIT` |
 price | FLOAT |  No | Price |
 quantity |  FLOAT | Yes | Quantity (denominated by contractValCurrency) |
@@ -457,7 +457,7 @@ recvWindow | LONG | NO | In milliseconds. If an order reaches the matching engin
             "timestamp": 1638237934061,
             "recvWindow": 500,
             "clientOrderId": 1,
-            "marketCode": "ETH-USD-SWAP-LIN",
+            "marketCode": "ETH-flexUSD",
             "side": "SELL",
             "orderType": "MARKET",
             "quantity": 5
@@ -497,7 +497,7 @@ place_order = \
             "timestamp": 1638237934061,
             "recvWindow": 500,
             "clientOrderId": 1,
-            "marketCode": "ETH-USD-SWAP-LIN",
+            "marketCode": "ETH-flexUSD",
             "side": "SELL",
             "orderType": "MARKET",
             "quantity": 5
@@ -535,7 +535,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "timestamp": "1592491945248",
   "data": {
             "clientOrderId": "1",
-            "marketCode": "ETH-USD-SWAP-LIN",
+            "marketCode": "ETH-flexUSD",
             "side": "SELL",
             "orderType": "MARKET",
             "quantity": "5",
@@ -556,7 +556,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "timestamp": "1592491503359",
   "data": {
             "clientOrderId": "1",
-            "marketCode": "ETH-USD-SWAP-LIN",
+            "marketCode": "ETH-flexUSD",
             "side": "SELL",
             "orderType": "MARKET",
             "quantity": "5",
@@ -580,7 +580,7 @@ op | STRING | Yes | `placeorder`
 tag | INTEGER or STRING | No | If given it will be echoed in the reply
 data | DICTIONARY object | Yes |
 clientOrderId | INTEGER | No | Client assigned ID to help manage and identify orders |
-marketCode | STRING | Yes | Market code e.g. `BTC-USD-SWAP-LIN` |
+marketCode | STRING | Yes | Market code e.g. `BTC-flexUSD` |
 orderType | STRING | Yes |  `MARKET` |
 quantity |  FLOAT | Yes | Quantity (denominated by contractValCurrency) |
 side | STRING | Yes | `BUY` or `SELL` |
@@ -600,7 +600,7 @@ recvWindow | LONG | NO | In milliseconds. If an order reaches the matching engin
             "timestamp": 1638237934061,
             "recvWindow": 500,
             "clientOrderId": 1,
-            "marketCode": "ETH-USD-SWAP-LIN",
+            "marketCode": "ETH-flexUSD",
             "side": "BUY",
             "orderType": "STOP",
             "quantity": 10,
@@ -643,7 +643,7 @@ place_order = \
             "timestamp": 1638237934061,
             "recvWindow": 500,
             "clientOrderId": 1,
-            "marketCode": "ETH-USD-SWAP-LIN",
+            "marketCode": "ETH-flexUSD",
             "side": "BUY",
             "orderType": "STOP",
             "quantity": 10,
@@ -684,7 +684,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "timestamp": "1607639739098",
   "data": {
             "clientOrderId": "1",
-            "marketCode": "ETH-USD-SWAP-LIN",
+            "marketCode": "ETH-flexUSD",
             "side": "BUY",
             "orderType": "STOP",
             "quantity": "10",
@@ -708,7 +708,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "timestamp": "1592491503359",
   "data": {
             "clientOrderId": "1",
-            "marketCode": "ETH-USD-SWAP-LIN",
+            "marketCode": "ETH-flexUSD",
             "side": "BUY",
             "orderType": "STOP",
             "quantity": "10",
@@ -735,7 +735,7 @@ op | STRING | Yes | `placeorder`
 tag | INTEGER or STRING | No | If given it will be echoed in the reply
 data | DICTIONARY object | Yes |
 clientOrderId | INTEGER | No | Client assigned ID to help manage and identify orders |
-marketCode| STRING| Yes| Market code e.g. `ETH-USD-SWAP-LIN`|
+marketCode| STRING| Yes| Market code e.g. `ETH-flexUSD`|
 orderType|STRING| Yes|  `STOP` for stop-limit orders (stop-market orders not supported)|
 quantity|FLOAT|Yes|Quantity (denominated by contractValCurrency)|
 side|STRING| Yes| `BUY ` or `SELL`|
@@ -758,7 +758,7 @@ recvWindow | LONG | NO | In milliseconds. If an order reaches the matching engin
                   "timestamp": 1638237934061,
                   "recvWindow": 500,
                   "clientOrderId": 1,
-                  "marketCode": "ETH-USD-SWAP-LIN",
+                  "marketCode": "ETH-flexUSD",
                   "side": "BUY",
                   "orderType": "LIMIT",
                   "quantity": 10,
@@ -809,7 +809,7 @@ place_batch_order =\
                   "timestamp": 1638237934061,
                   "recvWindow": 500,
                   "clientOrderId": 1,
-                  "marketCode": "ETH-USD-SWAP-LIN",
+                  "marketCode": "ETH-flexUSD",
                   "side": "BUY",
                   "orderType": "LIMIT",
                   "quantity": 10,
@@ -857,7 +857,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "timestamp": "1607639739098",
   "data": {
             "clientOrderId": "1",
-            "marketCode": "ETH-USD-SWAP-LIN",
+            "marketCode": "ETH-flexUSD",
             "side": "BUY",
             "orderType": "LIMIT",
             "quantity": "10",
@@ -897,7 +897,7 @@ AND
   "timestamp": "1592491503359",
   "data": {
             "clientOrderId": "1",
-            "marketCode": "ETH-USD-SWAP-LIN",
+            "marketCode": "ETH-flexUSD",
             "side": "BUY",
             "orderType": "LIMIT",
             "quantity": "10",
@@ -958,7 +958,7 @@ recvWindow | LONG | NO | In milliseconds. If an order reaches the matching engin
   "op": "cancelorder",
   "tag": 456,
   "data": {
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "orderId": 12
           }
 }
@@ -993,7 +993,7 @@ cancel_order = \
   "op": "cancelorder",
   "tag": 456,
   "data": {
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "orderId": 12
           }
 }
@@ -1028,7 +1028,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "tag": "456",
   "timestamp": "1592491173964",
   "data": {
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "orderId": "12"
           }
 }
@@ -1045,7 +1045,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "code": "<errorCode>",
   "timestamp": "1592491173964",
   "data": {
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "orderId": "12"
           }
 }
@@ -1063,7 +1063,7 @@ Parameters | Type | Required | Description
 op | STRING | Yes | `cancelorder`
 tag | INTEGER or STRING | No | If given it will be echoed in the reply
 data | DICTIONARY object | Yes |
-marketCode|STRING|Yes|Market code e.g. `BTC-USD-SWAP-LIN`|
+marketCode|STRING|Yes|Market code e.g. `BTC-flexUSD`|
 orderId|INTEGER|Yes|Unique order ID from the exchange|
 
 
@@ -1076,7 +1076,7 @@ orderId|INTEGER|Yes|Unique order ID from the exchange|
   "op": "cancelorders",
   "tag": 456,
   "dataArray": [{
-                  "marketCode": "BTC-USD-SWAP-LIN",
+                  "marketCode": "BTC-flexUSD",
                   "orderId": 12
                 },
                 {
@@ -1115,7 +1115,7 @@ cancel_batch_order = \
   "op": "cancelorders",
   "tag": 456,
   "dataArray": [{
-                  "marketCode": "BTC-USD-SWAP-LIN",
+                  "marketCode": "BTC-flexUSD",
                   "orderId": 12
                 },
                 {
@@ -1154,7 +1154,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "tag": "456",
   "timestamp": "1592491173964",
   "data": {
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "orderId": "12"
           }
 }
@@ -1185,7 +1185,7 @@ AND
   "code": "<errorCode>",
   "timestamp": "1592491173964",
   "data": {
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "orderId": "12"
           }
 }
@@ -1229,7 +1229,7 @@ dataArray | LIST of dictionaries | A list of orders with each order in JSON form
   "data": {
             "timestamp": 1638237934061,
             "recvWindow": 500,
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "orderId": 888,
             "side": "BUY",
             "price": 9800,
@@ -1269,7 +1269,7 @@ modify_order = \
   "data": {
             "timestamp": 1638237934061,
             "recvWindow": 500,
-            "marketCode": "BTC-USD-SWAP-LIN",
+            "marketCode": "BTC-flexUSD",
             "orderId": 888,
             "side": "BUY",
             "price": 9800,
@@ -1311,7 +1311,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
           "quantity": 2
           "price": 9800,
           "orderType": "LIMIT",
-          "marketCode": "BTC-USD-SWAP-LIN"
+          "marketCode": "BTC-flexUSD"
          }
 }
 ```
@@ -1331,7 +1331,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
             "side": "BUY",
             "quantity": 2,
             "price": 9800,
-            "marketCode": "BTC-USD-SWAP-LIN"
+            "marketCode": "BTC-flexUSD"
           }
 }
 ```
@@ -1362,7 +1362,7 @@ Parameters | Type | Required | Description|
 op | STRING | Yes | `modifyorder`
 tag | INTEGER or STRING | No | If given it will be echoed in the reply
 data | DICTIONARY object | Yes |
-marketCode|STRING|Yes| Market code e.g. `BTC-USD-SWAP-LIN`|
+marketCode|STRING|Yes| Market code e.g. `BTC-flexUSD`|
 orderId|INTEGER|Yes|Unique order ID from the exchange|
 side| STRING|No| `BUY` or `SELL`|
 price|FLOAT|No|Price for limit orders|
@@ -1382,7 +1382,7 @@ recvWindow | LONG | NO | In milliseconds. If an order reaches the matching engin
   "dataArray": [{
                   "timestamp": 1638237934061,
                   "recvWindow": 500,
-                  "marketCode": "ETH-USD-SWAP-LIN",
+                  "marketCode": "ETH-flexUSD",
                   "side": "BUY",
                   "orderID": 304304315061932310,
                   "price": 101,
@@ -1429,7 +1429,7 @@ modify_batch_order = \
   "dataArray": [{
                   "timestamp": 1638237934061,
                   "recvWindow": 500,
-                  "marketCode": "ETH-USD-SWAP-LIN",
+                  "marketCode": "ETH-flexUSD",
                   "side": "BUY",
                   "orderID": 304304315061932310,
                   "price": 101,
@@ -1479,7 +1479,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
             "quantity": "5"
             "price": "101",
             "orderType": "LIMIT",
-            "marketCode": "ETH-USD-SWAP-LIN"
+            "marketCode": "ETH-flexUSD"
           }
 }
 
@@ -1515,7 +1515,7 @@ AND
             "orderID": 304304315061932310,
             "side": "BUY",
             "price": 101,
-            "marketCode": "ETH-USD-SWAP-LIN"
+            "marketCode": "ETH-flexUSD"
           }
 }
 
@@ -1716,7 +1716,7 @@ OR
 
 {
   "op": "subscribe",
-  "args": ["position:BTC-USD-SWAP-LIN", "position:BCH-USD-SWAP-LIN", ........], 
+  "args": ["position:BTC-flexUSD", "position:BCH-flexUSD", ........], 
   "tag": 102
 }
 ```
@@ -1797,7 +1797,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
               "lastUpdated": "1616053755423",
               "contractValCurrency": "ETH",
               "quantity" : "0.1",
-              "instrumentId": "ETH-USD-SWAP-LIN",
+              "instrumentId": "ETH-flexUSD",
               "positionPnl": "-5.6680",
               "estLiquidationPrice": "0"
             },
@@ -1806,7 +1806,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
               "lastUpdated": "1617099855968",
               "contractValCurrency": "BTC",
               "quantity" : "0.542000000",
-              "instrumentId": "BTC-USD-SWAP-LIN",
+              "instrumentId": "BTC-flexUSD",
               "positionPnl": "1220.9494164000000",
               "estLiquidationPrice": "53179.2"
             },
@@ -1841,7 +1841,7 @@ entryPrice | STRING | Average entry price of total position (Cost / Size) |
 lastUpdated | STRING | Millisecond timestamp |
 contractValCurrency | STRING | Base asset ID e.g. `ETH` |
 quantity | STRING | Position size (+/-) |
-instrumentId | STRING | e.g. `ETH-USD-SWAP-LIN` |
+instrumentId | STRING | e.g. `ETH-flexUSD` |
 positionPnl | STRING | Postion profit and lost |
 estLiquidationPrice | STRING | Estimated liquidation price, return 0 if it is negative(<0) |
 
@@ -1861,7 +1861,7 @@ OR
 
 {
   "op": "subscribe", 
-  "args": ["order:FLEX-USD", "order:ETH-USD-SWAP-LIN", .....], 
+  "args": ["order:FLEX-USD", "order:ETH-flexUSD", .....], 
   "tag": 102
 }
 ```
@@ -1959,7 +1959,7 @@ tag | INTEGER or STRING | No | If given it will be echoed in the reply
               "quantity": "2" ,
               "side": "BUY",
               "status": "OPEN",
-              "marketCode": "BTC-USD-SWAP-LIN",
+              "marketCode": "BTC-flexUSD",
               "timeInForce": "MAKER_ONLY",
               "timestamp": "1594943491077"
               "orderType": "LIMIT",
@@ -1981,7 +1981,7 @@ tag | INTEGER or STRING | No | If given it will be echoed in the reply
               "quantity": "2",
               "side": "BUY",
               "status": "OPEN",
-              "marketCode": "USDT-USD-SWAP-LIN",
+              "marketCode": "USDT-flexUSD",
               "timeInForce": "IOC",
               "timestamp": "1594943491077",
               "stopPrice": "9280",
@@ -2031,7 +2031,7 @@ isTriggered|STRING|`False` or `True`
               "quantity": "2",
               "side": "BUY",
               "status": "<Canceled status>",
-              "marketCode": "BTC-USD-SWAP-LIN",
+              "marketCode": "BTC-flexUSD",
               "timeInForce": "<Time in force>",
               "timestamp": "1594943491077",
               "remainQuantity": "1.5",
@@ -2054,7 +2054,7 @@ isTriggered|STRING|`False` or `True`
               "quantity": "2",
               "side": "BUY",
               "status": "CANCELED_BY_USER",
-              "marketCode": "BTC-USD-SWAP-LIN",
+              "marketCode": "BTC-flexUSD",
               "timeInForce": "<Time in force>",
               "timestamp": "1594943491077",
               "remainQuantity": "1.5",
@@ -2089,7 +2089,7 @@ price|STRING |Limit price of closed order (only applicable for LIMIT order types
 quantity|STRING |Original order quantity of closed order
 side|STRING |`BUY` or `SELL`
 status|STRING | <ul><li>`CANCELED_BY_USER`</li><li>`CANCELED_BY_MAKER_ONLY`</li><li>`CANCELED_BY_FOK`</li><li>`CANCELED_ALL_BY_IOC`</li><li>`CANCELED_PARTIAL_BY_IOC`</li><li>`CANCELED_BY_AMEND`</li></ul>
-marketCode|STRING |  Market code e.g. `BTC-USD-SWAP-LIN`
+marketCode|STRING |  Market code e.g. `BTC-flexUSD`
 timeInForce|STRING |Time in force of closed order
 timestamp|STRING |Current millisecond timestamp
 remainQuantity|STRING |Remaining order quantity of closed order
@@ -2124,7 +2124,7 @@ isTriggered|STRING|`False` or `True`
             "side": "BUY", 
             "status": "REJECT_CANCEL_ORDER_ID_NOT_FOUND", 
             "timeCondition": "GTC", 
-            "marketCode": "BTC-USD-SWAP-LIN", 
+            "marketCode": "BTC-flexUSD", 
             "timestampEpochMs": 1615377638518, 
             "orderType": "LIMIT",
             "price": 0.0, 
@@ -2186,7 +2186,7 @@ isTriggered | BOOL
               "quantity": "1",
               "side": "BUY",
               "status": "OPEN",
-              "marketCode": "BTC-USD-SWAP-LIN",    
+              "marketCode": "BTC-flexUSD",    
               "timeInForce": "GTC",
               "timestamp": "1594943491077"
               "orderType": "LIMIT",
@@ -2215,7 +2215,7 @@ price |STRING | Limit price of modified order (only applicable for LIMIT order t
 quantity | STRING| Quantity of modified order
 side|STRING|`BUY` or `SELL`
 status|STRING|  Order status
-marketCode | STRING |  Market code e.g. `BTC-USD-SWAP-LIN`
+marketCode | STRING |  Market code e.g. `BTC-flexUSD`
 timeInForce|STRING| Client submitted time in force, `GTC` by default
 timestamp|STRING |Current millisecond timestamp
 orderType| STRING | `LIMIT` or `STOP`
@@ -2249,7 +2249,7 @@ isTriggered|STRING|`False` or `True`
             "side": "BUY", 
             "status": "REJECT_AMEND_ORDER_ID_NOT_FOUND", 
             "timeCondition": "GTC", 
-            "marketCode": "SUSHI-USD-SWAP-LIN", 
+            "marketCode": "SUSHI-flexUSD", 
             "timestampEpochMs": 1615377638518, 
             "orderType": "LIMIT", 
             "price": 22, 
@@ -2308,7 +2308,7 @@ isTriggered | BOOL
               "quantity": "20",
               "side": "BUY",
               "status": "<Matched status>",
-              "marketCode": "BTC-USD-SWAP-LIN",
+              "marketCode": "BTC-flexUSD",
               "timeInForce": "GTC",
               "timestamp": "1592490254168",
               "matchId": "11568123",
@@ -2343,7 +2343,7 @@ limitPrice|STRING| Limit price submitted (only applicable for STOP order types)
 quantity|STRING|Order quantity submitted
 side|STRING|`BUY` or `SELL`
 status|STRING|`FILLED` or `PARTIAL_FILL`
-marketCode|STRING| Market code i.e. `BTC-USD-SWAP-LIN`
+marketCode|STRING| Market code i.e. `BTC-flexUSD`
 timeInForce|STRING|Client submitted time in force (only applicable for LIMIT and STOP order types)
 timestamp|STRING|Millisecond timestamp of order match
 matchID|STRING|Exchange match ID
@@ -2373,7 +2373,7 @@ Multiple subscriptions to different channels both public and private can be made
 {
   "op": "subscribe",
   "tag": 103,
-  "args": ["depth:BTC-USD-SWAP-LIN"]
+  "args": ["depth:BTC-flexUSD"]
 }
 ```
 ```python
@@ -2385,7 +2385,7 @@ orderbook_depth = \
 {
   "op": "subscribe",
   "tag": 103,
-  "args": ["depth:BTC-USD-SWAP-LIN"]
+  "args": ["depth:BTC-flexUSD"]
 }
 
 url= 'wss://stgapi.coinflex.us/v1/websocket'
@@ -2412,7 +2412,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
 ```json
 {
   "event": "subscribe", 
-  "channel": "depth:BTC-USD-SWAP-LIN",
+  "channel": "depth:BTC-flexUSD",
   "success": True, 
   "tag": "103", 
   "timestamp": "1607985371601"
@@ -2425,7 +2425,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
 {
   "table": "depth",
   "data": [ {
-      "instrumentId": "BTC-USD-SWAP-LIN",
+      "instrumentId": "BTC-flexUSD",
       "seqNum": 1608898592006137237,
       "timestamp": "1609350022785",
       "checksum": 1139901235, 
@@ -2455,7 +2455,7 @@ Parameters |Type| Required| Description |
 --------|-----|---|-----------|
 op | STRING| Yes | `subscribe` |
 tag | INTEGER or STRING | No | If given it will be echoed in the reply |
-args | LIST | Yes | List of individual markets `<depth>:<marketCode>` e.g: `[depthL10:BTC-USD-SWAP-LIN]`, the `depth` can be `depthL5` `depthL10` `depthL25` `depth`(includes all) |
+args | LIST | Yes | List of individual markets `<depth>:<marketCode>` e.g: `[depthL10:BTC-flexUSD]`, the `depth` can be `depthL5` `depthL10` `depthL25` `depth`(includes all) |
 
 <sub>**Channel Update Fields**</sub>
 
@@ -2478,7 +2478,7 @@ bids| LIST of floats | Buy side depth; <ol><li>price</li><li>quantity</li><li>0<
 {
   "op": "subscribe",
   "tag": 1,
-  "args": ["trade:BTC-USD-SWAP-LIN"]
+  "args": ["trade:BTC-flexUSD"]
 }
 ```
 ```python
@@ -2490,7 +2490,7 @@ trade = \
 {
   "op": "subscribe",
   "tag": 1,
-  "args": ["trade:BTC-USD-SWAP-LIN"]
+  "args": ["trade:BTC-flexUSD"]
 }
 
 url= 'wss://stgapi.coinflex.us/v1/websocket'
@@ -2516,7 +2516,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
 ```json
 {
   "event": "subscribe", 
-  "channel": ["trade:BTC-USD-SWAP-LIN"], 
+  "channel": ["trade:BTC-flexUSD"], 
   "success": True, 
   "tag": "1", 
   "timestamp": "1594299886880"
@@ -2533,7 +2533,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
               "tradeId": "2778148208082945",
               "price": "5556.91",
               "quantity": "5",
-              "marketCode": "BTC-USD-SWAP-LIN",
+              "marketCode": "BTC-flexUSD",
               "timestamp": "1594299886890"
             } ]
 }
@@ -2653,7 +2653,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
             "volume24h": "0",
             "currencyVolume24h": "0",
             "openInterest": "0",
-            "marketCode": "1INCH-USD-SWAP-LIN",
+            "marketCode": "1INCH-flexUSD",
             "timestamp": "1622020931046",
             "lastQty": "0",
             "markPrice": "3.304",
@@ -2709,7 +2709,7 @@ timestamp   | STRING   | Millisecond timestamp|
 {
   "op": "subscribe", 
   "tag": 1,
-  "args": ["candles60s:BTC-USD-SWAP-LIN"]
+  "args": ["candles60s:BTC-flexUSD"]
 }
 ```
 ```python
@@ -2721,7 +2721,7 @@ candles = \
 {
   "op": "subscribe",
   "tag": 1,
-  "args": ["candles60s:BTC-USD-SWAP-LIN"]
+  "args": ["candles60s:BTC-flexUSD"]
 }
 
 url= 'wss://stgapi.coinflex.us/v1/websocket'
@@ -2746,7 +2746,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
 ```json
 {
   "event": "subscribe", 
-  "channel": ["candles60s:BTC-USD-SWAP-LIN"], 
+  "channel": ["candles60s:BTC-flexUSD"], 
   "success": True, 
   "tag": "1", 
   "timestamp": "1594313762698"
@@ -2759,7 +2759,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
 {
   "table": "candle60s",
   "data": [ {
-              "marketCode": "BTC-USD-SWAP-LIN",
+              "marketCode": "BTC-flexUSD",
               "candle": [
                 "1594313762698", //timestamp
                 "9633.1",        //open
@@ -2856,7 +2856,8 @@ asyncio.get_event_loop().run_until_complete(subscribe())
 {
   "table": "liquidationRFQ",
   "data": [ {
-              "marketCode": "BTC-USD-SWAP-LIN"
+
+              "marketCode": "BTC-flexUSD"
               "timestamp": "1613774607889"
           } ]
 }
