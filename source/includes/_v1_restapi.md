@@ -687,8 +687,8 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 
 Request Parameter | Type | Required | Description |
 ----------------- | ---- | -------- | ----------- |
-asset | STRING | YES | Asset name, available assets e.g. `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
-quantity | STRING | YES | Quantity to mint |
+asset | STRING | YES | Asset name, available assets: `flexUSD` |
+quantity | STRING | YES | Quantity to mint , minimum quantity required: `10 flexUSD`|
 
 Response Field | Type | Description |
 -------------- | ---- | ----------- |
@@ -734,8 +734,8 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
 
 Request Parameter | Type | Required | Description | 
 ----------------- | ---- | -------- | ----------- |
-asset | STRING | YES | Asset name, available assets e.g. `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
-quantity | STRING | YES | Quantity to redeem |
+asset | STRING | YES | Asset name, available assets: `flexUSD` |
+quantity | STRING | YES | Quantity to redeem, minimum quantity required: `10 flexUSD` |
 type | STRING | YES | `NORMAL` queues a redemption until the following interest payment and incurs no fee |
 
 
@@ -774,7 +774,7 @@ GET /v1/flexasset/mint?asset={asset}&limit={limit}&startTime={startTime}&endTime
 
 Request Parameter | Type | Required | Description | 
 ----------------- | ---- | -------- | ----------- |
-asset | STRING | NO | Asset name, available assets: `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
+asset | STRING | NO | Asset name, available assets: `flexUSD` |
 limit | ULONG | NO | Default 50, max 200 |
 startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
 endTime | ULONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
@@ -814,7 +814,7 @@ GET /v1/flexasset/redeem?asset={asset}&limit={limit}&startTime={startTime}&endTi
 
 Request Parameter | Type | Required | Description | 
 ----------------- | ---- | -------- | ----------- |
-asset | STRING | NO | Asset name, available assets: `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
+asset | STRING | NO | Asset name, available assets: `flexUSD` |
 limit | ULONG | NO | Default 50, max 200 |
 startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other. Here startTime and endTime refer to the "requestedAt" timestamp |
 endTime | ULONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other. Here startTime and endTime refer to the "requestedAt" timestamp |
@@ -857,7 +857,7 @@ GET /v1/flexasset/earned?asset={asset}&limit={limit}&startTime={startTime}&endTi
 
 Request Parameter | Type | Required | Description | 
 ----------------- | ---- | -------- | ----------- |
-asset | STRING | NO | Asset name, available assets: `flexUSD`, `flexBTC`, `flexETH`, `flexFLEX` |
+asset | STRING | NO | Asset name, available assets: `flexUSD` |
 limit | ULONG | NO | Default 50, max 200 |
 startTime | ULONG | NO | Millisecond timestamp. Default 24 hours ago. startTime and endTime must be within 7 days of each other |
 endTime | ULONG | NO | Millisecond timestamp. Default time now. startTime and endTime must be within 7 days of each other |
