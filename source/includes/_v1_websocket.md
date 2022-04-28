@@ -203,7 +203,7 @@ ws.onopen = function () {
 ```json
 {
   "event": "login",
-  "success": True,
+  "success": true,
   "tag": "<value>",
   "timestamp": "1592491803978"
 }
@@ -211,7 +211,7 @@ ws.onopen = function () {
 ```python
 {
   "event": "login",
-  "success": True,
+  "success": true,
   "tag": "1",
   "timestamp": "1592491808328"
 }
@@ -219,7 +219,7 @@ ws.onopen = function () {
 ```javascript
 {
   "event": "login",
-  "success": True,
+  "success": true,
   "tag": "1",
   "timestamp": "1592491808329"
 }
@@ -230,7 +230,7 @@ ws.onopen = function () {
 ```json
 {
   "event": "login",
-  "success": False,
+  "success": false,
   "code": "<errorCode>",
   "message": "<errorMessage>",
   "tag": "1",
@@ -240,7 +240,7 @@ ws.onopen = function () {
 ```python
 {
   "event": "login",
-  "success": False,
+  "success": false,
   "code": "<errorCode>",
   "message": "<errorMessage>",
   "tag": "1",
@@ -250,7 +250,7 @@ ws.onopen = function () {
 ```javascript
 {
   "event": "login",
-  "success": False,
+  "success": false,
   "code": "<errorCode>",
   "message": "<errorMessage>",
   "tag": "1",
@@ -369,9 +369,7 @@ async def subscribe():
                 if data['success'] == True:
                     await ws.send(json.dumps(place_order))
             elif 'event' in data and data['event'] == 'placeorder':
-                await ws.send(json.dumps(place_order))
-                print(data)
-                break
+                continue
 
 asyncio.get_event_loop().run_until_complete(subscribe())
 ```
@@ -392,6 +390,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
             "quantity": "1.5",
             "timeInForce": "GTC",
             "price": "9431.48",
+            "orderId": "1000000700008",
             "source": 0
           }
 }
@@ -539,6 +538,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
             "side": "SELL",
             "orderType": "MARKET",
             "quantity": "5",
+            "orderId": "1000001700008",
             "source": 0
           }
 }
@@ -691,6 +691,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
             "timeInForce": "MAKER_ONLY_REPRICE",
             "stopPrice": "100",
             "limitPrice": "120",
+            "orderId": "1000002700008",
             "source": 0
           }
 }
@@ -769,7 +770,7 @@ recvWindow | LONG | NO | In milliseconds. If an order reaches the matching engin
                   "timestamp": 1638237934061,
                   "recvWindow": 500,
                   "clientOrderId": 2,
-                  "marketCode": "BTC-USD",
+                  "marketCode": "BTC-flexUSD",
                   "side": "SELL",
                   "orderType": "MARKET",
                   "quantity": 0.2
@@ -863,6 +864,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
             "quantity": "10",
             "timeInForce": "MAKER_ONLY",
             "price": "100",
+            "orderId": "1000003700008",
             "source": 0
           }
 }
@@ -880,6 +882,7 @@ AND
             "side": "SELL",
             "orderType": "MARKET",
             "quantity": "0.2",
+            "orderId": "1000004700009",
             "source": 0
           }
 }
@@ -935,6 +938,7 @@ All existing single order placement methods are supported:-
 * LIMIT
 * MARKET
 * STOP
+* STOP_LIMIT
 
 The websocket reply from the exchange will repond to each order in the batch separately, one order at a time, and has the same message format as the reponse for the single order placement method.
 
@@ -1029,6 +1033,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "timestamp": "1592491173964",
   "data": {
             "marketCode": "BTC-flexUSD",
+            "clientOrderId": "1",
             "orderId": "12"
           }
 }
@@ -1155,6 +1160,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
   "timestamp": "1592491173964",
   "data": {
             "marketCode": "BTC-flexUSD",
+            "clientOrderId": "1",
             "orderId": "12"
           }
 }
@@ -1432,8 +1438,8 @@ async def subscribe():
                     await ws.send(json.dumps(auth))
             elif 'event' in data and data['event'] == 'login':
                 if data['success'] == True:
-                    await ws.send(json.dumps(position))
-            elif 'event' in data and data['event'] == 'position':
+                    await ws.send(json.dumps(order))
+            elif 'event' in data and data['event'] == 'order':
                  continue
 asyncio.get_event_loop().run_until_complete(subscribe())
 
@@ -1530,8 +1536,8 @@ status|STRING|  Order status
 marketCode | STRING |  Market code e.g. `FLEX-USD`
 timeInForce|STRING| Client submitted time in force, `GTC` by default
 timestamp|STRING |Current millisecond timestamp
-orderType| STRING | `LIMIT` or `STOP`
-stopPrice|STRING|Stop price submitted (only applicable for STOP order types)
+orderType| STRING | `LIMIT` or `STOP` or `STOP_LIMIT`
+stopPrice| STRING |Stop price submitted (only applicable for STOP order types)
 limitPrice|STRING|Limit price submitted (only applicable for STOP order types)
 isTriggered|STRING|`False` or `True` 
 
@@ -1616,7 +1622,7 @@ timestamp|STRING |Current millisecond timestamp
 remainQuantity|STRING |Remaining order quantity of closed order
 stopPrice|STRING|Stop price of closed stop order (only applicable for STOP order types)
 limitPrice|STRING|Limit price of closed stop order (only applicable for STOP order types)
-ordertype|STRING  | `LIMIT` or `STOP`
+ordertype|STRING  | `LIMIT` or `STOP` or `STOP_LIMIT`
 isTriggered|STRING|`False` or `True` 
 
 
@@ -2260,27 +2266,24 @@ asyncio.get_event_loop().run_until_complete(subscribe())
 
 ```json
 {
-  "table": "market",
-  "data": [ {
-              "marketPrice": "0.367",
-              "listingDate": "1593288000000", 
-              "qtyIncrement": "0.1", 
-              "upperPriceBound": "0.417", 
-              "lowerPriceBound": "0.317", 
-              "counter": "USD", 
-              "type": "SPOT", 
-              "marketId": "3001000000000", 
-              "referencePair": "FLEX/USD", 
-              "tickSize": "0.001", 
-              "marketPriceLastUpdated": "1613769981920", 
-              "contractValCurrency": "FLEX", 
-              "name": "FLEX/USD Spot", 
-              "marketCode": "FLEX-USD", 
-              "marginCurrency": "USD", 
-              "base": "FLEX"
-          }, 
-          ........
-        ]
+    "table":"market",
+    "data": [
+        {
+            "marketCode":"USDC-flexUSD",
+            "name":"USDC/flexUSD",
+            "referencePair":"USDC/flexUSD",
+            "base":"USDC",
+            "counter":"flexUSD",
+            "type":"SPOT",
+            "tickSize":"0.0001",
+            "minSize":"0.01",
+            "listedAt":"1645430673095",
+            "upperPriceBound":"1.0800",
+            "lowerPriceBound":"0.9200",
+            "markPrice":"1.000000000",
+            "lastUpdatedAt":"1645430673204"
+        }
+    ]
 }
 ```
 
@@ -2306,22 +2309,23 @@ Fields |Type | Description|
 -------------------------- | -----|--------- |
 table | STRING | `market`
 data | LIST of dictionaries |
-marketPrice | STRING   | Mark price|
-listingDate | STRING   | Millisecond timestamp |
-qtyIncrement | STRING   | Quantity increment |
-upperPriceBound | STRING   | Upper sanity price bound|
-lowerPriceBound     | STRING   | Lower sanity price bound |
+marketCode   | STRING  | 
+name   | STRING   | 
+referencePair     | STRING   | 
+base     | STRING   | 
 counter     | STRING   | 
 type     | STRING   | 
-marketId     | STRING   | 
-referencePair     | STRING   | 
 tickSize     | STRING   | Tick size |
-marketPriceLastUpdated     | STRING | Millisecond timestamp|
+minSize | STRING | Minimum size |
+listedAt | STRING   | Millisecond timestamp |
+upperPriceBound | STRING   | Upper sanity price bound|
+lowerPriceBound     | STRING   | Lower sanity price bound |
+marketPrice | STRING   | Mark price|
+marketId | STRING | |
+lastUpdatedAt | STRING | Millisecond timestamp|
+qtyIncrement | STRING   | Quantity increment |
 contractValCurrency     | STRING   | 
-name   | STRING   | 
-marketCode   | STRING  | 
 marginCurrency   | STRING |
-base     | STRING   | 
 
 ## Other Responses
 
