@@ -938,7 +938,6 @@ All existing single order placement methods are supported:-
 * LIMIT
 * MARKET
 * STOP
-* STOP_LIMIT
 
 The websocket reply from the exchange will repond to each order in the batch separately, one order at a time, and has the same message format as the reponse for the single order placement method.
 
