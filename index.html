@@ -1334,7 +1334,7 @@ One account can only place up to 50 orders per second via websocket.
             </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH-flexUSD"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP_LIMIT"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
             </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAKER_ONLY_REPRICE"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
@@ -1375,7 +1375,7 @@ One account can only place up to 50 orders per second via websocket.
             <span class="s">"clientOrderId"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
             <span class="s">"marketCode"</span><span class="p">:</span> <span class="s">"ETH-flexUSD"</span><span class="p">,</span>
             <span class="s">"side"</span><span class="p">:</span> <span class="s">"BUY"</span><span class="p">,</span>
-            <span class="s">"orderType"</span><span class="p">:</span> <span class="s">"STOP"</span><span class="p">,</span>
+            <span class="s">"orderType"</span><span class="p">:</span> <span class="s">"STOP_LIMIT"</span><span class="p">,</span>
             <span class="s">"quantity"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
             <span class="s">"timeInForce"</span><span class="p">:</span> <span class="s">"MAKER_ONLY_REPRICE"</span><span class="p">,</span>
             <span class="s">"stopPrice"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
@@ -1416,7 +1416,7 @@ One account can only place up to 50 orders per second via websocket.
             </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH-flexUSD"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP_LIMIT"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAKER_ONLY_REPRICE"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
@@ -1440,7 +1440,7 @@ One account can only place up to 50 orders per second via websocket.
             </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH-flexUSD"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP_LIMIT"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAKER_ONLY_REPRICE"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
@@ -1500,7 +1500,7 @@ One account can only place up to 50 orders per second via websocket.
 <td>orderType</td>
 <td>STRING</td>
 <td>Yes</td>
-<td><code>STOP</code> for stop-limit orders (stop-market orders not supported)</td>
+<td><code>STOP_LIMIT</code> for stop-limit orders (stop-market orders not supported)</td>
 </tr>
 <tr>
 <td>quantity</td>
@@ -1731,7 +1731,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <ul>
 <li>LIMIT</li>
 <li>MARKET</li>
-<li>STOP</li>
+<li>STOP LIMIT</li>
 </ul>
 
 <p>The websocket reply from the exchange will repond to each order in the batch separately, one order at a time, and has the same message format as the reponse for the single order placement method.</p>
@@ -2428,7 +2428,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p><strong>OrderOpened message format - STOP order</strong></p>
+<p><strong>OrderOpened message format - STOP LIMIT order</strong></p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"table"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
@@ -2445,7 +2445,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
               </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1594943491077"</span><span class="p">,</span><span class="w">
               </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9280"</span><span class="p">,</span><span class="w">
               </span><span class="nl">"limitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9300"</span><span class="p">,</span><span class="w">
-              </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP_LIMIT"</span><span class="p">,</span><span class="w">
               </span><span class="nl">"isTriggered"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w">
             </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2527,17 +2527,17 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <tr>
 <td>orderType</td>
 <td>STRING</td>
-<td><code>LIMIT</code> or <code>STOP</code> or <code>STOP_LIMIT</code></td>
+<td><code>LIMIT</code> or <code>STOP_LIMIT</code></td>
 </tr>
 <tr>
 <td>stopPrice</td>
 <td>STRING</td>
-<td>Stop price submitted (only applicable for STOP order types)</td>
+<td>Stop price submitted (only applicable for STOP LIMIT order types)</td>
 </tr>
 <tr>
 <td>limitPrice</td>
 <td>STRING</td>
-<td>Limit price submitted (only applicable for STOP order types)</td>
+<td>Limit price submitted (only applicable for STOP LIMIT order types)</td>
 </tr>
 <tr>
 <td>isTriggered</td>
@@ -2570,7 +2570,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p><strong>OrderClosed message format - STOP order</strong></p>
+<p><strong>OrderClosed message format - STOP LIMIT order</strong></p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"table"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
@@ -2588,7 +2588,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
               </span><span class="nl">"remainQuantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.5"</span><span class="p">,</span><span class="w">
               </span><span class="nl">"stopPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9100"</span><span class="p">,</span><span class="w">
               </span><span class="nl">"limitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9120"</span><span class="p">,</span><span class="w">
-              </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP_LIMIT"</span><span class="p">,</span><span class="w">
               </span><span class="nl">"isTriggered"</span><span class="p">:</span><span class="w"> </span><span class="s2">"True"</span><span class="w"> 
             </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2686,17 +2686,17 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <tr>
 <td>stopPrice</td>
 <td>STRING</td>
-<td>Stop price of closed stop order (only applicable for STOP order types)</td>
+<td>Stop price of closed stop order (only applicable for STOP LIMIT order types)</td>
 </tr>
 <tr>
 <td>limitPrice</td>
 <td>STRING</td>
-<td>Limit price of closed stop order (only applicable for STOP order types)</td>
+<td>Limit price of closed stop order (only applicable for STOP LIMIT order types)</td>
 </tr>
 <tr>
 <td>ordertype</td>
 <td>STRING</td>
-<td><code>LIMIT</code> or <code>STOP</code> or <code>STOP_LIMIT</code></td>
+<td><code>LIMIT</code> or <code>STOP_LIMIT</code></td>
 </tr>
 <tr>
 <td>isTriggered</td>
@@ -2959,12 +2959,12 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <tr>
 <td>stopPrice</td>
 <td>STRING</td>
-<td>Stop price submitted (only applicable for STOP order types)</td>
+<td>Stop price submitted (only applicable for STOP LIMIT order types)</td>
 </tr>
 <tr>
 <td>limitPrice</td>
 <td>STRING</td>
-<td>Limit price submitted (only applicable for STOP order types)</td>
+<td>Limit price submitted (only applicable for STOP LIMIT order types)</td>
 </tr>
 <tr>
 <td>quantity</td>
@@ -2989,7 +2989,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <tr>
 <td>timeInForce</td>
 <td>STRING</td>
-<td>Client submitted time in force (only applicable for LIMIT and STOP order types)</td>
+<td>Client submitted time in force (only applicable for LIMIT and STOP LIMIT order types)</td>
 </tr>
 <tr>
 <td>timestamp</td>
@@ -3024,7 +3024,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <tr>
 <td>orderType</td>
 <td>STRING</td>
-<td><ul><li><code>LIMIT</code></li><li><code>MARKET</code></li><li><code>STOP</code></li></ul></td>
+<td><ul><li><code>LIMIT</code></li><li><code>MARKET</code></li><li><code>STOP_LIMIT</code></li></ul></td>
 </tr>
 <tr>
 <td>fees</td>
@@ -3039,7 +3039,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <tr>
 <td>isTriggered</td>
 <td>STRING</td>
-<td><code>False</code> (or <code>True</code> for STOP order types)</td>
+<td><code>False</code> (or <code>True</code> for STOP LIMIT order types)</td>
 </tr>
 </tbody></table>
 <h2 id='websocket-api-subscriptions-public'>Subscriptions - Public</h2>
