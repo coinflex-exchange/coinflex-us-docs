@@ -602,7 +602,7 @@ recvWindow | LONG | NO | In milliseconds. If an order reaches the matching engin
             "clientOrderId": 1,
             "marketCode": "ETH-flexUSD",
             "side": "BUY",
-            "orderType": "STOP",
+            "orderType": "STOP_LIMIT",
             "quantity": 10,
             "timeInForce": "MAKER_ONLY_REPRICE",
             "stopPrice": 100,
@@ -645,7 +645,7 @@ place_order = \
             "clientOrderId": 1,
             "marketCode": "ETH-flexUSD",
             "side": "BUY",
-            "orderType": "STOP",
+            "orderType": "STOP_LIMIT",
             "quantity": 10,
             "timeInForce": "MAKER_ONLY_REPRICE",
             "stopPrice": 100,
@@ -686,7 +686,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
             "clientOrderId": "1",
             "marketCode": "ETH-flexUSD",
             "side": "BUY",
-            "orderType": "STOP",
+            "orderType": "STOP_LIMIT",
             "quantity": "10",
             "timeInForce": "MAKER_ONLY_REPRICE",
             "stopPrice": "100",
@@ -711,7 +711,7 @@ asyncio.get_event_loop().run_until_complete(subscribe())
             "clientOrderId": "1",
             "marketCode": "ETH-flexUSD",
             "side": "BUY",
-            "orderType": "STOP",
+            "orderType": "STOP_LIMIT",
             "quantity": "10",
             "timeInForce": "MAKER_ONLY_REPRICE",
             "stopPrice": "100",
@@ -737,7 +737,7 @@ tag | INTEGER or STRING | No | If given it will be echoed in the reply
 data | DICTIONARY object | Yes |
 clientOrderId | INTEGER | No | Client assigned ID to help manage and identify orders |
 marketCode| STRING| Yes| Market code e.g. `ETH-flexUSD`|
-orderType|STRING| Yes|  `STOP` for stop-limit orders (stop-market orders not supported)|
+orderType|STRING| Yes|  `STOP_LIMIT` for stop-limit orders (stop-market orders not supported)|
 quantity|FLOAT|Yes|Quantity (denominated by contractValCurrency)|
 side|STRING| Yes| `BUY ` or `SELL`|
 limitPrice| FLOAT |Yes | Limit price for the stop-limit order. <p><p>For **BUY** the limit price must be greater or equal to the stop price.<p><p>For **SELL** the limit price must be less or equal to the stop price.|
@@ -937,7 +937,7 @@ All existing single order placement methods are supported:-
 
 * LIMIT
 * MARKET
-* STOP
+* STOP LIMIT
 
 The websocket reply from the exchange will repond to each order in the batch separately, one order at a time, and has the same message format as the reponse for the single order placement method.
 
@@ -1494,7 +1494,7 @@ tag | INTEGER or STRING | No | If given it will be echoed in the reply
 }
 ```
 
-> **OrderOpened message format - STOP order**
+> **OrderOpened message format - STOP LIMIT order**
 
 ```json
 {
@@ -1512,7 +1512,7 @@ tag | INTEGER or STRING | No | If given it will be echoed in the reply
               "timestamp": "1594943491077",
               "stopPrice": "9280",
               "limitPrice": "9300",
-              "orderType": "STOP",
+              "orderType": "STOP_LIMIT",
               "isTriggered": "True"
             } ]
 }
@@ -1535,9 +1535,9 @@ status|STRING|  Order status
 marketCode | STRING |  Market code e.g. `FLEX-USD`
 timeInForce|STRING| Client submitted time in force, `GTC` by default
 timestamp|STRING |Current millisecond timestamp
-orderType| STRING | `LIMIT` or `STOP` or `STOP_LIMIT`
-stopPrice| STRING |Stop price submitted (only applicable for STOP order types)
-limitPrice|STRING|Limit price submitted (only applicable for STOP order types)
+orderType| STRING | `LIMIT` or `STOP_LIMIT`
+stopPrice| STRING |Stop price submitted (only applicable for STOP LIMIT order types)
+limitPrice|STRING|Limit price submitted (only applicable for STOP LIMIT order types)
 isTriggered|STRING|`False` or `True` 
 
 
@@ -1567,7 +1567,7 @@ isTriggered|STRING|`False` or `True`
 }
 ```
 
-> **OrderClosed message format - STOP order**
+> **OrderClosed message format - STOP LIMIT order**
 
 ```json
 {
@@ -1586,7 +1586,7 @@ isTriggered|STRING|`False` or `True`
               "remainQuantity": "1.5",
               "stopPrice": "9100",
               "limitPrice": "9120",
-              "orderType": "STOP",
+              "orderType": "STOP_LIMIT",
               "isTriggered": "True" 
             } ]
 }
@@ -1619,9 +1619,9 @@ marketCode|STRING |  Market code e.g. `BTC-flexUSD`
 timeInForce|STRING |Time in force of closed order
 timestamp|STRING |Current millisecond timestamp
 remainQuantity|STRING |Remaining order quantity of closed order
-stopPrice|STRING|Stop price of closed stop order (only applicable for STOP order types)
-limitPrice|STRING|Limit price of closed stop order (only applicable for STOP order types)
-ordertype|STRING  | `LIMIT` or `STOP` or `STOP_LIMIT`
+stopPrice|STRING|Stop price of closed stop order (only applicable for STOP LIMIT order types)
+limitPrice|STRING|Limit price of closed stop order (only applicable for STOP LIMIT order types)
+ordertype|STRING  | `LIMIT` or `STOP_LIMIT`
 isTriggered|STRING|`False` or `True` 
 
 
@@ -1742,23 +1742,23 @@ accountId | STRING | Account identifier
 clientOrderId|STRING|  Client assigned ID to help manage and identify orders
 orderId | STRING|   Unique order ID from the exchange
 price|STRING| Limit price submitted (only applicable for LIMIT order types)
-stopPrice|STRING| Stop price submitted (only applicable for STOP order types)
-limitPrice|STRING| Limit price submitted (only applicable for STOP order types)
+stopPrice|STRING| Stop price submitted (only applicable for STOP LIMIT order types)
+limitPrice|STRING| Limit price submitted (only applicable for STOP LIMIT order types)
 quantity|STRING|Order quantity submitted
 side|STRING|`BUY` or `SELL`
 status|STRING|`FILLED` or `PARTIAL_FILL`
 marketCode|STRING| Market code i.e. `BTC-flexUSD`
-timeInForce|STRING|Client submitted time in force (only applicable for LIMIT and STOP order types)
+timeInForce|STRING|Client submitted time in force (only applicable for LIMIT and STOP LIMIT order types)
 timestamp|STRING|Millisecond timestamp of order match
 matchID|STRING|Exchange match ID
 matchPrice|STRING|Match price of order from this match ID
 matchQuantity|STRING|Match quantity of order from this match ID
 orderMatchType|STRING|`MAKER` or `TAKER`
 remainQuantity|STRING|Remaining order quantity
-orderType|STRING|<ul><li>`LIMIT`</li><li>`MARKET`</li><li>`STOP`</li></ul>
+orderType|STRING|<ul><li>`LIMIT`</li><li>`MARKET`</li><li>`STOP_LIMIT`</li></ul>
 fees|STRING|Amount of fees paid from this match ID 
 feeInstrumentId|STRING|Instrument ID of fees paid from this match ID 
-isTriggered|STRING|`False` (or `True` for STOP order types)
+isTriggered|STRING|`False` (or `True` for STOP LIMIT order types)
 
 
 ## Subscriptions - Public
