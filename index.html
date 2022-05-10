@@ -1074,9 +1074,9 @@ One account can only place up to 50 orders per second via websocket.
 </tr>
 <tr>
 <td>clientOrderId</td>
-<td>INTEGER</td>
+<td>ULONG</td>
 <td>No</td>
-<td>Client assigned ID to help manage and identify orders</td>
+<td>Client assigned ID to help manage and identify orders with max value <code>9223372036854775807</code></td>
 </tr>
 <tr>
 <td>marketCode</td>
@@ -1280,9 +1280,9 @@ One account can only place up to 50 orders per second via websocket.
 </tr>
 <tr>
 <td>clientOrderId</td>
-<td>INTEGER</td>
+<td>ULONG</td>
 <td>No</td>
-<td>Client assigned ID to help manage and identify orders</td>
+<td>Client assigned ID to help manage and identify orders with max value <code>9223372036854775807</code></td>
 </tr>
 <tr>
 <td>marketCode</td>
@@ -1486,9 +1486,9 @@ One account can only place up to 50 orders per second via websocket.
 </tr>
 <tr>
 <td>clientOrderId</td>
-<td>INTEGER</td>
+<td>ULONG</td>
 <td>No</td>
-<td>Client assigned ID to help manage and identify orders</td>
+<td>Client assigned ID to help manage and identify orders with max value <code>9223372036854775807</code></td>
 </tr>
 <tr>
 <td>marketCode</td>
@@ -2482,7 +2482,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <tr>
 <td>clientOrderId</td>
 <td>STRING</td>
-<td>Client assigned ID to help manage and identify orders</td>
+<td>Client assigned ID to help manage and identify orders with max value <code>9223372036854775807</code></td>
 </tr>
 <tr>
 <td>orderId</td>
@@ -2636,7 +2636,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <tr>
 <td>clientOrderId</td>
 <td>STRING</td>
-<td>Client assigned ID to help manage and identify orders</td>
+<td>Client assigned ID to help manage and identify orders with max value <code>9223372036854775807</code></td>
 </tr>
 <tr>
 <td>orderId</td>
@@ -2786,7 +2786,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <tr>
 <td>clientOrderId</td>
 <td>STRING</td>
-<td>Client assigned ID to help manage and identify orders</td>
+<td>Client assigned ID to help manage and identify orders with max value <code>9223372036854775807</code></td>
 </tr>
 <tr>
 <td>orderId</td>
@@ -2944,7 +2944,7 @@ Please also subscribe to the <strong>User Order Channel</strong> to receive push
 <tr>
 <td>clientOrderId</td>
 <td>STRING</td>
-<td>Client assigned ID to help manage and identify orders</td>
+<td>Client assigned ID to help manage and identify orders with max value <code>9223372036854775807</code></td>
 </tr>
 <tr>
 <td>orderId</td>
@@ -5810,7 +5810,7 @@ Interest payments occur at 04:00, 12:00, and 20:00 UTC.
     </span><span class="nl">"responseType"</span><span class="p">:</span><span class="s2">"FULL"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1612249737434"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612249737434</span><span class="p">,</span><span class="w">
             </span><span class="nl">"marketCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDC-flexUSD"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
@@ -5884,7 +5884,7 @@ You can place up to 8 orders at a time in REST API
 </tr>
 <tr>
 <td>clientOrderId</td>
-<td>STRING</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Client assigned ID to help manage and identify orders with max value <code>9223372036854775807</code></td>
 </tr>
@@ -6103,7 +6103,7 @@ You can place up to 8 orders at a time in REST API
 </tr>
 <tr>
 <td>clientOrderId</td>
-<td>STRING</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Client assigned ID to help manage and identify orders with max value <code>9223372036854775807</code></td>
 </tr>
@@ -6290,7 +6290,7 @@ You can place up to 8 orders at a time in REST API
 </tr>
 <tr>
 <td>clientOrderId</td>
-<td>STRING</td>
+<td>ULONG</td>
 <td>NO</td>
 <td>Client assigned ID to help manage and identify orders with max value <code>9223372036854775807</code></td>
 </tr>
@@ -6470,7 +6470,7 @@ You can place up to 8 orders at a time in REST API
 </tr>
 <tr>
 <td>clientOrderId</td>
-<td>STRING</td>
+<td>ULONG</td>
 <td>Either one of orderId or clientOrderId is required</td>
 <td>Client assigned ID to help manage and identify orders with max value <code>9223372036854775807</code></td>
 </tr>
