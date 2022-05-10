@@ -433,7 +433,7 @@ Parameter | Type | Required | Description |
 op | STRING | Yes | `placeorder`
 tag | INTEGER or STRING | No | If given it will be echoed in the reply
 data | DICTIONARY object | Yes |
-clientOrderId | INTEGER | No | Client assigned ID to help manage and identify orders |
+clientOrderId | ULONG | No | Client assigned ID to help manage and identify orders with max value `9223372036854775807` |
 marketCode | STRING | Yes | Market code e.g. `BTC-flexUSD` |
 orderType | STRING | Yes |  `LIMIT` |
 price | FLOAT |  No | Price |
@@ -579,7 +579,7 @@ Parameter | Type | Required | Description |
 op | STRING | Yes | `placeorder`
 tag | INTEGER or STRING | No | If given it will be echoed in the reply
 data | DICTIONARY object | Yes |
-clientOrderId | INTEGER | No | Client assigned ID to help manage and identify orders |
+clientOrderId | ULONG | No | Client assigned ID to help manage and identify orders with max value `9223372036854775807` |
 marketCode | STRING | Yes | Market code e.g. `BTC-flexUSD` |
 orderType | STRING | Yes |  `MARKET` |
 quantity |  FLOAT | Yes | Quantity (denominated by contractValCurrency) |
@@ -735,7 +735,7 @@ Parameters | Type | Required |Description|
 op | STRING | Yes | `placeorder`
 tag | INTEGER or STRING | No | If given it will be echoed in the reply
 data | DICTIONARY object | Yes |
-clientOrderId | INTEGER | No | Client assigned ID to help manage and identify orders |
+clientOrderId | ULONG | No | Client assigned ID to help manage and identify orders with max value `9223372036854775807` |
 marketCode| STRING| Yes| Market code e.g. `ETH-flexUSD`|
 orderType|STRING| Yes|  `STOP_LIMIT` for stop-limit orders (stop-market orders not supported)|
 quantity|FLOAT|Yes|Quantity (denominated by contractValCurrency)|
@@ -1526,7 +1526,7 @@ table | STRING | `order`
 data | LIST of dictionary |
 notice | STRING| `OrderOpened`
 accountId | STRING| Account identifier
-clientOrderId |  STRING | Client assigned ID to help manage and identify orders
+clientOrderId |  STRING | Client assigned ID to help manage and identify orders with max value `9223372036854775807`
 orderId | STRING | Unique order ID from the exchange
 price |STRING | Limit price submitted (only applicable for LIMIT order types)
 quantity | STRING| Quantity submitted
@@ -1609,7 +1609,7 @@ table | STRING | `order`
 data | LIST of dictionary |
 notice | STRING | `OrderClosed`
 accountId | STRING  |  Account identifier
-clientOrderId|STRING |  Client assigned ID to help manage and identify orders
+clientOrderId|STRING |  Client assigned ID to help manage and identify orders with max value `9223372036854775807`
 orderId | STRING  |  Unique order ID from the exchange
 price|STRING |Limit price of closed order (only applicable for LIMIT order types)
 quantity|STRING |Original order quantity of closed order
@@ -1675,7 +1675,7 @@ message | STRING |
 code | STRING | 
 timestamp | STRING |
 data | LIST of dictionary |
-clientOrderId|STRING|  Client assigned ID to help manage and identify orders
+clientOrderId|STRING|  Client assigned ID to help manage and identify orders with max value `9223372036854775807`
 orderId | STRING|   Unique order ID from the exchange
 displayQuantity | DECIMAL
 lastMatchPrice | DECIMAL
@@ -1739,7 +1739,7 @@ table | STRING | `order`
 data | LIST of dictionary |
 notice | STRING | `OrderMatched`
 accountId | STRING | Account identifier
-clientOrderId|STRING|  Client assigned ID to help manage and identify orders
+clientOrderId|STRING|  Client assigned ID to help manage and identify orders with max value `9223372036854775807`
 orderId | STRING|   Unique order ID from the exchange
 price|STRING| Limit price submitted (only applicable for LIMIT order types)
 stopPrice|STRING| Stop price submitted (only applicable for STOP LIMIT order types)
