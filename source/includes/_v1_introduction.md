@@ -1,7 +1,7 @@
 # Change Log
 
 <aside class="notice">
-API is beta version.
+API is beta version
 </aside>
 
 # Introduction
