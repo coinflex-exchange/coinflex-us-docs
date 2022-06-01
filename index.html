@@ -4812,7 +4812,15 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
             </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000.0"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38c09755bff75d33304a3cb6ee839fcb78bbb38b6e3e16586f20852cdec4886d"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"assetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CRYPTO"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"creditedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1617940800000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"assetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIAT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"creditedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1651117830000"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -4892,6 +4900,11 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <td>txId</td>
 <td>STRING</td>
 <td></td>
+</tr>
+<tr>
+<td>assetType</td>
+<td>STRING</td>
+<td>Available values: <code>CRYPTO</code>, <code>FIAT</code></td>
 </tr>
 <tr>
 <td>creditedAt</td>
@@ -5008,8 +5021,20 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
             </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000000"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38c09755bff75d33304a3cb6ee839fcb78bbb38b6e3e16586f20852cdec4886d"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"assetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CRYPTO"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"requestedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1617940800000"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"completedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16003243243242"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"751474625867710465"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55cc39a6a599e3b055c7238375d96402"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"assetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIAT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"requestedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1649402256000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"completedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1649402502000"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -5110,6 +5135,11 @@ If <em>Body</em> is omitted it&#39;s treated as an empty string.</p>
 <td>txId</td>
 <td>STRING</td>
 <td></td>
+</tr>
+<tr>
+<td>assetType</td>
+<td>STRING</td>
+<td>Available values: <code>CRYPTO</code>, <code>FIAT</code></td>
 </tr>
 <tr>
 <td>requestedAt</td>
