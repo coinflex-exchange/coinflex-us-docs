@@ -414,7 +414,15 @@ GET /v1/deposit?asset={asset}&limit={limit}&startTime={startTime}&endTime={endTi
             "quantity": "1000.0",
             "status": "COMPLETED",
             "txId": "38c09755bff75d33304a3cb6ee839fcb78bbb38b6e3e16586f20852cdec4886d",
+            "assetType": "CRYPTO",
             "creditedAt": "1617940800000"
+        },
+        {
+            "asset": "USD",
+            "quantity": "2.0",
+            "status": "COMPLETED",
+            "assetType": "FIAT",
+            "creditedAt": "1651117830000"
         }
     ]
 }
@@ -436,6 +444,7 @@ memo | STRING | Memo (tag) if applicable |
 quantity | STRING | |
 status | STRING | |
 txId | STRING | |
+assetType | STRING | Available values: `CRYPTO`, `FIAT` |
 creditedAt | STRING | Millisecond timestamp |
 
 
@@ -508,8 +517,20 @@ GET /v1/withdrawal?id={id}&asset={asset}&limit={limit}&startTime={startTime}&end
             "fee": "0.000000000",
             "status": "COMPLETED",
             "txId": "38c09755bff75d33304a3cb6ee839fcb78bbb38b6e3e16586f20852cdec4886d",
+            "assetType": "CRYPTO",
             "requestedAt": "1617940800000",
             "completedAt": "16003243243242"
+        },
+        {
+            "id": "751474625867710465",
+            "asset": "USD",
+            "quantity": "25",
+            "fee": "0.0",
+            "status": "COMPLETED",
+            "txId": "55cc39a6a599e3b055c7238375d96402",
+            "assetType": "FIAT",
+            "requestedAt": "1649402256000",
+            "completedAt": "1649402502000"
         }
     ]
 }
@@ -535,6 +556,7 @@ fee | STRING | |
 id | STRING | |
 status | STRING | `COMPLETED`, `PROCESSING`, `PENDING`, `ON HOLD`, `CANCELED`, or `FAILED` |
 txId | STRING | |
+assetType | STRING | Available values: `CRYPTO`, `FIAT` |
 requestedAt | STRING | Millisecond timestamp |
 completedAt | STRING | Millisecond timestamp |
 
